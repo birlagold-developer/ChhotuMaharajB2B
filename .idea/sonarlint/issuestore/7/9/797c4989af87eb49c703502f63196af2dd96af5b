@@ -1,0 +1,16 @@
+
+–squid:S1319 "sThe type of the "video_id" object should be an interface such as "List" rather than the implementation "ArrayList".(à–Éœøÿÿÿÿ8öÔ±ñÔ-
+‡"squid:ClassVariableVisibilityCheck"YMake clickListener a static final constant or non-public and provide accessors if needed.(Ï±–ö
+squid:S1319"sThe type of the "video_id" object should be an interface such as "List" rather than the implementation "ArrayList".(ÇÜ·8Ê®ñÔ-
+Asquid:S1068"+Remove this unused "context" private field.(êİç
+ˆ"squid:ClassVariableVisibilityCheck"TMake video_id a static final constant or non-public and provide accessors if needed.(ÇÜ·8¯¡±ñÔ-
+usquid:S00117 "QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à–Éœøÿÿÿÿ8öÔ±ñÔ-
+Jsquid:S1444"3Make this "public static clickListener" field final(Ï±–ö
+psquid:S3008"SRename this field "video_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÇÜ·8¯¡±ñÔ-
+Ksquid:S1444".Make this "public static video_id" field final(ÇÜ·8¯¡±ñÔ-
+“squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(««§ÿùÿÿÿÿ8öÔ±ñÔ-
+"squid:ClassVariableVisibilityCheck%"TMake checkBox a static final constant or non-public and provide accessors if needed.(÷Ç™ûÿÿÿÿ8ğ³ìÔ-
+rsquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(««§ÿùÿÿÿÿ8¢¨øñÜ-
+rsquid:S00100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à–Éœøÿÿÿÿ8öÔ±ñÔ-
+Msquid:S2696^"6Make the enclosing method "static" or remove this set.(ùÅÒ£
+:squid:S2386"Make this member "protected".(ÇÜ·8Ê®ñÔ-

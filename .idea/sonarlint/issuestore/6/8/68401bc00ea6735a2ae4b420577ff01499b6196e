@@ -1,0 +1,8 @@
+
+Usquid:S1155J">Use isEmpty() to check whether the collection is empty or not.(Ãßâ
+:squid:S2119W"Save and re-use this "Random".(šŸ«íøÿÿÿÿ
+}squid:S1488["aImmediately return this expression instead of assigning it to the temporary variable "randomNum".(Ñ²‘¦şÿÿÿÿ
+‡squid:S1319@"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ôÂáö
+^squid:S00112@"FDefine and throw a dedicated exception instead of using a generic one.(ôÂáö
+]squid:S22597"FA "NullPointerException" could be thrown; "respList" is nullable here.(Ï‡’Ë
+%squid:RedundantThrowsDeclarationCheck@"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ôÂáö

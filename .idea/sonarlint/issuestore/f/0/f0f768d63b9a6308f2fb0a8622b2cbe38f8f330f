@@ -1,0 +1,33 @@
+
+squid:S1192‡"bDefine a constant instead of duplicating this literal "application/x-www-form-urlencoded" 3 times.(´İŠæ8ßÎ•íÖ-
+Lsquid:S1444.".Make this "public static fragment" field final(¢ø÷õ8ĞÏŠíÖ-
+isquid:S1192?"FDefine a constant instead of duplicating this literal "topic" 3 times.(Ş“Ãòùÿÿÿÿ8úòä²×-
+W
+squid:S106ò"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8ßö‘íÖ-
+}squid:S2293ğ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ßö‘íÖ-
+Lsquid:S1905—"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8ßö‘íÖ-
+}squid:S2293ç"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ßö‘íÖ-
+msquid:S1192ˆ"IDefine a constant instead of duplicating this literal "params.." 3 times.(Ôƒ½¶şÿÿÿÿ8ßÎ•íÖ-
+Lsquid:S1905ù"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8ßö‘íÖ-
+hsquid:S1192V"JDefine a constant instead of duplicating this literal "User Name" 3 times.(‰½Üİ8ßÎ•íÖ-
+rsquid:S1192†"NDefine a constant instead of duplicating this literal "authorization" 3 times.(â¡ı¡øÿÿÿÿ8ßÎ•íÖ-
+Tsquid:S26969"6Make the enclosing method "static" or remove this set.(ïÆÙõ8ĞÏŠíÖ-
+}squid:S2293Æ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ßÎ•íÖ-
+vsquid:S1192"WDefine a constant instead of duplicating this literal "Param value..........." 3 times.(Ü…„Ş8ßÎ•íÖ-
+fsquid:S1192y"HDefine a constant instead of duplicating this literal "Error: " 3 times.(€„áÅ8ßÎ•íÖ-
+Nsquid:S1066ó"/Merge this if statement with the enclosing one.(ü Ìû8ÂÃ§¹×-
+}squid:S2293Ï"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ßÎ•íÖ-
+W
+squid:S106Ò"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8ßÎ•íÖ-
+osquid:CommentedOutCodeLineù"<This block of commented-out lines of code should be removed.(è¹àôÿÿÿÿÿ8ÂÃ§¹×-
+}squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ßö‘íÖ-
+lsquid:S1192\"IDefine a constant instead of duplicating this literal "Response" 3 times.(ËÖ‡©ùÿÿÿÿ8ßÎ•íÖ-
+osquid:S1192†"KDefine a constant instead of duplicating this literal "auth_token" 3 times.(â¡ı¡øÿÿÿÿ8ßÎ•íÖ-
+W
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8ßö‘íÖ-
+lsquid:S1192‡"MDefine a constant instead of duplicating this literal "content-type" 3 times.(´İŠæ8ßÎ•íÖ-
+}squid:S2293…"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ßö‘íÖ-
+lsquid:S1192†"HDefine a constant instead of duplicating this literal "Bearer " 3 times.(â¡ı¡øÿÿÿÿ8ßÎ•íÖ-
+Lsquid:S1905Ù"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8ßÎ•íÖ-
+‰"squid:ClassVariableVisibilityCheck."TMake fragment a static final constant or non-public and provide accessors if needed.(¢ø÷õ8ĞÏŠíÖ-
+Gsquid:S1148³"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ßÎ•íÖ-

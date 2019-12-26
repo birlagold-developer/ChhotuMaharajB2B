@@ -1,0 +1,15 @@
+
+}squid:S1149O"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(ğÕß§8üÒşÛ-
+nsquid:CommentedOutCodeLinen"<This block of commented-out lines of code should be removed.(±Šúœşÿÿÿÿ8üÒşÛ-
+}squid:S2293¸"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8üÒşÛ-
+isquid:CommentedOutCodeLine~"<This block of commented-out lines of code should be removed.(øùÒÿ8üÒşÛ-
+nsquid:S1192I"KDefine a constant instead of duplicating this literal "Loading..." 3 times.(°úöˆüÿÿÿÿ8üÒşÛ-
+¥squid:S1186Ò"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(œƒƒ©ùÿÿÿÿ8üÒşÛ-
+Gsquid:S1148”"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8üÒşÛ-
+}squid:S1149O"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(ğÕß§8üÒşÛ-
+jsquid:CommentedOutCodeLine³"<This block of commented-out lines of code should be removed.(Æ–ÿè8üÒşÛ-
+osquid:CommentedOutCodeLine×"<This block of commented-out lines of code should be removed.(¸©±úÿÿÿÿ8³ÁÙşÛ-
+dsquid:S1858{"F"url" is already a string, there's no need to call "toString()" on it.(ã†»‹8üÒşÛ-
+esquid:S1192"FDefine a constant instead of duplicating this literal "UTF-8" 9 times.(ß¬º¥8üÒşÛ-
+jsquid:CommentedOutCodeLineŸ"<This block of commented-out lines of code should be removed.(˜ÌÁ¬8üÒşÛ-
+esquid:MaximumInheritanceDepth,"<This class has 6 parents which is greater than 5 authorized.(áú¸–

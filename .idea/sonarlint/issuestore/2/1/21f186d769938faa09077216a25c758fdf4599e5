@@ -1,0 +1,34 @@
+
+}squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Æ•¶üùÿÿÿÿ8ã©âşÛ-
+qsquid:MaximumInheritanceDepth("<This class has 6 parents which is greater than 5 authorized.(Ú£°åùÿÿÿÿ8ã©âşÛ-
+Osquid:S1659-",Declare "locationArray1" on a separate line.(É€ÇŠúÿÿÿÿ8˜Ş†ôÔ-
+xsquid:S00116*"YRename this field "live_demo_type" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎÚå¥8ã©âşÛ-
+ssquid:S00116*"TRename this field "demo_slot" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎÚå¥8ã©âşÛ-
+Esquid:S1659.""Declare "mDay" on a separate line.(İ—Ûéşÿÿÿÿ8ßšôÔ-
+}squid:S2293‰"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ä™ı­ıÿÿÿÿ8ã©âşÛ-
+jsquid:S1301¹"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ8ã©âşÛ-
+}squid:S2293†"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ã©âşÛ-
+Usquid:S1135h"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8ã©âşÛ-
+Jsquid:S1659-"'Declare "slotArray" on a separate line.(É€ÇŠúÿÿÿÿ8ã©âşÛ-
+X"squid:SwitchLastCaseIsDefaultCheck™""Add a default case to this switch.(ÏÄµª8ã©âşÛ-
+Lsquid:S1905¦"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8ã©âşÛ-
+qsquid:S3776Á"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ÁóİÜ8ã©âşÛ-
+Isquid:S1659*"+Declare "demo_location" on a separate line.(ÎÚå¥8ã©âşÛ-
+Nsquid:S1659-"+Declare "locationArray" on a separate line.(É€ÇŠúÿÿÿÿ8Ö×ôÔ-
+Esquid:S1659/"'Declare "visitTime" on a separate line.(§ÑÌå8ã©âşÛ-
+}squid:S2293ƒ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ùãÆ–üÿÿÿÿ8ã©âşÛ-
+}squid:S2293¦"YReplace the type specification in this constructor call with the diamond operator ("<>").(„õÇëùÿÿÿÿ8ã©âşÛ-
+W
+squid:S106Ÿ"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8ã©âşÛ-
+Esquid:S1659*"'Declare "demo_slot" on a separate line.(ÎÚå¥8ã©âşÛ-
+Esquid:S1659/"'Declare "visitDate" on a separate line.(§ÑÌå8ã©âşÛ-
+ssquid:S1192N"PDefine a constant instead of duplicating this literal "Select Location" 3 times.(ï›âÄúÿÿÿÿ8ã©âşÛ-
+}squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(æéöÌûÿÿÿÿ8ã©âşÛ-
+|squid:S001161"XRename this field "amount_layout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ßÿˆ‹şÿÿÿÿ8ã©âşÛ-
+Gsquid:S1659."$Declare "mMonth" on a separate line.(İ—Ûéşÿÿÿÿ8ßšôÔ-
+msquid:S1192–"IDefine a constant instead of duplicating this literal "location" 3 times.(‘ÊÁøşÿÿÿÿ8ã©âşÛ-
+¥squid:S1186½"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñ¢®Êøÿÿÿÿ8ã©âşÛ-
+}squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ã©âşÛ-
+wsquid:S00116*"XRename this field "demo_location" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎÚå¥8ã©âşÛ-
+Gsquid:S1148ó"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ã©âşÛ-
+jsquid:CommentedOutCodeLineì"<This block of commented-out lines of code should be removed.(éç§§8ã©âşÛ-

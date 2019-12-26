@@ -1,0 +1,34 @@
+
+Xsquid:S1068(";Remove this unused "RECOVERY_DIALOG_REQUEST" private field.(²»é
+8Ñëò›Ô-
+}squid:S2293´"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ªŒ†Ø-
+Ksquid:S1481ò",Remove this unused "minutes" local variable.(¾Øô¤8ªŒ†Ø-
+?squid:S16591""Declare "name" on a separate line.(§Ûò28„ßïÔ-
+ssquid:S001162"TRename this field "user_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ó¹İã8ìÕëÔ-
+Msquid:S1068+"/Remove this unused "youTubeView" private field.(•ÚÒÓ8’Ò›…Ø-
+Gsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ªŒ†Ø-
+Ksquid:S1481÷",Remove this unused "minutes" local variable.(¾Øô¤8ªŒ†Ø-
+nsquid:CommentedOutCodeLineS"<This block of commented-out lines of code should be removed.(ŠÖ²±úÿÿÿÿ8™ÒÆØ-
+jsquid:CommentedOutCodeLine›"<This block of commented-out lines of code should be removed.(öïÖæ8Š¨ÆØ-
+}squid:S001160"YRename this field "not_interested" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­Ë“üÿÿÿÿ8Í­˜ÂÖ-
+nsquid:CommentedOutCodeLineq"<This block of commented-out lines of code should be removed.(•‰×Íøÿÿÿÿ8ªŒ†Ø-
+Wsquid:S10684"4Remove this unused "RECOVERY_REQUEST" private field.(Ï¯ª¢ÿÿÿÿÿ8’Ò›…Ø-
+W
+squid:S106¸"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8ªŒ†Ø-
+osquid:CommentedOutCodeLineÙ"<This block of commented-out lines of code should be removed.(œ¾ÌÏÿÿÿÿÿ8ªŒ†Ø-
+}squid:S2293ü"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ªŒ†Ø-
+W
+squid:S106‰"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8ªŒ†Ø-
+Lsquid:S1905"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8ªŒ†Ø-
+nsquid:CommentedOutCodeLineQ"<This block of commented-out lines of code should be removed.(÷–ÚÊıÿÿÿÿ8üòÆØ-
+isquid:CommentedOutCodeLineX"<This block of commented-out lines of code should be removed.(Ê¸‚¼8Î¨ÃØ-
+Osquid:S16590",Declare "not_interested" on a separate line.(­Ë“üÿÿÿÿ8Í­˜ÂÖ-
+esquid:HiddenFieldCheckø";Rename "seconds" which hides the field declared at line 55.(«ƒ¥‡8»Ì’Ø-
+Lsquid:S1905¿"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8ªŒ†Ø-
+esquid:HiddenFieldCheckó";Rename "seconds" which hides the field declared at line 55.(«ƒ¥‡8»Ì’Ø-
+}squid:S2293…"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ªŒ†Ø-
+}squid:S2293«"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ªŒ†Ø-
+jsquid:CommentedOutCodeLineĞ"<This block of commented-out lines of code should be removed.(™®¸‡8ªŒ†Ø-
+lsquid:MaximumInheritanceDepth'"<This class has 6 parents which is greater than 5 authorized.(“Îğ˜8’Ò›…Ø-
+osquid:CommentedOutCodeLineƒ"<This block of commented-out lines of code should be removed.(Œù®±üÿÿÿÿ8™ÄØ-
+isquid:CommentedOutCodeLineL"<This block of commented-out lines of code should be removed.(¶¿‡å8‘ÅØ-

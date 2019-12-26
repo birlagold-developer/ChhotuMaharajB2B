@@ -1,0 +1,31 @@
+
+}squid:S2293˜"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8º±Ğ–Ö-
+Ksquid:S1185"(Remove this method to simply inherit it.(œƒƒ©ùÿÿÿÿ8º±Ğ–Ö-
+|squid:S00116-"XRename this field "mobile_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š‹ï¿üÿÿÿÿ8æ©õïÓ-
+isquid:S3027È"JPut single-quotes around '/' to use the faster "lastIndexOf(char)" method.(¥Œÿ½8•Œ¿ßÖ-
+esquid:S1192¹"GDefine a constant instead of duplicating this literal "mobile" 4 times.(£‚İ;8º±Ğ–Ö-
+|squid:S00116/"XRename this field "mobile_layout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉìÂôÿÿÿÿÿ8ÆØøïÓ-
+W
+squid:S106º"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8º±Ğ–Ö-
+W"squid:SwitchLastCaseIsDefaultCheck[""Add a default case to this switch.(ºÖ8º±Ğ–Ö-
+tsquid:S00116."URename this field "verify_otp" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âó±‡8‡´÷ïÓ-
+Lsquid:S1905©"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8º±Ğ–Ö-
+Ksquid:S1659/"(Declare "otp_layout" on a separate line.(ÉìÂôÿÿÿÿÿ8ÆØøïÓ-
+}squid:S2293Ÿ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8º±Ğ–Ö-
+Ksquid:S1659-"(Declare "otp_number" on a separate line.(Š‹ï¿üÿÿÿÿ8æ©õïÓ-
+jsquid:MaximumInheritanceDepth+"<This class has 6 parents which is greater than 5 authorized.(•«ú§üÿÿÿÿ
+isquid:CommentedOutCodeLine²"<This block of commented-out lines of code should be removed.(¢àc8º±Ğ–Ö-
+}squid:S2293±"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8º±Ğ–Ö-
+isquid:CommentedOutCodeLines"<This block of commented-out lines of code should be removed.(ºèƒ™8º±Ğ–Ö-
+Fsquid:S1659."(Declare "verify_otp" on a separate line.(âó±‡8‡´÷ïÓ-
+tsquid:S001160"URename this field "resend_otp" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±º½8ì€ÿïÓ-
+isquid:CommentedOutCodeLine™"<This block of commented-out lines of code should be removed.(¢àc8º±Ğ–Ö-
+Lsquid:S1905Á"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8º±Ğ–Ö-
+ysquid:S00116/"URename this field "otp_layout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉìÂôÿÿÿÿÿ8ÆØøïÓ-
+‚squid:S1488˜"^Immediately return this expression instead of assigning it to the temporary variable "params".(ô›Óíüÿÿÿÿ8º±Ğ–Ö-
+rsquid:S00116."SRename this field "send_otp" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âó±‡8‡´÷ïÓ-
+}squid:S2293¸"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8º±Ğ–Ö-
+‚squid:S1488±"^Immediately return this expression instead of assigning it to the temporary variable "params".(ô›Óíüÿÿÿÿ8º±Ğ–Ö-
+W
+squid:S106¢"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8º±Ğ–Ö-
+ysquid:S00116-"URename this field "otp_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š‹ï¿üÿÿÿÿ8æ©õïÓ-

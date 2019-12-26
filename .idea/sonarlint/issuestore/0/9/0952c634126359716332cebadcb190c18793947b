@@ -1,0 +1,29 @@
+
+fsquid:S1192t"HDefine a constant instead of duplicating this literal "Error: " 3 times.(€„áÅ8ÖÎêÖ-
+jsquid:MaximumInheritanceDepth'"<This class has 6 parents which is greater than 5 authorized.(•´›ğÿÿÿÿÿ
+msquid:S1192ƒ"IDefine a constant instead of duplicating this literal "params.." 3 times.(Ôƒ½¶şÿÿÿÿ8ÖÎêÖ-
+}squid:S2293€"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ÍÌ¬ÀÔ-
+Lsquid:S1905Ä"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8ÖÎêÖ-
+squid:S1192‚"bDefine a constant instead of duplicating this literal "application/x-www-form-urlencoded" 3 times.(´İŠæ8ÖÎêÖ-
+}squid:S2293±"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ÖÎêÖ-
+vsquid:S1192‹"WDefine a constant instead of duplicating this literal "Param value..........." 3 times.(Ü…„Ş8ÖÎêÖ-
+asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8ê²ĞêÖ-
+}squid:S2293ß"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8É¹”ÂÔ-
+hsquid:S1192Q"JDefine a constant instead of duplicating this literal "User Name" 3 times.(‰½Üİ8ÖÎêÖ-
+lsquid:S1192W"IDefine a constant instead of duplicating this literal "Response" 3 times.(ËÖ‡©ùÿÿÿÿ8ÖÎêÖ-
+}squid:S2293‰"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ÍÌ¬ÀÔ-
+W
+squid:S106á"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8É¹”ÂÔ-
+}squid:S2293º"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ÖÎêÖ-
+osquid:S1192"KDefine a constant instead of duplicating this literal "auth_token" 3 times.(Î¿ÀÃÿÿÿÿÿ8ÖÎêÖ-
+W
+squid:S106½"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8ÖÎêÖ-
+Gsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ÖÎêÖ-
+rsquid:S1192"NDefine a constant instead of duplicating this literal "authorization" 3 times.(Î¿ÀÃÿÿÿÿÿ8ÖÎêÖ-
+Lsquid:S1905è"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8É¹”ÂÔ-
+lsquid:S1192"HDefine a constant instead of duplicating this literal "Bearer " 3 times.(Î¿ÀÃÿÿÿÿÿ8ÖÎêÖ-
+}squid:S2293Ö"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8É¹”ÂÔ-
+W
+squid:S106‹"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8ÍÌ¬ÀÔ-
+lsquid:S1192‚"MDefine a constant instead of duplicating this literal "content-type" 3 times.(´İŠæ8ÖÎêÖ-
+Lsquid:S1905’"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8ÍÌ¬ÀÔ-

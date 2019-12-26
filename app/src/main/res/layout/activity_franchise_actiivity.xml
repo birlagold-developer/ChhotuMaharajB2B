@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.FranchiseActiivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center|center_horizontal"
+                android:src="@drawable/splash_logo"/>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/chottu_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="CHHOTU"
+                    android:textColor="#ff00"
+                    android:textSize="40dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/maharaj_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="MAHARAJ"
+                    android:textColor="#ff00"
+                    android:layout_marginTop="-10dp"
+                    android:textSize="40dp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorSilver"
+            android:layout_margin="5dp"></View>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="20dp"
+                android:text="Franchise Enquiry Form"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/franchise_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:textColor="@color/colorBlack"
+                android:layout_margin="8dp"
+                android:singleLine="true"
+                android:backgroundTint="@color/colorBlack"
+                android:textColorHint="@color/colorSilver"/>
+
+            <EditText
+                android:id="@+id/franchise_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mobile Number"
+                android:inputType="number"
+                android:maxLength="10"
+                android:singleLine="true"
+                android:visibility="gone"
+                android:textColor="@color/colorBlack"
+                android:layout_margin="8dp"
+                android:backgroundTint="@color/colorBlack"
+                android:textColorHint="@color/colorSilver"/>
+            <EditText
+                android:id="@+id/franchise_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:singleLine="true"
+                android:textColor="@color/colorBlack"
+                android:layout_margin="8dp"
+                android:backgroundTint="@color/colorBlack"
+                android:textColorHint="@color/colorSilver"/>
+
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/franchise_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorSilver">
+
+            </View>
+
+            <EditText
+                android:id="@+id/franchise_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="City"
+                android:singleLine="true"
+                android:textColor="@color/colorBlack"
+                android:layout_margin="8dp"
+                android:backgroundTint="@color/colorBlack"
+                android:textColorHint="@color/colorSilver"/>
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/franchise_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/colorSilver">
+
+            </View>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/reg_terms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#1181de"
+                    android:textSize="15dp" />
+
+
+                <TextView
+                    android:id="@+id/terms_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I Accept Terms &amp; Condition"
+                    android:textColor="#1181de"
+                    android:textSize="15dp" />
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/franchise_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/round_cornerbtn"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:text="Submit"/>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
