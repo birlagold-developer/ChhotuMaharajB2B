@@ -5,6 +5,7 @@ public class SubQueryModel {
     private int id;
     private String video_title;
     private String video_query;
+    private boolean isSelected = false;
 
 
 
@@ -30,5 +31,13 @@ public class SubQueryModel {
 
     public void setVideo_query(String video_query) {
         this.video_query = video_query;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

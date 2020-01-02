@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         book_appointment.setOnClickListener(this);
 
 
-
-
     }
 
     @Override

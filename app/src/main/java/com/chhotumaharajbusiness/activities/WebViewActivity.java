@@ -141,11 +141,19 @@ public class WebViewActivity extends AppCompatActivity {
                 }
             });
             try {
-                String postData = AvenuesParams.ACCESS_CODE + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.ACCESS_CODE), "UTF-8") + "&" + AvenuesParams.MERCHANT_ID + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.MERCHANT_ID), "UTF-8") + "&" + AvenuesParams.ORDER_ID + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.ORDER_ID), "UTF-8") + "&" + AvenuesParams.REDIRECT_URL + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.REDIRECT_URL), "UTF-8") + "&" + AvenuesParams.CANCEL_URL + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.CANCEL_URL), "UTF-8") + "&" + AvenuesParams.ENC_VAL + "=" + URLEncoder.encode(encVal, "UTF-8")+ "&" +
-                        AvenuesParams.AMOUNT + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.AMOUNT), "UTF-8")  + "&" +
-                        AvenuesParams.BILLING_NAME + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_NAME), "UTF-8") + "&" +
-                   //     AvenuesParams.BILLING_EMAIL + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_EMAIL), "UTF-8") + "&" +
-                        AvenuesParams.BILLING_TEL + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_TEL), "UTF-8");
+                String postData = AvenuesParams.ACCESS_CODE + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.ACCESS_CODE), "UTF-8") + "&" +
+                        AvenuesParams.MERCHANT_ID           + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.MERCHANT_ID), "UTF-8") + "&" +
+                        AvenuesParams.ORDER_ID              + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.ORDER_ID), "UTF-8") + "&" +
+                        AvenuesParams.REDIRECT_URL          + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.REDIRECT_URL), "UTF-8") + "&" +
+                        AvenuesParams.CANCEL_URL            + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.CANCEL_URL), "UTF-8") + "&" +
+                        AvenuesParams.ENC_VAL               + "=" + URLEncoder.encode(encVal, "UTF-8")+ "&" +
+                        AvenuesParams.AMOUNT                + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.AMOUNT), "UTF-8")  + "&" +
+                        AvenuesParams.BILLING_NAME          + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_NAME), "UTF-8") + "&" +
+                        AvenuesParams.BILLING_EMAIL         + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_EMAIL), "UTF-8") + "&" +
+                        AvenuesParams.BILLING_STATE         + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_STATE), "UTF-8") + "&" +
+                        AvenuesParams.BILLING_CITY         + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_CITY), "UTF-8") + "&" +
+                        AvenuesParams.BILLING_TEL           + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_TEL), "UTF-8");
+
                 webview.postUrl(Constants.TRANS_URL, postData.getBytes());
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
@@ -334,7 +342,7 @@ public class WebViewActivity extends AppCompatActivity {
         MaintainRequestQueue.getInstance(this).addToRequestQueue(req, "tag");
     }
 
-    @Override
-    public void onBackPressed() {
-    }
+//    @Override
+//    public void onBackPressed() {
+//    }
 }

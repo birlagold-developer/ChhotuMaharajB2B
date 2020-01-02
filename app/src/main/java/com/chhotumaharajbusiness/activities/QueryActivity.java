@@ -44,9 +44,8 @@ public class QueryActivity extends AppCompatActivity implements View.OnClickList
     ProgressDialog progressDialog;
     RecyclerView recyclerView;
     QueryModel queryModel;
-    ArrayList<QueryModel> queryModels;
     QueryAdapter queryAdapter;
-    int videoId;
+    int videoId, parentvideo_id;
     String videoTime;
     Button query_submit,query_cancel;
     LinearLayout query_btn_layout;
@@ -77,10 +76,10 @@ public class QueryActivity extends AppCompatActivity implements View.OnClickList
         Log.d("id.....", String.valueOf(SharedPrefrenceObj.getIntegerval(QueryActivity.this,"id")));
         Log.d("id.....", String.valueOf(videoId));
         videoId = getIntent().getIntExtra("video_id",0);
+        parentvideo_id = getIntent().getIntExtra("parentvideo_id",0);
         videoTime = getIntent().getStringExtra("video_time");
 
-
-        queryList(videoId);
+        queryList(parentvideo_id);
 
     }
 
@@ -97,7 +96,7 @@ public class QueryActivity extends AppCompatActivity implements View.OnClickList
             public void onResponse(String response) {
                 Log.d("Response", response);
                 try {
-                    queryModels = new ArrayList<>();
+                    queryModel = new QueryModel();
 
                     JSONObject jsonObject = new JSONObject(response);
                     JSONObject list = jsonObject.optJSONObject("list");
@@ -112,7 +111,6 @@ public class QueryActivity extends AppCompatActivity implements View.OnClickList
                         String ppt = list.getString("ppt");
                         String video = list.getString("video");
 
-                        QueryModel queryModel = new QueryModel();
                         queryModel.setId(id);
                         queryModel.setName(name);
                         queryModel.setPpt(ppt);
@@ -133,12 +131,11 @@ public class QueryActivity extends AppCompatActivity implements View.OnClickList
                             subQueryModel.setVideo_title(videoTitle);
                             subQueryModels.add(subQueryModel);
 
-                            queryModel.setSubQueryModels(subQueryModels);
-                            queryModels.add(queryModel);
                         }
 
+                        queryModel.setSubQueryModels(subQueryModels);
 
-                        queryAdapter = new QueryAdapter(QueryActivity.this, queryModels);
+                        queryAdapter = new QueryAdapter(QueryActivity.this, queryModel);
                         recyclerView.setAdapter(queryAdapter);
                         LinearLayoutManager mLayoutManager = new LinearLayoutManager(QueryActivity.this);
                         recyclerView.setLayoutManager(mLayoutManager);
@@ -212,9 +209,17 @@ public class QueryActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.query_submit:
-                if(QueryAdapter.getVideo_id().size()>0){
-                    updateQuery(videoId,QueryAdapter.getVideo_id().toString().replaceAll("\\[", "").replaceAll("\\]", ""),videoTime);
-                 Log.d("queries...",QueryAdapter.getVideo_id().toString().replaceAll("\\[", "").replaceAll("\\]", ""));
+                String selectedSubQueryIDs = "";
+
+                for (SubQueryModel subQueryModel : queryModel.getSubQueryModels()) {
+                    if (subQueryModel.isSelected()) {
+                        selectedSubQueryIDs +=  selectedSubQueryIDs == "" ? "" + subQueryModel.getId() : "," + subQueryModel.getId();
+                    }
+                }
+
+                if(!selectedSubQueryIDs.equals("")){
+                    updateQuery(videoId,selectedSubQueryIDs,videoTime);
+                    Log.d("queries...",selectedSubQueryIDs);
                 }
                 else {
                     Toast.makeText(QueryActivity.this,"Select Query",Toast.LENGTH_SHORT).show();

@@ -219,6 +219,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (jsonObject.optBoolean("success")) {
                         JSONObject data = jsonObject.getJSONObject("data");
                         String name = data.optString("name");
+                        String email = data.optString("email");
                         String mobile = data.optString("mobile");
                         int step = data.getInt("step");
                         String apiToken = data.getString("api_token");
@@ -233,6 +234,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         SharedPrefrenceObj.setIntegerval(LoginActivity.this,"id",id);
                         SharedPrefrenceObj.setSharedValue(LoginActivity.this,"language",preferedLanguage);
                         SharedPrefrenceObj.setSharedValue(LoginActivity.this,"name",name);
+                        SharedPrefrenceObj.setSharedValue(LoginActivity.this,"email",email);
                         SharedPrefrenceObj.setSharedValue(LoginActivity.this,"state",state);
                         SharedPrefrenceObj.setSharedValue(LoginActivity.this,"city",city);
                         Intent intent = new Intent(LoginActivity.this,FranchiseActiivity.class);

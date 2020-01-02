@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chhotumaharajbusiness.R;
 import com.chhotumaharajbusiness.model.QueryModel;
+import com.chhotumaharajbusiness.model.SubQueryModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,19 +20,8 @@ import java.util.List;
 public class QueryAdapter extends RecyclerView.Adapter<QueryAdapter.MyViewHolder> {
 
     private Context context;
-    private List<QueryModel> queryModels;
-    int pos;
+    private QueryModel queryModel;
     public static QueryAdapter.ClickListener clickListener;
-
-    public static ArrayList<Integer> video_id = new ArrayList<>();
-
-    public static ArrayList<Integer> getVideo_id() {
-        return video_id;
-    }
-
-    public static void setVideo_id(ArrayList<Integer> video_id) {
-        QueryAdapter.video_id = video_id;
-    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public CheckBox checkBox;
@@ -43,12 +33,10 @@ public class QueryAdapter extends RecyclerView.Adapter<QueryAdapter.MyViewHolder
 
         }
     }
-    public QueryAdapter(){
 
-    }
-    public QueryAdapter(Context context, List<QueryModel> queryModels) {
+    public QueryAdapter(Context context, QueryModel queryModel) {
         this.context = context;
-        this.queryModels = queryModels;
+        this.queryModel = queryModel;
     }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { // creates view holder and inflates
@@ -59,22 +47,18 @@ public class QueryAdapter extends RecyclerView.Adapter<QueryAdapter.MyViewHolder
     }
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) { // binds/adds details to the views
-        final QueryModel item = queryModels.get(position);
+        final SubQueryModel item = queryModel.getSubQueryModels().get(position);
 
-        holder.checkBox.setText(item.getSubQueryModels().get(position).getVideo_query());
+        holder.checkBox.setText(item.getVideo_query());
+
+        holder.checkBox.setChecked(item.isSelected());
 
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
 
-                if(isChecked){
-                    video_id.add(item.getSubQueryModels().get(position).getId());
-                    Log.d("query....", String.valueOf(QueryAdapter.getVideo_id()));
-                }
-                else {
-                    video_id.remove(video_id.indexOf(item.getSubQueryModels().get(position).getId()));
-                    Log.d("query....", String.valueOf(QueryAdapter.getVideo_id()));
-                }
+                item.setSelected(isChecked);
+                notifyDataSetChanged();
             }
         });
 
@@ -83,11 +67,11 @@ public class QueryAdapter extends RecyclerView.Adapter<QueryAdapter.MyViewHolder
 
     @Override
     public int getItemCount() {
-        return queryModels.size();
+        return queryModel.getSubQueryModels().size();
     }
 
-    public QueryModel getWordAtPosition(int position) {
-        return queryModels.get(position);
+    public SubQueryModel getWordAtPosition(int position) {
+        return queryModel.getSubQueryModels().get(position);
     }
 
     public void setOnItemClickListener(QueryAdapter.ClickListener clickListener) {

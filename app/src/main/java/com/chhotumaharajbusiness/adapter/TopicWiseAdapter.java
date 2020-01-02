@@ -57,6 +57,12 @@ public class TopicWiseAdapter extends RecyclerView.Adapter<TopicWiseAdapter.MyVi
 
         holder.number.setText(item.getNumber()+"");
 
+        if (!item.getPpt().equalsIgnoreCase("null")) {
+            holder.pdf.setImageResource(R.drawable.pdf);
+        } else {
+            holder.pdf.setImageResource(R.drawable.ic_nofile);
+        }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,8 +70,6 @@ public class TopicWiseAdapter extends RecyclerView.Adapter<TopicWiseAdapter.MyVi
                 //birlagold.developer@gmail.com
                 //
                 //baw_x63E#HJv^r&S
-
-
             }
         });
 
@@ -77,10 +81,10 @@ public class TopicWiseAdapter extends RecyclerView.Adapter<TopicWiseAdapter.MyVi
         });
 
         holder.pdf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickListener.onItemClick(view, position,"2");
-            }
+                @Override
+                public void onClick(View view) {
+                    clickListener.onItemClick(view, position, "2");
+                }
         });
 
     }

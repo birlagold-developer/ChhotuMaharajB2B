@@ -214,6 +214,7 @@ public class LiveDemoVisitActivity extends AppCompatActivity implements AdapterV
                         String vMerchantId = "187245";
                         String vCurrency = "INR";
                         String vAmount = "10000";
+                        System.out.println("Email="+ SharedPrefrenceObj.getSharedValue(LiveDemoVisitActivity.this, "email"));
                         if(!vAccessCode.equals("") && !vMerchantId.equals("") && !vCurrency.equals("") && !vAmount.equals("")) {
                             Intent intent = new Intent(LiveDemoVisitActivity.this, WebViewActivity.class);
                             intent.putExtra(AvenuesParams.ACCESS_CODE, vAccessCode);
@@ -223,6 +224,8 @@ public class LiveDemoVisitActivity extends AppCompatActivity implements AdapterV
                             intent.putExtra(AvenuesParams.AMOUNT, vAmount);
                             intent.putExtra(AvenuesParams.BILLING_NAME, SharedPrefrenceObj.getSharedValue(LiveDemoVisitActivity.this, "name"));
                             intent.putExtra(AvenuesParams.BILLING_EMAIL, SharedPrefrenceObj.getSharedValue(LiveDemoVisitActivity.this, "email"));
+                            intent.putExtra(AvenuesParams.BILLING_STATE, SharedPrefrenceObj.getSharedValue(LiveDemoVisitActivity.this, "state"));
+                            intent.putExtra(AvenuesParams.BILLING_CITY, SharedPrefrenceObj.getSharedValue(LiveDemoVisitActivity.this, "city"));
                             intent.putExtra(AvenuesParams.BILLING_TEL, SharedPrefrenceObj.getSharedValue(LiveDemoVisitActivity.this, "mobile"));
 
                             intent.putExtra(AvenuesParams.REDIRECT_URL, "http://chhotumaharajb2b.com/api/payment_Response");

@@ -12,11 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -28,6 +30,7 @@ import com.chhotumaharajbusiness.constant.SharedPrefrenceObj;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,6 +46,7 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
     private YouTubePlayerView youTubeView;
 
     private VideoView videoView;
+    private ProgressBar progressBar;
     private int position = 0;
     private MediaController mediaController;
     Button interested,not_interested;
@@ -70,6 +74,7 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
         tv1.setTypeface(face);
 
         videoView =  findViewById(R.id.videoView);
+        progressBar = findViewById(R.id.progressBar);
         interested = findViewById(R.id.interested);
         not_interested = findViewById(R.id.not_interested);
         user_name = findViewById(R.id.user_login_name);
@@ -130,13 +135,17 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
         try {
           //  videoView.setVideoPath("http://chhotumaharajb2b.com/public/video/chhotu-maharaj-project-video.mp4");
 
-            if(SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this,"language").equalsIgnoreCase("English")){
-                videoView.setVideoPath("http://chhotumaharajb2b.com/public/video/English%20Version.mp4");
-            }
-            else {
-                videoView.setVideoPath("http://chhotumaharajb2b.com/public/video/chhotu-maharaj-project-video.mp4");
+//            String language = SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this,"language");
+//
+//            if(language.equalsIgnoreCase("English")){
+//                videoView.setVideoPath("http://chhotumaharajb2b.com/public/video/English%20Version.mp4");
+//            }
+//            else {
+//                videoView.setVideoPath("http://chhotumaharajb2b.com/public/video/chhotu-maharaj-project-video.mp4");
+//            }
+//
 
-            }
+            getVideoName();
 
         } catch (Exception e) {
             Log.e("Error", e.getMessage());
@@ -150,6 +159,8 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
             public void onPrepared(MediaPlayer mediaPlayer) {
+
+                progressBar.setVisibility(View.GONE);
 
 /*
                 videoView.seekTo(position);
@@ -249,6 +260,84 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
             updateVideo1(String.valueOf(seconds));
         }
 
+    }
+
+    private void getVideoName() {
+
+        String url = Constant.URL + "getConceptBusinessVideo";
+        url = url.replace(" ", "%20");
+        url = url.replace("\n", "%0A");
+        Log.e("User Name", "" + url);
+        progressDialog.show();
+        progressDialog.setMessage("Loading data.....");
+        StringRequest req = new StringRequest(com.android.volley.Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("Response", response);
+                try {
+                    progressDialog.dismiss();
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.optBoolean("success")) {
+                        JSONObject dataJsonObject   = jsonObject.getJSONObject("data");
+                        String video            = dataJsonObject.getString("video");
+
+                        videoView.setVideoPath(Constant.VIDEO_PATH+video.replace(" ","%20"));
+                        videoView.requestFocus();
+
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("TAG", "Error: " + error.getMessage());
+                progressDialog.dismiss();
+            }
+
+        }) {
+            @Override
+            public Request.Priority getPriority() {
+                return Request.Priority.IMMEDIATE;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this,"auth_token"));
+                params.put("content-type","application/x-www-form-urlencoded");
+                Log.d("params..",params.toString());
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("userid", String.valueOf(SharedPrefrenceObj.getIntegerval(ConceptBusinessActivity.this,"id")));
+                System.out.println("Param value..........." + params);
+                return checkParams(params);
+            }
+
+            private Map<String, String> checkParams(Map<String, String> map) {
+                Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry<String, String> pairs = (Map.Entry<String, String>) it.next();
+                    if (pairs.getValue() == null) {
+                        map.put(pairs.getKey(), "");
+                    }
+                }
+                return map;
+            }
+        };
+        // Adding request to request queue
+        req.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MaintainRequestQueue.getInstance(ConceptBusinessActivity.this).addToRequestQueue(req, "tag");
     }
 
     private void updateVideo(final String video_time) {

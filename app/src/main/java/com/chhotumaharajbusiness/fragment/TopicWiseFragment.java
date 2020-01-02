@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -49,7 +50,6 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
     RecyclerView recyclerView;
     ArrayList<TopicWiseModel> topicWiseModels;
     TopicWiseAdapter topicWiseAdapter;
-    TopicWiseModel topicWiseModel;
     TextView textView;
     String topic;
 
@@ -201,6 +201,7 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
                         topicWiseModels.add(new TopicWiseModel(i+1,id,name,ppt,video));
 
                     }
+
                     topicWiseAdapter = new TopicWiseAdapter(getActivity(), topicWiseModels);
                     recyclerView.setAdapter(topicWiseAdapter);
                     LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -264,9 +265,9 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
     @Override
     public void onItemClick(View v, int position, String flag) {
 
-        topicWiseModel = topicWiseAdapter.getWordAtPosition(position);
+        TopicWiseModel topicWiseModel = topicWiseAdapter.getWordAtPosition(position);
 
-        if(flag.equalsIgnoreCase("1")){
+        if(flag.equalsIgnoreCase("1")) {
 
             TopicWiseDetailFragment topicWiseFragment1 = new TopicWiseDetailFragment();
             Bundle args1 = new Bundle();
@@ -280,9 +281,12 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
             FragmentTransaction transaction1 = fragmentManager1.beginTransaction();
             transaction1.add(R.id.frame_container, topicWiseFragment1);
             transaction1.commit();
-        }
-        else {
-            updatePDF(topicWiseModel.getId(),topicWiseModel.getPpt());
+        } else {
+            if (!topicWiseModel.getPpt().equalsIgnoreCase("null")) {
+                updatePDF(topicWiseModel.getId(), topicWiseModel.getPpt());
+            } else {
+                Toast.makeText(getActivity(), "PDF file Not Available", Toast.LENGTH_LONG).show();
+            }
         }
     }
 

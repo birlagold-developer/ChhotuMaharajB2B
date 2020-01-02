@@ -14,5 +14,8 @@ public class AvenuesParams {
 	public static final String BILLING_NAME = "billing_name";
 	public static final String BILLING_EMAIL = "billing_email";
 	public static final String BILLING_TEL = "billing_tel";
+	public static final String BILLING_STATE = "billing_state";
+	public static final String BILLING_CITY = "billing_city";
+
 
 }

@@ -243,6 +243,7 @@ public class TopicWiseActivity extends AppCompatActivity implements TopicWiseAda
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MaintainRequestQueue.getInstance(this).addToRequestQueue(req, "tag");
     }
+
     @Override
     public void onItemClick(View v, int position,String flag) {
         topicWiseModel = topicWiseAdapter.getWordAtPosition(position);
@@ -255,14 +256,10 @@ public class TopicWiseActivity extends AppCompatActivity implements TopicWiseAda
             startActivity(intent);
         }
         else {
-
             updatePDF(topicWiseModel.getId(),topicWiseModel.getPpt());
         }
 
-
-
     }
-
 
     private void updatePDF(final int videoId,final String ppt) {
 
@@ -335,8 +332,5 @@ public class TopicWiseActivity extends AppCompatActivity implements TopicWiseAda
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MaintainRequestQueue.getInstance(this).addToRequestQueue(req, "tag");
     }
-
-
-
 
 }

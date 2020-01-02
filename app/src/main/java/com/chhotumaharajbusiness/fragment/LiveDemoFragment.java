@@ -310,8 +310,10 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
                             intent.putExtra(AvenuesParams.CURRENCY, vCurrency);
                             intent.putExtra(AvenuesParams.AMOUNT, vAmount);
                             intent.putExtra(AvenuesParams.BILLING_NAME, SharedPrefrenceObj.getSharedValue(getActivity(), "name"));
-                        //    intent.putExtra(AvenuesParams.BILLING_EMAIL, SharedPrefrenceObj.getSharedValue(getActivity(), "email"));
+                            intent.putExtra(AvenuesParams.BILLING_EMAIL, SharedPrefrenceObj.getSharedValue(getActivity(), "email"));
                             intent.putExtra(AvenuesParams.BILLING_TEL, SharedPrefrenceObj.getSharedValue(getActivity(), "mobile"));
+                            intent.putExtra(AvenuesParams.BILLING_STATE, SharedPrefrenceObj.getSharedValue(getActivity(), "state"));
+                            intent.putExtra(AvenuesParams.BILLING_CITY, SharedPrefrenceObj.getSharedValue(getActivity(), "city"));
 
                             intent.putExtra(AvenuesParams.REDIRECT_URL, "http://chhotumaharajb2b.com/api/payment_Response");
                             intent.putExtra(AvenuesParams.CANCEL_URL, "http://chhotumaharajb2b.com/api/payment_Response");

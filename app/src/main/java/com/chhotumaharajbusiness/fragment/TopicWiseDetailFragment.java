@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -59,12 +60,14 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
 
     TextView topic_name, language;
     VideoView videoView;
+    ProgressBar progressBar;
     Button understand,query;
     Button chat,call;
     String topicName,prefered_language,topicVideo,ppt;
     private int position = 0;
     private MediaController mediaController;
     int videoId, parentVideoId;
+    String[] videoLanguage = null;
     ProgressDialog progressDialog;
     public static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
     String topic;
@@ -80,6 +83,7 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
         topic_name = fragment.findViewById(R.id.topic_detail_name);
         language = fragment.findViewById(R.id.language);
         videoView  = fragment.findViewById(R.id.topic_videoView);
+        progressBar = fragment.findViewById(R.id.progressBar);
         understand  = fragment.findViewById(R.id.understand);
         query  = fragment.findViewById(R.id.query);
         chat = fragment.findViewById(R.id.chat_me);
@@ -112,10 +116,15 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
         if(topic.equalsIgnoreCase("topic")){
             topic_layout.setVisibility(View.VISIBLE);
             question_layout.setVisibility(View.GONE);
-        }
-        else {
+
+            getVideoForTopic(prefered_language);
+
+        } else {
             topic_layout.setVisibility(View.GONE);
             question_layout.setVisibility(View.VISIBLE);
+
+            getVideoForQuestion(prefered_language);
+
         }
 
         language.setOnClickListener(this);
@@ -127,7 +136,6 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
         call.setOnClickListener(this);
 
         topic_name.setText(topicName);
-        language.setText(prefered_language);
 
         if (mediaController == null) {
             mediaController = new MediaController(getActivity());
@@ -146,6 +154,7 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             public void onPrepared(MediaPlayer mediaPlayer) {
 
 
+                progressBar.setVisibility(View.GONE);
                 videoView.seekTo(position);
                 videoView.start();
                 Log.d("psition..............", String.valueOf(position));
@@ -166,13 +175,17 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
         });
 
 
-        viewpdf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                videoView.pause();
-                updatePDF(videoId,ppt);
-            }
-        });
+        if (ppt.equalsIgnoreCase("null")) {
+            viewpdf.setText("PDF file Not Available");
+        } else {
+            viewpdf.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    videoView.pause();
+                    updatePDF(videoId, ppt);
+                }
+            });
+        }
 
         /*zoom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,8 +203,6 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             }
         });
 */
-
-        getVideo(prefered_language);
 
         return fragment;
      }
@@ -223,15 +234,13 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
-                     //   Toast.makeText(getActivity(), "Your response is required", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Your response is required", Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 }
                 return false;
             }
         });
-
-
     }
 
     @Override
@@ -239,13 +248,11 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
 
         if (view.getId() == R.id.language) {
             try {
-                JSONObject jsonObject = new JSONObject(SharedPrefrenceObj.getSharedValue(getActivity(),"all_language"));
 
                 ArrayList<String> languageList = new ArrayList<String>();
 
-                JSONArray languagesArray = jsonObject.getJSONArray("languages");
-                for (int i = 0 ; i < languagesArray.length(); i++) {
-                    languageList.add(languagesArray.getString(i));
+                for (String language : videoLanguage) {
+                    languageList.add(language);
                 }
 
                 final ArrayAdapter<String> languageAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, languageList);
@@ -260,9 +267,17 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
                         String selected_language = languageAdapter.getItem(which);
                         language.setText(selected_language);
                         dialog.dismiss();
-                        getVideo(selected_language);
+
+                        videoView.stopPlayback();
+                        progressBar.setVisibility(View.VISIBLE);
+                        if(topic.equalsIgnoreCase("topic")){
+                            getVideoForTopic(selected_language);
+                        } else {
+                            getVideoForQuestion(selected_language);
+                        }
                     }
                 });
+
                 AlertDialog alertDialog = builder.create();
                 ListView listView = alertDialog.getListView();
                 listView.setDivider(new ColorDrawable(Color.GRAY));
@@ -298,6 +313,7 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             long seconds = TimeUnit.MILLISECONDS.toSeconds(videoView.getCurrentPosition());
             Intent intent = new Intent(getActivity(), QueryActivity.class);
             intent.putExtra("video_id",videoId);
+            intent.putExtra("parentvideo_id",parentVideoId);
             intent.putExtra("video_time",String.valueOf(seconds));
             startActivity(intent);
         }
@@ -314,9 +330,9 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
         }
     }
 
-    private void getVideo(final String language) {
+    private void getVideoForTopic(final String selectedLanguage) {
 
-        String url = Constant.URL + "VideoDetails";
+        String url = Constant.URL + "videoDetailsForLanguage";
         url = url.replace(" ", "%20");
         url = url.replace("\n", "%0A");
         Log.e("User Name", "" + url);
@@ -330,11 +346,22 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
                     progressDialog.dismiss();
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.optBoolean("success")) {
-                        JSONObject data = jsonObject.getJSONObject("data");
+                        JSONObject dataJsonObject = jsonObject.getJSONObject("data");
+                        JSONObject video = dataJsonObject.getJSONObject("list");
+                        JSONArray videoLanguageArray = dataJsonObject.getJSONArray("video_languages");
 
-                        topicVideo          =  data.getString("video");
-                        videoId             =  data.getInt("id");
+                        videoLanguage = new String[videoLanguageArray.length()];
 
+                        for (int i=0;i< videoLanguageArray.length();i++) {
+                            JSONObject object = videoLanguageArray.getJSONObject(i);
+                            videoLanguage[i] = object.getString("lang_name");
+                        }
+
+                        topicVideo          =  video.getString("video").replace(" ","%20");
+                        videoId             =  video.getInt("id");
+                        String video_lang   =  video.getString("language_name");
+
+                        language.setText(video_lang);
                         videoView.setVideoPath(Constant.VIDEO_PATH+topicVideo);
                         videoView.requestFocus();
 
@@ -366,12 +393,104 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
                 Log.d("params..",params.toString());
                 return params;
             }
-            //video_id,user_id,sub_query,query_type
+
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_id", String.valueOf(parentVideoId));
-                params.put("preferred_language", language);
+                params.put("preferred_language", selectedLanguage);
+                System.out.println("Param value..........." + params);
+                return checkParams(params);
+            }
+
+            private Map<String, String> checkParams(Map<String, String> map) {
+                Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry<String, String> pairs = (Map.Entry<String, String>) it.next();
+                    if (pairs.getValue() == null) {
+                        map.put(pairs.getKey(), "");
+                    }
+                }
+                return map;
+            }
+        };
+        // Adding request to request queue
+        req.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MaintainRequestQueue.getInstance(getActivity()).addToRequestQueue(req, "tag");
+    }
+
+    private void getVideoForQuestion(final String selectedLanguage) {
+
+        String url = Constant.URL + "videoDetailsForQuestionary";
+        url = url.replace(" ", "%20");
+        url = url.replace("\n", "%0A");
+        Log.e("User Name", "" + url);
+        progressDialog.show();
+        progressDialog.setMessage("Loading data.....");
+        StringRequest req = new StringRequest(com.android.volley.Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("Response", response);
+                try {
+                    progressDialog.dismiss();
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.optBoolean("success")) {
+                        JSONObject dataJsonObject = jsonObject.getJSONObject("data");
+                        JSONObject video = dataJsonObject.getJSONObject("list");
+                        JSONArray videoLanguageArray = dataJsonObject.getJSONArray("video_languages");
+
+                        videoLanguage = new String[videoLanguageArray.length()];
+
+                        for (int i=0;i< videoLanguageArray.length();i++) {
+                            JSONObject object = videoLanguageArray.getJSONObject(i);
+                            videoLanguage[i] = object.getString("lang_name");
+                        }
+
+                        topicVideo          =  video.getString("video").replace(" ", "%20");
+                        videoId             =  video.getInt("id");
+                        String video_lang   =  video.getString("language_name");
+
+                        language.setText(video_lang);
+                        videoView.setVideoPath(Constant.VIDEO_PATH+topicVideo);
+                        videoView.requestFocus();
+
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("TAG", "Error: " + error.getMessage());
+                progressDialog.dismiss();
+            }
+
+        }) {
+            @Override
+            public Request.Priority getPriority() {
+                return Request.Priority.IMMEDIATE;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(getActivity(),"auth_token"));
+                params.put("content-type","application/x-www-form-urlencoded");
+                Log.d("params..",params.toString());
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("video_id", String.valueOf(parentVideoId));
+                params.put("preferred_language", selectedLanguage);
                 System.out.println("Param value..........." + params);
                 return checkParams(params);
             }
