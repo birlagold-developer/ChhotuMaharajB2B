@@ -82,7 +82,7 @@ public class PreAnalysisActivity2 extends AppCompatActivity implements AdapterVi
 
         typeArray = new ArrayList<>();
         typeArray.add("Select Investment Type");
-        typeArray.add("Self / Family Funded");
+        typeArray.add("Self / Family");
         typeArray.add("Partial Loan");
         typeArray.add("Fully Dependent On Loan");
 

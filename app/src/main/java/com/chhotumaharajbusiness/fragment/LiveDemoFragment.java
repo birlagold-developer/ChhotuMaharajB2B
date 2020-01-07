@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -49,13 +51,13 @@ import java.util.Map;
 public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     public static View fragment;
-  //  Spinner
-    SearchableSpinner live_demo_type,demo_location,demo_slot;
+    //  Spinner
+    SearchableSpinner live_demo_type, demo_location, demo_slot;
     EditText date;
     Button submit;
-    ArrayList<String> demoTypeArray,locationArray,locationArray1,slotArray;
+    ArrayList<String> demoTypeArray, locationArray, locationArray1, slotArray;
     private int mYear, mMonth, mDay;
-    String visitLocation,visitDate,visitTime;
+    String visitLocation, visitDate, visitTime;
     ProgressDialog progressDialog;
     LinearLayout amount_layout;
     String domVisit;
@@ -63,17 +65,18 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
     LinearLayout terms_condition_layout;
     CheckBox check;
     TextView terms_txt;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragment = inflater.inflate(R.layout.activity_live_demo_visit, container, false);
 
         progressDialog = new ProgressDialog(getActivity());
 
         live_demo_type = fragment.findViewById(R.id.live_demo_type);
-        demo_location  = fragment.findViewById(R.id.live_demo_location);
-        demo_slot      = fragment.findViewById(R.id.live_demo_slot);
-        date           = fragment.findViewById(R.id.booking_date);
-        submit         = fragment.findViewById(R.id.appointment_submit);
-        amount_layout  = fragment.findViewById(R.id.amount_layout);
+        demo_location = fragment.findViewById(R.id.live_demo_location);
+        demo_slot = fragment.findViewById(R.id.live_demo_slot);
+        date = fragment.findViewById(R.id.booking_date);
+        submit = fragment.findViewById(R.id.appointment_submit);
+        amount_layout = fragment.findViewById(R.id.amount_layout);
 
         check = fragment.findViewById(R.id.appointment_reg_terms);
         terms_condition_layout = fragment.findViewById(R.id.terms_condition_layout);
@@ -124,7 +127,7 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
                 mYear = c.get(Calendar.YEAR);
                 mMonth = c.get(Calendar.MONTH);
                 mDay = c.get(Calendar.DAY_OF_MONTH);
-                c.add(Calendar.DAY_OF_MONTH,2);
+                c.add(Calendar.DAY_OF_MONTH, 2);
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
@@ -176,8 +179,7 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
                                 "The Initial Deposit/s, the Additional Deposit/s, Booking Amounts, Franchisee Fees of any kind shall be non-refundable (except as expressly set forth in the Contract).\n" +
                                 "\n" +
                                 "All Partners, Franchise, Distributors shall make informed decision/s in accordance.")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener()
-                        {
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -194,10 +196,10 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-        switch (adapterView.getId()){
+        switch (adapterView.getId()) {
 
             case R.id.live_demo_type:
-                if(adapterView.getSelectedItem().toString().equalsIgnoreCase("Exclusive Demo")){
+                if (adapterView.getSelectedItem().toString().equalsIgnoreCase("Exclusive Demo")) {
                     ArrayAdapter<String> location = new ArrayAdapter<String>(getActivity(), R.layout.spinner_text_layout, locationArray);
                     demo_location.setAdapter(location);
                     location.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -207,8 +209,7 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
                     amount = "10000";
                     terms_condition_layout.setVisibility(View.VISIBLE);
                     submit.setText("PAY NOW");
-                }
-                else {
+                } else {
                     ArrayAdapter<String> location = new ArrayAdapter<String>(getActivity(), R.layout.spinner_text_layout, locationArray1);
                     demo_location.setAdapter(location);
                     location.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -241,33 +242,27 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
 
             case R.id.appointment_submit:
                 visitDate = date.getText().toString();
-                if(live_demo_type.getSelectedItem().toString().equalsIgnoreCase("Select Live Demo Type")){
-                    Toast.makeText(getActivity(),"Select live demo type",Toast.LENGTH_SHORT).show();
+                if (live_demo_type.getSelectedItem().toString().equalsIgnoreCase("Select Live Demo Type")) {
+                    Toast.makeText(getActivity(), "Select live demo type", Toast.LENGTH_SHORT).show();
 
-                }
-                else if(demo_location.getSelectedItem().toString().equalsIgnoreCase("Select Location")){
-                    Toast.makeText(getActivity(),"Select location",Toast.LENGTH_SHORT).show();
-                }
-                else if(date.getText().toString().equalsIgnoreCase("")){
-                    Toast.makeText(getActivity(),"Select date",Toast.LENGTH_SHORT).show();
-                }
-                else if(demo_slot.getSelectedItem().toString().equalsIgnoreCase("Select Time Slot")){
-                    Toast.makeText(getActivity(),"Select time slot",Toast.LENGTH_SHORT).show();
+                } else if (demo_location.getSelectedItem().toString().equalsIgnoreCase("Select Location")) {
+                    Toast.makeText(getActivity(), "Select location", Toast.LENGTH_SHORT).show();
+                } else if (date.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(getActivity(), "Select date", Toast.LENGTH_SHORT).show();
+                } else if (demo_slot.getSelectedItem().toString().equalsIgnoreCase("Select Time Slot")) {
+                    Toast.makeText(getActivity(), "Select time slot", Toast.LENGTH_SHORT).show();
 
-                }
-                else if(live_demo_type.getSelectedItem().toString().equalsIgnoreCase("Exclusive Demo")){
-                    if(!check.isChecked()){
-                        Toast.makeText(getActivity(),"Please accept terms and condition",Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                } else if (live_demo_type.getSelectedItem().toString().equalsIgnoreCase("Exclusive Demo")) {
+                    if (!check.isChecked()) {
+                        Toast.makeText(getActivity(), "Please accept terms and condition", Toast.LENGTH_SHORT).show();
+                    } else {
                         liveVisitSubmit(visitDate);
                     }
-                }
-              else {
+                } else {
                     liveVisitSubmit(visitDate);
                 }
 
@@ -295,34 +290,45 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.optBoolean("success")) {
-                        JSONObject data = jsonObject.getJSONObject("data");
-                        int orderId = data.getInt("order_id");
+                        if (live_demo_type.getSelectedItem().toString().equalsIgnoreCase("Exclusive Demo")) {
+                            JSONObject data = jsonObject.getJSONObject("data");
+                            int orderId = data.getInt("order_id");
 
-                        String vAccessCode = "AVYA88GJ27BD72AYDB";
-                        String vMerchantId = "187245";
-                        String vCurrency = "INR";
-                        String vAmount = "1";
-                        if (!vAccessCode.equals("") && !vMerchantId.equals("") && !vCurrency.equals("") && !vAmount.equals("")) {
-                            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                            intent.putExtra(AvenuesParams.ACCESS_CODE, vAccessCode);
-                            intent.putExtra(AvenuesParams.MERCHANT_ID, vMerchantId);
-                            intent.putExtra(AvenuesParams.ORDER_ID, String.valueOf(orderId));
-                            intent.putExtra(AvenuesParams.CURRENCY, vCurrency);
-                            intent.putExtra(AvenuesParams.AMOUNT, vAmount);
-                            intent.putExtra(AvenuesParams.BILLING_NAME, SharedPrefrenceObj.getSharedValue(getActivity(), "name"));
-                            intent.putExtra(AvenuesParams.BILLING_EMAIL, SharedPrefrenceObj.getSharedValue(getActivity(), "email"));
-                            intent.putExtra(AvenuesParams.BILLING_TEL, SharedPrefrenceObj.getSharedValue(getActivity(), "mobile"));
-                            intent.putExtra(AvenuesParams.BILLING_STATE, SharedPrefrenceObj.getSharedValue(getActivity(), "state"));
-                            intent.putExtra(AvenuesParams.BILLING_CITY, SharedPrefrenceObj.getSharedValue(getActivity(), "city"));
+                            String vAccessCode = "AVYA88GJ27BD72AYDB";
+                            String vMerchantId = "187245";
+                            String vCurrency = "INR";
+                            String vAmount = "10000";
+                            if (!vAccessCode.equals("") && !vMerchantId.equals("") && !vCurrency.equals("") && !vAmount.equals("")) {
+                                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                                intent.putExtra(AvenuesParams.ACCESS_CODE, vAccessCode);
+                                intent.putExtra(AvenuesParams.MERCHANT_ID, vMerchantId);
+                                intent.putExtra(AvenuesParams.ORDER_ID, String.valueOf(orderId));
+                                intent.putExtra(AvenuesParams.CURRENCY, vCurrency);
+                                intent.putExtra(AvenuesParams.AMOUNT, vAmount);
+                                intent.putExtra(AvenuesParams.BILLING_NAME, SharedPrefrenceObj.getSharedValue(getActivity(), "name"));
+                                intent.putExtra(AvenuesParams.BILLING_EMAIL, SharedPrefrenceObj.getSharedValue(getActivity(), "email"));
+                                intent.putExtra(AvenuesParams.BILLING_TEL, SharedPrefrenceObj.getSharedValue(getActivity(), "mobile"));
+                                intent.putExtra(AvenuesParams.BILLING_STATE, SharedPrefrenceObj.getSharedValue(getActivity(), "state"));
+                                intent.putExtra(AvenuesParams.BILLING_CITY, SharedPrefrenceObj.getSharedValue(getActivity(), "city"));
 
-                            intent.putExtra(AvenuesParams.REDIRECT_URL, "http://chhotumaharajb2b.com/api/payment_Response");
-                            intent.putExtra(AvenuesParams.CANCEL_URL, "http://chhotumaharajb2b.com/api/payment_Response");
-                            intent.putExtra(AvenuesParams.RSA_KEY_URL, "http://chhotumaharajb2b.com/mobile-payment/GetRSA.php");
+                                intent.putExtra(AvenuesParams.REDIRECT_URL, "http://chhotumaharajb2b.com/api/payment_Response");
+                                intent.putExtra(AvenuesParams.CANCEL_URL, "http://chhotumaharajb2b.com/api/payment_Response");
+                                intent.putExtra(AvenuesParams.RSA_KEY_URL, "http://chhotumaharajb2b.com/mobile-payment/GetRSA.php");
 
-                            startActivity(intent);
+                                startActivity(intent);
+                            }
+                        } else {
+                            MainFragment mainFragment = new MainFragment();
+                            Bundle args = new Bundle();
+                            args.putString("topic","topic");
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            FragmentTransaction transaction = fragmentManager.beginTransaction();
+                            transaction.replace(R.id.frame_container, mainFragment);
+                            transaction.addToBackStack(null);
+                            transaction.commit();
                         }
                     }
-                        //         Toast.makeText(LiveDemoVisitActivity.this,"Appointment booked successfully",Toast.LENGTH_LONG).show();
+                    //         Toast.makeText(LiveDemoVisitActivity.this,"Appointment booked successfully",Toast.LENGTH_LONG).show();
                /*     Intent intent = new Intent(getActivity(), InterestedActivity.class);
                     intent.putExtra("concept","appointment");
                     startActivity(intent);
@@ -350,28 +356,27 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(getActivity(),"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(getActivity(), "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //appointment_date,user_id,sub_query,query_type,timeslot,location
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("appointment_date", visitDate);
-                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(getActivity(),"id")));
-                params.put("dom_visit",domVisit);
-                params.put("amount",amount);
+                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(getActivity(), "id")));
+                params.put("dom_visit", domVisit);
+                params.put("amount", amount);
                 params.put("timeslot", visitTime);
-                if(visitLocation.equalsIgnoreCase("Mumbai Head Office")){
-                    params.put("location","1");
-                }
-                else if(visitLocation.equalsIgnoreCase("Ahmadabad- Experience Center")){
-                    params.put("location","2");
-                }
-                else {
-                    params.put("location","3");
+                if (visitLocation.equalsIgnoreCase("Mumbai Head Office")) {
+                    params.put("location", "1");
+                } else if (visitLocation.equalsIgnoreCase("Ahmadabad- Experience Center")) {
+                    params.put("location", "2");
+                } else {
+                    params.put("location", "3");
                 }
 
                 System.out.println("Param value..........." + params);
