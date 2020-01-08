@@ -148,15 +148,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         send_otp.setVisibility(View.GONE);
                         verify_otp.setVisibility(View.VISIBLE);
                         back.setVisibility(View.VISIBLE);
-                        progressDialog.dismiss();
+                        if (progressDialog != null && progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
 
                     } else {
 
-                        progressDialog.dismiss();
+                        if (progressDialog != null && progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    progressDialog.dismiss();
+                    if (progressDialog != null && progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
+
                 }
             }
         }, new Response.ErrorListener() {

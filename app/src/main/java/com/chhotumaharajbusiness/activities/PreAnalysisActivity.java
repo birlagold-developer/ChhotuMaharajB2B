@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.chhotumaharajbusiness.MainActivity;
 import com.chhotumaharajbusiness.R;
 import com.chhotumaharajbusiness.constant.SharedPrefrenceObj;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
@@ -63,7 +62,7 @@ public class PreAnalysisActivity extends AppCompatActivity implements View.OnCli
         city.setEnabled(false);
 
         if(SharedPrefrenceObj.getIntegerval(PreAnalysisActivity.this,"step")==3){
-            Intent intent = new Intent(PreAnalysisActivity.this, MainActivity.class);
+            Intent intent = new Intent(PreAnalysisActivity.this, NavigationActivity.class);
             startActivity(intent);
             finish();
         }

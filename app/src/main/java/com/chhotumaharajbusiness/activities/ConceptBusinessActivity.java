@@ -211,8 +211,8 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
     @Override
     public void onBackPressed() {
         Toast.makeText(ConceptBusinessActivity.this,"Please give your view",Toast.LENGTH_LONG).show();
-          String timeeeee = String.valueOf(player.getCurrentTimeMillis());
-          Log.d("time........",timeeeee);
+//          String timeeeee = String.valueOf(player.getCurrentTimeMillis());
+//          Log.d("time........",timeeeee);
     }
 
  /*   @Override
@@ -220,7 +220,6 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
         if (!wasRestored) {
             this.player = player;
             player.cueVideo("fhWaJi1Hsfo"); // Plays https://www.youtube.com/watch?v=fhWaJi1Hsfo
-
         }
     }
 */

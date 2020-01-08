@@ -1,5 +1,7 @@
 package com.chhotumaharajbusiness.utility;
 
+import com.chhotumaharajbusiness.constant.Constant;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,8 +78,8 @@ public class ServiceUtility {
 	
 	public static String addToPostParams(String paramKey, String paramValue){
 		if(paramValue!=null)
-			return paramKey.concat(Constants.PARAMETER_EQUALS).concat(paramValue)
-					.concat(Constants.PARAMETER_SEP);
+			return paramKey.concat(Constant.PARAMETER_EQUALS).concat(paramValue)
+					.concat(Constant.PARAMETER_SEP);
 		return "";
 	}
 	

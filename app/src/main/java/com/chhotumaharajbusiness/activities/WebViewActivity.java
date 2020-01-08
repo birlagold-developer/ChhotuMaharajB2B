@@ -24,13 +24,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.chhotumaharajbusiness.PaymentComplete;
 import com.chhotumaharajbusiness.R;
 import com.chhotumaharajbusiness.constant.Constant;
 import com.chhotumaharajbusiness.constant.MaintainRequestQueue;
 import com.chhotumaharajbusiness.constant.SharedPrefrenceObj;
 import com.chhotumaharajbusiness.utility.AvenuesParams;
-import com.chhotumaharajbusiness.utility.Constants;
 import com.chhotumaharajbusiness.utility.LoadingDialog;
 import com.chhotumaharajbusiness.utility.RSAUtility;
 import com.chhotumaharajbusiness.utility.ServiceUtility;
@@ -154,7 +152,7 @@ public class WebViewActivity extends AppCompatActivity {
                         AvenuesParams.BILLING_CITY         + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_CITY), "UTF-8") + "&" +
                         AvenuesParams.BILLING_TEL           + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_TEL), "UTF-8");
 
-                webview.postUrl(Constants.TRANS_URL, postData.getBytes());
+                webview.postUrl(Constant.TRANS_URL, postData.getBytes());
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }

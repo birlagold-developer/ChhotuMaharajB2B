@@ -31,8 +31,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.chhotumaharajbusiness.R;
-import com.chhotumaharajbusiness.activities.InterestedActivity;
-import com.chhotumaharajbusiness.activities.LiveDemoVisitActivity;
 import com.chhotumaharajbusiness.activities.WebViewActivity;
 import com.chhotumaharajbusiness.constant.Constant;
 import com.chhotumaharajbusiness.constant.MaintainRequestQueue;
@@ -298,6 +296,10 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
                             String vMerchantId = "187245";
                             String vCurrency = "INR";
                             String vAmount = "10000";
+                            String email = SharedPrefrenceObj.getSharedValue(getActivity(), "email");
+                            System.out.println("Email=" + email);
+                            email = email == null ? "" : email;
+
                             if (!vAccessCode.equals("") && !vMerchantId.equals("") && !vCurrency.equals("") && !vAmount.equals("")) {
                                 Intent intent = new Intent(getActivity(), WebViewActivity.class);
                                 intent.putExtra(AvenuesParams.ACCESS_CODE, vAccessCode);
@@ -306,7 +308,7 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
                                 intent.putExtra(AvenuesParams.CURRENCY, vCurrency);
                                 intent.putExtra(AvenuesParams.AMOUNT, vAmount);
                                 intent.putExtra(AvenuesParams.BILLING_NAME, SharedPrefrenceObj.getSharedValue(getActivity(), "name"));
-                                intent.putExtra(AvenuesParams.BILLING_EMAIL, SharedPrefrenceObj.getSharedValue(getActivity(), "email"));
+                                intent.putExtra(AvenuesParams.BILLING_EMAIL, email);
                                 intent.putExtra(AvenuesParams.BILLING_TEL, SharedPrefrenceObj.getSharedValue(getActivity(), "mobile"));
                                 intent.putExtra(AvenuesParams.BILLING_STATE, SharedPrefrenceObj.getSharedValue(getActivity(), "state"));
                                 intent.putExtra(AvenuesParams.BILLING_CITY, SharedPrefrenceObj.getSharedValue(getActivity(), "city"));

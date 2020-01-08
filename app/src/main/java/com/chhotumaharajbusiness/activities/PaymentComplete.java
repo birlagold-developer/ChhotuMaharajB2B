@@ -1,4 +1,4 @@
-package com.chhotumaharajbusiness;
+package com.chhotumaharajbusiness.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -67,8 +67,9 @@ public class PaymentComplete extends AppCompatActivity {
         paymentbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("query_page","0");
                 startActivity(intent);
                 finish();
             }

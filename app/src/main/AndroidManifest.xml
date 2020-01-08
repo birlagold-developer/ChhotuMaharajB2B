@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.chhotumaharajbusiness">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,29 +15,22 @@
         android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity
-            android:name=".activities.DemoActivity"
-            android:screenOrientation="landscape" />
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".activities.NavigationActivity"
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.InterestedActivity" />
-        <activity android:name=".activities.LiveDemoVisitActivity" />
         <activity
             android:name=".activities.QueryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Dialog" />
-        <activity
-            android:name=".activities.TopicWiseDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".activities.TopicWiseActivity" />
         <activity android:name=".activities.PreAnalysisActivity2" />
         <activity android:name=".activities.PreAnalysisActivity" />
         <activity
             android:name=".activities.ConceptBusinessActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <activity android:name=".activities.FranchiseActiivity" />
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.SplashScreenActivity">
@@ -50,12 +44,9 @@
             android:name=".activities.WebViewActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PaymentComplete"
+            android:name=".activities.PaymentComplete"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
