@@ -1,8 +1,5 @@
 package com.chhotumaharajbusiness.activities;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,6 +17,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -108,7 +108,7 @@ public class FranchiseActiivity extends AppCompatActivity implements View.OnClic
 
 
          if(SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this,"step")==1){
-            Intent intent = new Intent(FranchiseActiivity.this, ConceptBusinessActivity.class);
+            Intent intent = new Intent(FranchiseActiivity.this, ConceptBusinessActivity1.class);
             startActivity(intent);
             finish();
         }
@@ -188,36 +188,28 @@ public class FranchiseActiivity extends AppCompatActivity implements View.OnClic
 
                 if(name.getText().toString().equalsIgnoreCase("")){
                     name.setError("Invalid name");
-                }
-                else if(email.getText().toString().equalsIgnoreCase("")){
+                } else if(email.getText().toString().equalsIgnoreCase("")){
                     email.setError("Invalid email");
-                }
-                else if(!isValidEmail(emailVal)){
+                } else if(!isValidEmail(emailVal)){
                     email.setError("Invalid email");
-                }
-                else if(state.getSelectedItem().toString().equalsIgnoreCase("Select State")){
+                } else if(state.getSelectedItem().toString().equalsIgnoreCase("Select State")){
                     TextView errorText = (TextView)state.getSelectedView();
                     errorText.setError("");
                     errorText.setTextColor(Color.RED);//just to highlight that this is an error
                     errorText.setText("Select State");
-                }
-
-                else if(city.getText().toString().equalsIgnoreCase("")){
+                } else if(city.getText().toString().equalsIgnoreCase("")){
                     city.setError("Invalid city");
                     //Toast.makeText(FranchiseActiivity.this,"Invalid city",Toast.LENGTH_SHORT).show();
-                }
-                else if(languageVal.equalsIgnoreCase("Select Language")){
+                } else if(languageVal.equalsIgnoreCase("Select Language")){
                     TextView errorText = (TextView)language.getSelectedView();
                     errorText.setError("");
                     errorText.setTextColor(Color.RED);//just to highlight that this is an error
                     errorText.setText("Select language");
                    // Toast.makeText(FranchiseActiivity.this,"Select language",Toast.LENGTH_SHORT).show();
 
-                }
-                else if(check.isChecked()==false){
-                Toast.makeText(FranchiseActiivity.this,"Please accept terms and condition",Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else if(check.isChecked()==false){
+                    Toast.makeText(FranchiseActiivity.this,"Please accept terms and condition",Toast.LENGTH_SHORT).show();
+                } else {
                     saveFranchiserequest(nameVal,emailVal,stateVal,cityVal,languageVal);
                 }
 
@@ -325,7 +317,7 @@ public class FranchiseActiivity extends AppCompatActivity implements View.OnClic
                         SharedPrefrenceObj.setSharedValue(FranchiseActiivity.this,"state",state);
                         SharedPrefrenceObj.setSharedValue(FranchiseActiivity.this,"city",city);
 
-                        Intent intent = new Intent(FranchiseActiivity.this,ConceptBusinessActivity.class);
+                        Intent intent = new Intent(FranchiseActiivity.this,ConceptBusinessActivity1.class);
                         intent.putExtra("sec",0);
                         startActivity(intent);
                         finish();

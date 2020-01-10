@@ -2,7 +2,6 @@ package com.chhotumaharajbusiness.fragment;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,24 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.chhotumaharajbusiness.R;
-import com.chhotumaharajbusiness.activities.FranchiseActiivity;
-import com.chhotumaharajbusiness.constant.Constant;
-import com.chhotumaharajbusiness.constant.MaintainRequestQueue;
-import com.chhotumaharajbusiness.constant.SharedPrefrenceObj;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 public class MainFragment extends Fragment implements View.OnClickListener {
 

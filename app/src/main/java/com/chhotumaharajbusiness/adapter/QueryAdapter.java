@@ -1,7 +1,6 @@
 package com.chhotumaharajbusiness.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chhotumaharajbusiness.R;
 import com.chhotumaharajbusiness.model.QueryModel;
 import com.chhotumaharajbusiness.model.SubQueryModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class QueryAdapter extends RecyclerView.Adapter<QueryAdapter.MyViewHolder> {
 
@@ -38,6 +34,7 @@ public class QueryAdapter extends RecyclerView.Adapter<QueryAdapter.MyViewHolder
         this.context = context;
         this.queryModel = queryModel;
     }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { // creates view holder and inflates
         View itemView = LayoutInflater.from(parent.getContext())
@@ -45,6 +42,7 @@ public class QueryAdapter extends RecyclerView.Adapter<QueryAdapter.MyViewHolder
 
         return new MyViewHolder(itemView);
     }
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) { // binds/adds details to the views
         final SubQueryModel item = queryModel.getSubQueryModels().get(position);

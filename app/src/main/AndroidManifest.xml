@@ -31,6 +31,12 @@
         <activity
             android:name=".activities.ConceptBusinessActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activities.TopicWiseDetailFragment1"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activities.ConceptBusinessActivity1"
+            android:screenOrientation="portrait"/>
         <activity android:name=".activities.FranchiseActiivity" />
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.SplashScreenActivity">
