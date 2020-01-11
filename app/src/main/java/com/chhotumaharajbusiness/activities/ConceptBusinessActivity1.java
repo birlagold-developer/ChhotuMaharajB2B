@@ -113,14 +113,13 @@ public class ConceptBusinessActivity1 extends YouTubeBaseActivity implements Vie
         @Override
         public void run() {
             if (player != null && player.isPlaying()) {
-
                 System.out.println("CurrentTimeMillis : " + player.getCurrentTimeMillis());
                 System.out.println("DurationMillis : " + player.getDurationMillis());
                 int progress = (player.getCurrentTimeMillis() * 100) / player.getDurationMillis();
                 System.out.println("progress : " + progress);
                 videoProgressBar.setProgress(progress);
             }
-            progressBarHandler.postDelayed(this,1000);
+            progressBarHandler.postDelayed(this, 1000);
         }
     };
 
@@ -241,31 +240,38 @@ public class ConceptBusinessActivity1 extends YouTubeBaseActivity implements Vie
         super.onDestroy();
         try {
             progressBarHandler.removeCallbacks(progressRunnable);
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.video_playpause) {
-            if (player.isPlaying()) {
-                player.pause();
-                imageViewPlayPause.setImageResource(R.drawable.play);
-            } else {
-                player.play();
-                imageViewPlayPause.setImageResource(R.drawable.pause);
-            }
-        } else if (view.getId() == R.id.video_backward) {
-            player.seekRelativeMillis(-5000);
-        } else if (view.getId() == R.id.video_forward) {
-            player.seekRelativeMillis(5000);
-        } else if (view.getId() == R.id.interested) {
-            long seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
-            updateVideo(String.valueOf(seconds));
-        } else {
-            long seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
-            updateVideo1(String.valueOf(seconds));
+        long seconds = 0;
+        switch (view.getId()) {
+            case R.id.video_playpause:
+                if (player.isPlaying()) {
+                    player.pause();
+                    imageViewPlayPause.setImageResource(R.drawable.play);
+                } else {
+                    player.play();
+                    imageViewPlayPause.setImageResource(R.drawable.pause);
+                }
+                break;
+            case R.id.video_backward:
+                player.seekRelativeMillis(-5000);
+                break;
+            case R.id.video_forward:
+                player.seekRelativeMillis(5000);
+                break;
+            case R.id.interested:
+                seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
+                updateVideoInterested(String.valueOf(seconds));
+                break;
+            case R.id.not_interested:
+                seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
+                updateVideoNotInterested(String.valueOf(seconds));
+                break;
         }
 
     }
@@ -347,7 +353,7 @@ public class ConceptBusinessActivity1 extends YouTubeBaseActivity implements Vie
         MaintainRequestQueue.getInstance(ConceptBusinessActivity1.this).addToRequestQueue(req, "tag");
     }
 
-    private void updateVideo(final String video_time) {
+    private void updateVideoInterested(final String video_time) {
 
         String url = Constant.URL + "updatevideop1p2";
         url = url.replace(" ", "%20");
@@ -427,7 +433,7 @@ public class ConceptBusinessActivity1 extends YouTubeBaseActivity implements Vie
 
     }
 
-    private void updateVideo1(final String video_time) {
+    private void updateVideoNotInterested(final String video_time) {
 
         String url = Constant.URL + "updatevideop1p2";
         url = url.replace(" ", "%20");

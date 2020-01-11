@@ -106,30 +106,25 @@ public class FranchiseActiivity extends AppCompatActivity implements View.OnClic
         languageArray = new ArrayList<>();
         languageArray.add("Select Language");
 
-
-         if(SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this,"step")==1){
+        if(SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this,"step")==1){
             Intent intent = new Intent(FranchiseActiivity.this, ConceptBusinessActivity1.class);
             startActivity(intent);
             finish();
-        }
-        else if(SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this,"step")==2){
+        } else if(SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this,"step")==2){
             Intent intent = new Intent(FranchiseActiivity.this, PreAnalysisActivity.class);
             startActivity(intent);
             finish();
-        }
-        else if(SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this,"step")==3){
+        } else if(SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this,"step")==3){
             Intent intent = new Intent(FranchiseActiivity.this, NavigationActivity.class);
             intent.putExtra("query_page","0");
             startActivity(intent);
             finish();
-        }
-        else if(SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this,"step")==4){
+        } else if(SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this,"step")==4){
             Intent intent = new Intent(FranchiseActiivity.this, NavigationActivity.class);
             intent.putExtra("query_page","0");
             startActivity(intent);
             finish();
-        }
-         else if(SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this,"step")==5){
+        } else if(SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this,"step")==5){
              Intent intent = new Intent(FranchiseActiivity.this, NavigationActivity.class);
              intent.putExtra("query_page","0");
              startActivity(intent);

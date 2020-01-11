@@ -13,7 +13,6 @@ public class Constant {
 
     public static final String YOUTUBE_KEY = "AIzaSyBGLN9uw_XqDhZobXpiR50N-3ed00KGtN8";
 
-
     public static final String PARAMETER_SEP = "&";
 
     public static final String PARAMETER_EQUALS = "=";

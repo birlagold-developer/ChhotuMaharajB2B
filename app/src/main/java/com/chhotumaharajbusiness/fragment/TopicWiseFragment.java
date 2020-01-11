@@ -27,7 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.chhotumaharajbusiness.R;
-import com.chhotumaharajbusiness.activities.TopicWiseDetailFragment1;
+import com.chhotumaharajbusiness.activities.TopicWiseDetailActivity1;
 import com.chhotumaharajbusiness.adapter.TopicWiseAdapter;
 import com.chhotumaharajbusiness.constant.Constant;
 import com.chhotumaharajbusiness.constant.MaintainRequestQueue;
@@ -274,7 +274,7 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
 
         if(flag.equalsIgnoreCase("1")) {
 
-//            TopicWiseDetailFragment1 topicWiseFragment1 = new TopicWiseDetailFragment1();
+//            TopicWiseDetailActivity1 topicWiseFragment1 = new TopicWiseDetailActivity1();
 //            Bundle args1 = new Bundle();
 //            args1.putString("topic_name",topicWiseModel.getName());
 //            args1.putString("topic_video",topicWiseModel.getVideo().trim());
@@ -287,7 +287,7 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
 //            transaction1.add(R.id.frame_container, topicWiseFragment1);
 //            transaction1.commit();
 
-            Intent intent = new Intent(getActivity(), TopicWiseDetailFragment1.class);
+            Intent intent = new Intent(getActivity(), TopicWiseDetailActivity1.class);
             intent.putExtra("topic_name",topicWiseModel.getName());
             intent.putExtra("topic_video",topicWiseModel.getVideo().trim());
             intent.putExtra("video_id",topicWiseModel.getId());

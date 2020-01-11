@@ -48,7 +48,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements View.OnClickListener, YouTubePlayer.OnInitializedListener {
+public class TopicWiseDetailActivity1 extends YouTubeBaseActivity implements View.OnClickListener, YouTubePlayer.OnInitializedListener {
 
     private static final int RECOVERY_DIALOG_REQUEST = 1;
 
@@ -58,9 +58,9 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
 
     private int position = 0;
     TextView topic_name, language;
-    Button understand,query;
-    Button chat,call;
-    String topicName,prefered_language,topicVideo,ppt;
+    Button understand, query;
+    Button chat, call;
+    String topicName, prefered_language, topicVideo, ppt;
     ImageView imageViewBackward, imageViewPlayPause, imageViewForward;
     ProgressBar videoProgressBar;
     Handler progressBarHandler;
@@ -68,8 +68,8 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
     String[] videoLanguage = null;
     ProgressDialog progressDialog;
     String topic;
-    LinearLayout question_layout,topic_layout;
-    Button not_understood,question_understood;
+    LinearLayout question_layout, topic_layout;
+    Button not_understood, question_understood;
     Button viewpdf;
 
     @Override
@@ -79,7 +79,7 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
         Toolbar toolbar = findViewById(R.id.toolbar);
         setActionBar(toolbar);
 
-//        getActionBar().setTitle("");
+        getActionBar().setTitle("");
 
         topic_name = findViewById(R.id.topic_detail_name);
         language = findViewById(R.id.language);
@@ -90,8 +90,8 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
         imageViewForward = findViewById(R.id.video_forward);
         videoProgressBar = findViewById(R.id.videoProgressBar);
 
-        understand  = findViewById(R.id.understand);
-        query  = findViewById(R.id.query);
+        understand = findViewById(R.id.understand);
+        query = findViewById(R.id.query);
         chat = findViewById(R.id.chat_me);
         call = findViewById(R.id.call_me);
         question_layout = findViewById(R.id.question_layout);
@@ -100,17 +100,17 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
         not_understood = findViewById(R.id.not_understood);
         viewpdf = findViewById(R.id.detail_pdf);
 
-        topicName           =  getIntent().getStringExtra("topic_name");
-        prefered_language   =  SharedPrefrenceObj.getSharedValue(TopicWiseDetailFragment1.this,"language");
-        topicVideo          =  getIntent().getStringExtra("topic_video").trim();
-        videoId             =  getIntent().getIntExtra("video_id",0);
-        parentVideoId       =   videoId;
-        topic               =  getIntent().getStringExtra("topic");
-        ppt                 =  getIntent().getStringExtra("pdf");
+        topicName = getIntent().getStringExtra("topic_name");
+        prefered_language = SharedPrefrenceObj.getSharedValue(TopicWiseDetailActivity1.this, "language");
+        topicVideo = getIntent().getStringExtra("topic_video").trim();
+        videoId = getIntent().getIntExtra("video_id", 0);
+        parentVideoId = videoId;
+        topic = getIntent().getStringExtra("topic");
+        ppt = getIntent().getStringExtra("pdf");
 
-        progressDialog = new ProgressDialog(TopicWiseDetailFragment1.this);
+        progressDialog = new ProgressDialog(TopicWiseDetailActivity1.this);
 
-        if(topic.equalsIgnoreCase("topic")){
+        if (topic.equalsIgnoreCase("topic")) {
             topic_layout.setVisibility(View.VISIBLE);
             question_layout.setVisibility(View.GONE);
 
@@ -154,30 +154,30 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
         progressBarHandler = new Handler();
         progressBarHandler.post(progressRunnable);
 
-     }
+    }
 
-     Runnable progressRunnable = new Runnable() {
-         @Override
-         public void run() {
-             if (player != null && player.isPlaying()) {
+    Runnable progressRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (player != null && player.isPlaying()) {
 
-                 System.out.println("CurrentTimeMillis : " + player.getCurrentTimeMillis());
-                 System.out.println("DurationMillis : " + player.getDurationMillis());
-                 int progress = (player.getCurrentTimeMillis() * 100) / player.getDurationMillis();
-                 System.out.println("progress : " + progress);
-                 videoProgressBar.setProgress(progress);
-             }
-             progressBarHandler.postDelayed(this,1000);
-         }
-     };
+                System.out.println("CurrentTimeMillis : " + player.getCurrentTimeMillis());
+                System.out.println("DurationMillis : " + player.getDurationMillis());
+                int progress = (player.getCurrentTimeMillis() * 100) / player.getDurationMillis();
+                System.out.println("progress : " + progress);
+                videoProgressBar.setProgress(progress);
+            }
+            progressBarHandler.postDelayed(this, 1000);
+        }
+    };
 
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult errorReason) {
         if (errorReason.isUserRecoverableError()) {
-            errorReason.getErrorDialog(TopicWiseDetailFragment1.this, RECOVERY_DIALOG_REQUEST).show();
+            errorReason.getErrorDialog(TopicWiseDetailActivity1.this, RECOVERY_DIALOG_REQUEST).show();
         } else {
             String errorMessage = String.format(getString(R.string.error_player), errorReason.toString());
-            Toast.makeText(TopicWiseDetailFragment1.this, errorMessage, Toast.LENGTH_LONG).show();
+            Toast.makeText(TopicWiseDetailActivity1.this, errorMessage, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -266,7 +266,7 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(TopicWiseDetailFragment1.this, "Your response is required", Toast.LENGTH_SHORT).show();
+        Toast.makeText(TopicWiseDetailActivity1.this, "Your response is required", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -281,101 +281,87 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
 
     @Override
     public void onClick(View view) {
+        long seconds = 0;
 
-        if (view.getId() == R.id.video_playpause) {
-            if (player.isPlaying()) {
-                player.pause();
-                imageViewPlayPause.setImageResource(R.drawable.play);
-            } else {
-                player.play();
-                imageViewPlayPause.setImageResource(R.drawable.pause);
-            }
-        } else if (view.getId() == R.id.video_backward) {
-            player.seekRelativeMillis(-5000);
-        } else if (view.getId() == R.id.video_forward) {
-            player.seekRelativeMillis(5000);
-        } else if (view.getId() == R.id.language) {
-            try {
-
-                ArrayList<String> languageList = new ArrayList<String>();
-
-                for (String language : videoLanguage) {
-                    languageList.add(language);
+        switch (view.getId()) {
+            case R.id.video_playpause:
+                if (player.isPlaying()) {
+                    player.pause();
+                    imageViewPlayPause.setImageResource(R.drawable.play);
+                } else {
+                    player.play();
+                    imageViewPlayPause.setImageResource(R.drawable.pause);
                 }
-
-                final ArrayAdapter<String> languageAdapter = new ArrayAdapter<String>(TopicWiseDetailFragment1.this, android.R.layout.simple_list_item_1, languageList);
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(TopicWiseDetailFragment1.this);
-
-                builder.setTitle("Select Language");
-
-                builder.setAdapter(languageAdapter, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String selected_language = languageAdapter.getItem(which);
-                        language.setText(selected_language);
-                        dialog.dismiss();
-
-                        player.pause();
-
-                        if(topic.equalsIgnoreCase("topic")){
-                            getVideoForTopic(selected_language);
-                        } else {
-                            getVideoForQuestion(selected_language);
-                        }
+                break;
+            case R.id.video_backward:
+                player.seekRelativeMillis(-5000);
+                break;
+            case R.id.video_forward:
+                player.seekRelativeMillis(5000);
+                break;
+            case R.id.language:
+                    ArrayList<String> languageList = new ArrayList<String>();
+                    for (String language : videoLanguage) {
+                        languageList.add(language);
                     }
-                });
+                    showLanguageDialog(languageList);
+                break;
+            case R.id.understand:
+            case R.id.question_understand:
+                player.pause();
+                seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
+                updateUnderstood(String.valueOf(seconds));
+                break;
+            case R.id.not_understood:
+                player.pause();
+                seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
+                updateNotUnderstood(String.valueOf(seconds));
+                break;
+            case R.id.query:
+                player.pause();
+                seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
+                Intent intent = new Intent(TopicWiseDetailActivity1.this, QueryActivity.class);
+                intent.putExtra("video_id", videoId);
+                intent.putExtra("parentvideo_id", parentVideoId);
+                intent.putExtra("video_time", String.valueOf(seconds));
+                startActivity(intent);
+                break;
+            case R.id.chat_me:
+                player.pause();
+                updateChatMe();
+                break;
+            case R.id.call_me:
+                player.pause();
+                updateCallMe();
+                break;
+        }
+    }
 
-                AlertDialog alertDialog = builder.create();
-                ListView listView = alertDialog.getListView();
-                listView.setDivider(new ColorDrawable(Color.GRAY));
-                listView.setDividerHeight(2);
-                alertDialog.show();
+    private void showLanguageDialog(ArrayList<String> all_language) {
 
-            } catch (Exception e) {
-                e.printStackTrace();
+        final ArrayAdapter<String> languageAdapter = new ArrayAdapter<String>(TopicWiseDetailActivity1.this, android.R.layout.simple_list_item_1, all_language);
+        AlertDialog.Builder builder = new AlertDialog.Builder(TopicWiseDetailActivity1.this);
+        builder.setTitle("Select Language");
+        builder.setAdapter(languageAdapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String selected_language = languageAdapter.getItem(which);
+                language.setText(selected_language);
+                dialog.dismiss();
+                player.pause();
+                if (topic.equalsIgnoreCase("topic")) {
+                    getVideoForTopic(selected_language);
+                } else {
+                    getVideoForQuestion(selected_language);
+                }
             }
+        });
 
-        }
-
-        if (view.getId() == R.id.understand) {
-            player.pause();
-            long seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
-            updateUnderstood(String.valueOf(seconds));
-        }
-
-        if (view.getId() == R.id.not_understood) {
-            player.pause();
-            long seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
-            updateNotUnderstood(String.valueOf(seconds));
-        }
-
-        if (view.getId() == R.id.question_understand) {
-            player.pause();
-            long seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
-            updateUnderstood(String.valueOf(seconds));
-        }
-
-        if (view.getId() == R.id.query) {
-            player.pause();
-            long seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
-            Intent intent = new Intent(TopicWiseDetailFragment1.this, QueryActivity.class);
-            intent.putExtra("video_id",videoId);
-            intent.putExtra("parentvideo_id",parentVideoId);
-            intent.putExtra("video_time",String.valueOf(seconds));
-            startActivity(intent);
-        }
-
-        if(view.getId()==R.id.chat_me){
-            player.pause();
-            updateChatMe();
-        }
-
-        if(view.getId()==R.id.call_me){
-            player.pause();
-            updateCallMe();
-
-        }
+        AlertDialog alertDialog = builder.create();
+        ListView listView = alertDialog.getListView();
+        listView.setDivider(new ColorDrawable(Color.GRAY));
+        listView.setDividerHeight(2);
+        alertDialog.show();
     }
 
     private void getVideoForTopic(final String selectedLanguage) {
@@ -400,16 +386,16 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
 
                         videoLanguage = new String[videoLanguageArray.length()];
 
-                        for (int i=0;i< videoLanguageArray.length();i++) {
+                        for (int i = 0; i < videoLanguageArray.length(); i++) {
                             JSONObject object = videoLanguageArray.getJSONObject(i);
                             videoLanguage[i] = object.getString("lang_name");
                         }
 
-                        topicVideo          =  video.getString("youtube_id");
-                        videoId             =  video.getInt("id");
-                        String video_lang   =  video.getString("language_name");
+                        topicVideo = video.getString("youtube_id");
+                        videoId = video.getInt("id");
+                        String video_lang = video.getString("language_name");
 
-                        youTubeView.initialize(Constant.YOUTUBE_KEY, TopicWiseDetailFragment1.this);
+                        youTubeView.initialize(Constant.YOUTUBE_KEY, TopicWiseDetailActivity1.this);
 
                         language.setText(video_lang);
 
@@ -436,9 +422,9 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(TopicWiseDetailFragment1.this,"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(TopicWiseDetailActivity1.this, "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
 
@@ -467,7 +453,7 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MaintainRequestQueue.getInstance(TopicWiseDetailFragment1.this).addToRequestQueue(req, "tag");
+        MaintainRequestQueue.getInstance(TopicWiseDetailActivity1.this).addToRequestQueue(req, "tag");
     }
 
     private void getVideoForQuestion(final String selectedLanguage) {
@@ -492,18 +478,18 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
 
                         videoLanguage = new String[videoLanguageArray.length()];
 
-                        for (int i=0;i< videoLanguageArray.length();i++) {
+                        for (int i = 0; i < videoLanguageArray.length(); i++) {
                             JSONObject object = videoLanguageArray.getJSONObject(i);
                             videoLanguage[i] = object.getString("lang_name");
                         }
 
-                        topicVideo          =  video.getString("youtube_id");
-                        videoId             =  video.getInt("id");
-                        String video_lang   =  video.getString("language_name");
+                        topicVideo = video.getString("youtube_id");
+                        videoId = video.getInt("id");
+                        String video_lang = video.getString("language_name");
 
                         language.setText(video_lang);
 
-                        youTubeView.initialize(Constant.YOUTUBE_KEY, TopicWiseDetailFragment1.this);
+                        youTubeView.initialize(Constant.YOUTUBE_KEY, TopicWiseDetailActivity1.this);
 
 
                     }
@@ -529,9 +515,9 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(TopicWiseDetailFragment1.this,"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(TopicWiseDetailActivity1.this, "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
 
@@ -560,7 +546,7 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MaintainRequestQueue.getInstance(TopicWiseDetailFragment1.this).addToRequestQueue(req, "tag");
+        MaintainRequestQueue.getInstance(TopicWiseDetailActivity1.this).addToRequestQueue(req, "tag");
     }
 
     private void updateUnderstood(final String video_time) {
@@ -576,7 +562,7 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
             public void onResponse(String response) {
                 Log.d("Response", response);
                 try {
-                    Toast.makeText(TopicWiseDetailFragment1.this,"Thank you for your response..",Toast.LENGTH_LONG).show();
+                    Toast.makeText(TopicWiseDetailActivity1.this, "Thank you for your response..", Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                     finish();
                 } catch (Exception e) {
@@ -600,17 +586,18 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(TopicWiseDetailFragment1.this,"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(TopicWiseDetailActivity1.this, "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //video_id,user_id,sub_query,query_type
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_id", String.valueOf(videoId));
-                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(TopicWiseDetailFragment1.this,"id")));
+                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(TopicWiseDetailActivity1.this, "id")));
                 params.put("sub_query", "");
                 params.put("watch_video", video_time);
                 params.put("query_type", "understood");
@@ -634,7 +621,7 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MaintainRequestQueue.getInstance(TopicWiseDetailFragment1.this).addToRequestQueue(req, "tag");
+        MaintainRequestQueue.getInstance(TopicWiseDetailActivity1.this).addToRequestQueue(req, "tag");
     }
 
     private void updateNotUnderstood(final String video_time) {
@@ -650,7 +637,7 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
             public void onResponse(String response) {
                 Log.d("Response", response);
                 try {
-                    Toast.makeText(TopicWiseDetailFragment1.this,"Thank you for your response..",Toast.LENGTH_LONG).show();
+                    Toast.makeText(TopicWiseDetailActivity1.this, "Thank you for your response..", Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                     finish();
                 } catch (Exception e) {
@@ -674,17 +661,18 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(TopicWiseDetailFragment1.this,"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(TopicWiseDetailActivity1.this, "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //video_id,user_id,sub_query,query_type
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_id", String.valueOf(videoId));
-                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(TopicWiseDetailFragment1.this,"id")));
+                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(TopicWiseDetailActivity1.this, "id")));
                 params.put("sub_query", "");
                 params.put("watch_video", video_time);
                 params.put("query_type", "not_understood");
@@ -708,7 +696,7 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MaintainRequestQueue.getInstance(TopicWiseDetailFragment1.this).addToRequestQueue(req, "tag");
+        MaintainRequestQueue.getInstance(TopicWiseDetailActivity1.this).addToRequestQueue(req, "tag");
     }
 
     private void updateChatMe() {
@@ -763,17 +751,18 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(TopicWiseDetailFragment1.this,"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(TopicWiseDetailActivity1.this, "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //video_id,user_id,sub_query,query_type
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_id", String.valueOf(videoId));
-                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(TopicWiseDetailFragment1.this,"id")));
+                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(TopicWiseDetailActivity1.this, "id")));
                 System.out.println("Param value..........." + params);
                 return checkParams(params);
             }
@@ -794,7 +783,7 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MaintainRequestQueue.getInstance(TopicWiseDetailFragment1.this).addToRequestQueue(req, "tag");
+        MaintainRequestQueue.getInstance(TopicWiseDetailActivity1.this).addToRequestQueue(req, "tag");
     }
 
     private void updateCallMe() {
@@ -813,7 +802,7 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
                     progressDialog.dismiss();
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.optBoolean("success")) {
-                        new AlertDialog.Builder(TopicWiseDetailFragment1.this)
+                        new AlertDialog.Builder(TopicWiseDetailActivity1.this)
                                 .setTitle("")
                                 .setMessage("Our concern person will call you shortly")
                                 .setCancelable(false)
@@ -847,17 +836,18 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(TopicWiseDetailFragment1.this,"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(TopicWiseDetailActivity1.this, "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //video_id,user_id,sub_query,query_type
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_id", String.valueOf(videoId));
-                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(TopicWiseDetailFragment1.this,"id")));
+                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(TopicWiseDetailActivity1.this, "id")));
                 System.out.println("Param value..........." + params);
                 return checkParams(params);
             }
@@ -878,10 +868,10 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MaintainRequestQueue.getInstance(TopicWiseDetailFragment1.this).addToRequestQueue(req, "tag");
+        MaintainRequestQueue.getInstance(TopicWiseDetailActivity1.this).addToRequestQueue(req, "tag");
     }
 
-    private void updatePDF(final int videoId,final String ppt) {
+    private void updatePDF(final int videoId, final String ppt) {
 
         String url = Constant.URL + "update_pdfvideo";
         url = url.replace(" ", "%20");
@@ -895,7 +885,7 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
                 Log.d("Response", response);
                 try {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(Constant.PPT_PATH+ppt.trim()));
+                    intent.setData(Uri.parse(Constant.PPT_PATH + ppt.trim()));
                     startActivity(intent);
                     progressDialog.dismiss();
                 } catch (Exception e) {
@@ -919,17 +909,18 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(TopicWiseDetailFragment1.this,"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(TopicWiseDetailActivity1.this, "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //video_id,user_id,sub_query,query_type
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_id", String.valueOf(videoId));
-                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(TopicWiseDetailFragment1.this,"id")));
+                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(TopicWiseDetailActivity1.this, "id")));
                 System.out.println("Param value..........." + params);
                 return checkParams(params);
             }
@@ -950,6 +941,7 @@ public class TopicWiseDetailFragment1 extends YouTubeBaseActivity implements Vie
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MaintainRequestQueue.getInstance(TopicWiseDetailFragment1.this).addToRequestQueue(req, "tag");
+        MaintainRequestQueue.getInstance(TopicWiseDetailActivity1.this).addToRequestQueue(req, "tag");
     }
+
 }

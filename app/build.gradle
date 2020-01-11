@@ -1,22 +1,28 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('/Users/birlagold/Documents/AndroidProjectKeys/ChhotuMaharajB2B/CMb2bApp.jks')
+            storePassword 'sukhsagar'
+            keyAlias = 'B2B App'
+            keyPassword 'sukhsagar'
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.chhotumaharajbusiness"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 4
-        versionName "1.0.4"
+        versionCode 8
+        versionName "1.0.8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled true
-
             shrinkResources true
-
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -28,6 +34,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation 'com.google.android.play:core:1.6.4'
 
     implementation 'com.google.android.material:material:1.0.0'
 
