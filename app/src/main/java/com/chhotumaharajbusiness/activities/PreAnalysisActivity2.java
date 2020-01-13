@@ -57,22 +57,22 @@ public class PreAnalysisActivity2 extends AppCompatActivity implements AdapterVi
         tv.setTypeface(face);
         tv1.setTypeface(face);
 
-        name =           getIntent().getStringExtra("name");
-        age =           getIntent().getStringExtra("age");
-        state =          getIntent().getStringExtra("state");
-        city =           getIntent().getStringExtra("city");
-        qualification =  getIntent().getStringExtra("qualification");
-        profession =     getIntent().getStringExtra("profession");
-        land =           getIntent().getStringExtra("land");
-        land_type =      getIntent().getStringExtra("land_type");
-        land_size =      getIntent().getStringExtra("land_size");
+        name                    = getIntent().getStringExtra("name");
+        age                     = getIntent().getStringExtra("age");
+        state                   = getIntent().getStringExtra("state");
+        city                    = getIntent().getStringExtra("city");
+        qualification           = getIntent().getStringExtra("qualification");
+        profession              = getIntent().getStringExtra("profession");
+        land                    = getIntent().getStringExtra("land");
+        land_type               = getIntent().getStringExtra("land_type");
+        land_size               = getIntent().getStringExtra("land_size");
 
-        pre_analysis_budget   =   findViewById(R.id.pre_analysis_budget);
-        pre_analysis_maker    =    findViewById(R.id.pre_analysis_maker);
-        pre_analysis_business = findViewById(R.id.pre_analysis_business);
-        pre_analysis_type     =     findViewById(R.id.pre_analysis_investtype);
-        pre_analysis_time     =     findViewById(R.id.pre_analysis_business_time);
-        submit =                findViewById(R.id.pre_analysis_submit);
+        pre_analysis_budget     = findViewById(R.id.pre_analysis_budget);
+        pre_analysis_maker      = findViewById(R.id.pre_analysis_maker);
+        pre_analysis_business   = findViewById(R.id.pre_analysis_business);
+        pre_analysis_type       = findViewById(R.id.pre_analysis_investtype);
+        pre_analysis_time       = findViewById(R.id.pre_analysis_business_time);
+        submit                  = findViewById(R.id.pre_analysis_submit);
 
         pre_analysis_budget.setTitle("");
         pre_analysis_maker.setTitle("");
@@ -165,8 +165,6 @@ public class PreAnalysisActivity2 extends AppCompatActivity implements AdapterVi
                 break;
             case R.id.pre_analysis_business_time:
                 businessTime = String.valueOf(adapterView.getSelectedItem());
-                break;
-                default:
                 break;
         }
     }

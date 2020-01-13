@@ -28,6 +28,7 @@
             android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".activities.PreAnalysisActivity2" />
         <activity android:name=".activities.PreAnalysisActivity" />
+        <activity android:name=".activities.PreAnalysisNewActivity" />
         <activity
             android:name=".activities.ConceptBusinessActivity"
             android:screenOrientation="portrait"/>

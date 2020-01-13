@@ -38,25 +38,8 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                appUpdateManager = AppUpdateManagerFactory.create(getApplicationContext());
+                checkApplicationUpdate();
 
-                Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-
-                // Checks that the platform will allow the specified type of update.
-                appUpdateInfoTask.addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
-                    @Override
-                    public void onSuccess(AppUpdateInfo result) {
-
-                        System.out.println("AppUpdate:result.updateAvailability()="+ result.updateAvailability());
-                        System.out.println("AppUpdate:result.availableVersionCode()="+ result.availableVersionCode());
-                        System.out.println("AppUpdate:UpdateAvailability.UPDATE_AVAILABLE="+ UpdateAvailability.UPDATE_AVAILABLE);
-                        if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
-                            requestUpdate(result);
-                        } else {
-                            callNextActivity();
-                        }
-                    }
-                });
             }
         },SPLASH_SCREEN_TIMEOUT);
 
@@ -77,8 +60,33 @@ public class SplashScreenActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_APPLICATION_UPDATE) {
             if (resultCode == RESULT_OK) {
                 callNextActivity();
+            } else {
+                checkApplicationUpdate();
             }
         }
+    }
+
+    private void checkApplicationUpdate(){
+        appUpdateManager = AppUpdateManagerFactory.create(getApplicationContext());
+
+        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
+
+        // Checks that the platform will allow the specified type of update.
+        appUpdateInfoTask.addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
+            @Override
+            public void onSuccess(AppUpdateInfo result) {
+
+                System.out.println("AppUpdate:result.updateAvailability()="+ result.updateAvailability());
+                System.out.println("AppUpdate:result.availableVersionCode()="+ result.availableVersionCode());
+                System.out.println("AppUpdate:UpdateAvailability.UPDATE_AVAILABLE="+ UpdateAvailability.UPDATE_AVAILABLE);
+                if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
+                    Toast.makeText(getApplicationContext(), "Please Update Application", Toast.LENGTH_LONG).show();
+                    requestUpdate(result);
+                } else {
+                    callNextActivity();
+                }
+            }
+        });
     }
 
     private void callNextActivity() {
