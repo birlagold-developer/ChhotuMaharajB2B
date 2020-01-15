@@ -34,6 +34,89 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+        String multiplicand = "175";
+        String multiplier = "175";
+
+        String[][] partialResult = new String[multiplier.length()][(multiplicand.length() + multiplier.length())];
+
+        int rowPosition = 0, columnPosition = 0;
+
+        for (int i = multiplier.length() - 1; i >= 0; i--) {
+            int tmpMultiplier = Integer.parseInt("" + multiplier.charAt(i));
+
+            int carryForwardValue = 0;
+            for (int j = multiplicand.length() - 1; j >= 0; j--) {
+                int tmpMultiplicand = Integer.parseInt("" + multiplicand.charAt(j));
+                int tmpResult = (tmpMultiplier * tmpMultiplicand) + carryForwardValue;
+                String tmpResultString = String.valueOf(tmpResult);
+
+                if (tmpResult < 9) {
+                    carryForwardValue = 0;
+                    partialResult[rowPosition][columnPosition++] = tmpResultString;
+                } else {
+                    carryForwardValue = tmpResult / 10;
+                    partialResult[rowPosition][columnPosition++] = "" + tmpResultString.charAt(tmpResultString.length() - 1);
+                }
+            }
+
+            partialResult[rowPosition][columnPosition] = String.valueOf(carryForwardValue);
+            columnPosition = ++rowPosition;
+        }
+
+        String[] finalResultArray = new String[(multiplicand.length() + multiplier.length())];
+
+        int iCounter = 0;
+        int jCounter = 0;
+
+        boolean flag = true;
+
+        int columnSum = 0;
+        int carryForwardValue = 0;
+
+        while (flag) {
+            String value = partialResult[iCounter++][jCounter];
+            columnSum += Integer.parseInt(value == null ? "0" : value);
+
+            if (iCounter == partialResult.length) {
+                columnSum = columnSum + carryForwardValue;
+                String tmpColumnSum = String.valueOf(columnSum);
+
+                if (columnSum < 9) {
+                    carryForwardValue = 0;
+                    finalResultArray[jCounter] = tmpColumnSum;
+                } else {
+                    carryForwardValue = columnSum / 10;
+                    finalResultArray[jCounter] = "" + tmpColumnSum.charAt(tmpColumnSum.length() - 1);
+                }
+
+                columnSum = 0;
+                iCounter = 0;
+
+                jCounter++;
+
+                if (jCounter == partialResult[iCounter].length) {
+                    flag = false;
+                }
+            }
+        }
+
+        StringBuffer sb = new StringBuffer("");
+        for (int i = 0; i < finalResultArray.length; i++) {
+            sb.append(finalResultArray[i]);
+        }
+
+        String finalResultString = sb.reverse().toString();
+
+        for (int i = 0; i < finalResultString.length() - 1; i++) {
+            String value = String.valueOf(finalResultString.charAt(i));
+            if (!value.equals("0")) {
+                finalResultString = finalResultString.substring(i, finalResultString.length());
+                break;
+            }
+        }
+
+        System.out.println("Final Result : " + finalResultString);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -41,7 +124,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 checkApplicationUpdate();
 
             }
-        },SPLASH_SCREEN_TIMEOUT);
+        }, SPLASH_SCREEN_TIMEOUT);
 
     }
 
@@ -66,7 +149,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         }
     }
 
-    private void checkApplicationUpdate(){
+    private void checkApplicationUpdate() {
         appUpdateManager = AppUpdateManagerFactory.create(getApplicationContext());
 
         Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
@@ -76,9 +159,9 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AppUpdateInfo result) {
 
-                System.out.println("AppUpdate:result.updateAvailability()="+ result.updateAvailability());
-                System.out.println("AppUpdate:result.availableVersionCode()="+ result.availableVersionCode());
-                System.out.println("AppUpdate:UpdateAvailability.UPDATE_AVAILABLE="+ UpdateAvailability.UPDATE_AVAILABLE);
+                System.out.println("AppUpdate:result.updateAvailability()=" + result.updateAvailability());
+                System.out.println("AppUpdate:result.availableVersionCode()=" + result.availableVersionCode());
+                System.out.println("AppUpdate:UpdateAvailability.UPDATE_AVAILABLE=" + UpdateAvailability.UPDATE_AVAILABLE);
                 if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
                     Toast.makeText(getApplicationContext(), "Please Update Application", Toast.LENGTH_LONG).show();
                     requestUpdate(result);

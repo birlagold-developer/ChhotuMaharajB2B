@@ -78,8 +78,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         if(SharedPrefrenceObj.getIntegerval(LoginActivity.this,"id")!=0){
-            Intent intent = new Intent(LoginActivity.this,FranchiseActiivity.class);
-//            Intent intent = new Intent(LoginActivity.this,PreAnalysisNewActivity.class);
+//            Intent intent = new Intent(LoginActivity.this,FranchiseActiivity.class);
+            Intent intent = new Intent(LoginActivity.this,PreAnalysisNewActivity.class);
             startActivity(intent);
             finish();
         }

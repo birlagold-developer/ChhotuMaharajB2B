@@ -79,8 +79,6 @@ public class TopicWiseDetailActivity1 extends YouTubeBaseActivity implements Vie
         Toolbar toolbar = findViewById(R.id.toolbar);
         setActionBar(toolbar);
 
-        getActionBar().setTitle("");
-
         topic_name = findViewById(R.id.topic_detail_name);
         language = findViewById(R.id.language);
 
@@ -145,7 +143,9 @@ public class TopicWiseDetailActivity1 extends YouTubeBaseActivity implements Vie
             viewpdf.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    player.pause();
+                    if (player != null && player.isPlaying()) {
+                        player.pause();
+                    }
                     updatePDF(videoId, ppt);
                 }
             });
@@ -153,7 +153,6 @@ public class TopicWiseDetailActivity1 extends YouTubeBaseActivity implements Vie
 
         progressBarHandler = new Handler();
         progressBarHandler.post(progressRunnable);
-
     }
 
     Runnable progressRunnable = new Runnable() {
@@ -247,7 +246,9 @@ public class TopicWiseDetailActivity1 extends YouTubeBaseActivity implements Vie
     protected void onPause() {
         super.onPause();
         try {
-            player.pause();
+            if (player != null && player.isPlaying()) {
+                player.pause();
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -257,7 +258,9 @@ public class TopicWiseDetailActivity1 extends YouTubeBaseActivity implements Vie
     protected void onResume() {
         super.onResume();
         try {
-            player.play();
+            if (player != null) {
+                player.play();
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -285,12 +288,14 @@ public class TopicWiseDetailActivity1 extends YouTubeBaseActivity implements Vie
 
         switch (view.getId()) {
             case R.id.video_playpause:
-                if (player.isPlaying()) {
-                    player.pause();
-                    imageViewPlayPause.setImageResource(R.drawable.play);
-                } else {
-                    player.play();
-                    imageViewPlayPause.setImageResource(R.drawable.pause);
+                if (player != null) {
+                    if (player.isPlaying()) {
+                        player.pause();
+                        imageViewPlayPause.setImageResource(R.drawable.play);
+                    } else {
+                        player.play();
+                        imageViewPlayPause.setImageResource(R.drawable.pause);
+                    }
                 }
                 break;
             case R.id.video_backward:
@@ -300,25 +305,31 @@ public class TopicWiseDetailActivity1 extends YouTubeBaseActivity implements Vie
                 player.seekRelativeMillis(5000);
                 break;
             case R.id.language:
-                    ArrayList<String> languageList = new ArrayList<String>();
-                    for (String language : videoLanguage) {
-                        languageList.add(language);
-                    }
-                    showLanguageDialog(languageList);
+                ArrayList<String> languageList = new ArrayList<String>();
+                for (String language : videoLanguage) {
+                    languageList.add(language);
+                }
+                showLanguageDialog(languageList);
                 break;
             case R.id.understand:
             case R.id.question_understand:
-                player.pause();
+                if (player != null && player.isPlaying()) {
+                    player.pause();
+                }
                 seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
                 updateUnderstood(String.valueOf(seconds));
                 break;
             case R.id.not_understood:
-                player.pause();
+                if (player != null && player.isPlaying()) {
+                    player.pause();
+                }
                 seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
                 updateNotUnderstood(String.valueOf(seconds));
                 break;
             case R.id.query:
-                player.pause();
+                if (player != null && player.isPlaying()) {
+                    player.pause();
+                }
                 seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
                 Intent intent = new Intent(TopicWiseDetailActivity1.this, QueryActivity.class);
                 intent.putExtra("video_id", videoId);
@@ -327,11 +338,15 @@ public class TopicWiseDetailActivity1 extends YouTubeBaseActivity implements Vie
                 startActivity(intent);
                 break;
             case R.id.chat_me:
-                player.pause();
+                if (player != null && player.isPlaying()) {
+                    player.pause();
+                }
                 updateChatMe();
                 break;
             case R.id.call_me:
-                player.pause();
+                if (player != null && player.isPlaying()) {
+                    player.pause();
+                }
                 updateCallMe();
                 break;
         }
@@ -348,7 +363,9 @@ public class TopicWiseDetailActivity1 extends YouTubeBaseActivity implements Vie
                 String selected_language = languageAdapter.getItem(which);
                 language.setText(selected_language);
                 dialog.dismiss();
-                player.pause();
+                if (player != null && player.isPlaying()) {
+                    player.pause();
+                }
                 if (topic.equalsIgnoreCase("topic")) {
                     getVideoForTopic(selected_language);
                 } else {

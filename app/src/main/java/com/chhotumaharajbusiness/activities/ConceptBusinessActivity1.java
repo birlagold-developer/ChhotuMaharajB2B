@@ -199,14 +199,20 @@ public class ConceptBusinessActivity1 extends YouTubeBaseActivity implements Vie
     @Override
     protected void onPause() {
         super.onPause();
-        player.pause();
+        if (player != null && player.isPlaying()) {
+            player.pause();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (player != null) {
-            player.play();
+        try {
+            if (player != null) {
+                player.play();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -250,12 +256,14 @@ public class ConceptBusinessActivity1 extends YouTubeBaseActivity implements Vie
         long seconds = 0;
         switch (view.getId()) {
             case R.id.video_playpause:
-                if (player.isPlaying()) {
-                    player.pause();
-                    imageViewPlayPause.setImageResource(R.drawable.play);
-                } else {
-                    player.play();
-                    imageViewPlayPause.setImageResource(R.drawable.pause);
+                if (player != null) {
+                    if (player.isPlaying()) {
+                        player.pause();
+                        imageViewPlayPause.setImageResource(R.drawable.play);
+                    } else {
+                        player.play();
+                        imageViewPlayPause.setImageResource(R.drawable.pause);
+                    }
                 }
                 break;
             case R.id.video_backward:
