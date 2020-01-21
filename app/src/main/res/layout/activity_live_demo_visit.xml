@@ -40,11 +40,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorBlack">
 
             <EditText
                 android:id="@+id/booking_date"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:layout_marginTop="10dp"
@@ -54,12 +55,10 @@
                 android:drawablePadding="10dp"
                 android:editable="false"
                 android:focusable="false"
-                android:gravity="center_vertical"
                 android:hint="Date"
                 android:paddingLeft="10dp"
                 android:singleLine="true"
-                android:textColor="#333"
-                android:textColorHint="#333"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 

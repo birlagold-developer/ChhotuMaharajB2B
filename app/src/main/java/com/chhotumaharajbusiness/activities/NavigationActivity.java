@@ -5,12 +5,20 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.chhotumaharajbusiness.R;
+import com.chhotumaharajbusiness.constant.Constant;
+import com.chhotumaharajbusiness.constant.MaintainRequestQueue;
 import com.chhotumaharajbusiness.constant.SharedPrefrenceObj;
 import com.chhotumaharajbusiness.fragment.LiveDemoFragment;
 import com.chhotumaharajbusiness.fragment.MainFragment;
 import com.chhotumaharajbusiness.fragment.TopicWiseFragment;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
@@ -19,7 +27,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import android.view.MenuItem;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -29,6 +40,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -92,6 +110,17 @@ public class NavigationActivity extends AppCompatActivity
             transaction.commit();
         }
 
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String newToken = instanceIdResult.getToken();
+                Log.e("newToken", newToken);
+                SharedPrefrenceObj.setSharedValue(NavigationActivity.this, "token", newToken);
+
+                saveFCMToken(SharedPrefrenceObj.getSharedValue(NavigationActivity.this, "mobile"), newToken);
+
+            }
+        });
 
     }
 
@@ -181,5 +210,73 @@ public class NavigationActivity extends AppCompatActivity
         return true;
     }
 
+    private void saveFCMToken(final String mobile, final String fcmToken) {
+
+        String url = Constant.URL + "update_fcmToken";
+        url = url.replace(" ", "%20");
+        url = url.replace("\n", "%0A");
+        Log.e("User Name", "" + url);
+        StringRequest req = new StringRequest(com.android.volley.Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("Response", response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.optBoolean("success")) {
+
+                        System.out.println("fcmToken Updated");
+
+                    } else {
+                        System.out.println(jsonObject.optString("error"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("TAG", "Error: " + error.getMessage());
+            }
+
+        }) {
+            @Override
+            public Request.Priority getPriority() {
+                return Request.Priority.IMMEDIATE;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(NavigationActivity.this, "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
+                return params;
+            }
+
+            //
+            @Override
+            public Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("mobile", mobile);
+                params.put("FCMToken", fcmToken);
+                System.out.println("Param value..........." + params);
+                return checkParams(params);
+            }
+
+            private Map<String, String> checkParams(Map<String, String> map) {
+                Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry<String, String> pairs = (Map.Entry<String, String>) it.next();
+                    if (pairs.getValue() == null) {
+                        map.put(pairs.getKey(), "");
+                    }
+                }
+                return map;
+            }
+        };
+        // Adding request to request queue
+        MaintainRequestQueue.getInstance(this).addToRequestQueue(req, "tag");
+    }
 
 }

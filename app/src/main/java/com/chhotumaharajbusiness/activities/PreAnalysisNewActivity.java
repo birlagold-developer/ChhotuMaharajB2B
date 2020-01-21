@@ -208,7 +208,7 @@ public class PreAnalysisNewActivity extends AppCompatActivity implements View.On
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.pre_analysis_submit:
-                System.out.println("spinnerQ6 selected text : "+spinnerQ6.getSelectedItem().toString());
+                System.out.println("spinnerQ6 selected text : " + spinnerQ6.getSelectedItem().toString());
                 break;
         }
     }
@@ -220,13 +220,13 @@ public class PreAnalysisNewActivity extends AppCompatActivity implements View.On
 
         if (textView != null) {
             textView.setSingleLine(false);
-            textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3.0f,  getResources().getDisplayMetrics()), 1.0f);
+            textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3.0f, getResources().getDisplayMetrics()), 1.0f);
 
             String firstValue = (String) adapterView.getItemAtPosition(0);
             if (adapterView.getSelectedItemPosition() == 0) {
                 textView.setText(firstValue);
             } else {
-                textView.setText(Html.fromHtml(firstValue + "<font color='#ED3237'><br/>" + adapterView.getSelectedItem().toString()+"</font>"));
+                textView.setText(Html.fromHtml(firstValue + "<font color='#ED3237'><br/>" + adapterView.getSelectedItem().toString() + "</font>"));
             }
         }
 

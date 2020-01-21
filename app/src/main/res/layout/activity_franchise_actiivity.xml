@@ -70,11 +70,12 @@
                 android:gravity="center"
                 android:text="Franchise Enquiry Form"
                 android:textColor="@color/colorBlack"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/colorBlack">
 
                 <EditText
                     android:id="@+id/franchise_name"
@@ -84,13 +85,13 @@
                     android:backgroundTint="@color/colorBlack"
                     android:hint="Name"
                     android:singleLine="true"
-                    android:textColor="@color/colorBlack"
-                    android:textColorHint="@color/colorSilver" />
+                    android:textColor="@color/colorPrimary" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/colorBlack">
 
                 <EditText
                     android:id="@+id/franchise_number"
@@ -102,14 +103,14 @@
                     android:inputType="number"
                     android:maxLength="10"
                     android:singleLine="true"
-                    android:textColor="@color/colorBlack"
-                    android:textColorHint="@color/colorSilver"
+                    android:textColor="@color/colorPrimary"
                     android:visibility="gone" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/colorBlack">
 
                 <EditText
                     android:id="@+id/franchise_email"
@@ -119,8 +120,7 @@
                     android:backgroundTint="@color/colorBlack"
                     android:hint="Email"
                     android:singleLine="true"
-                    android:textColor="@color/colorBlack"
-                    android:textColorHint="@color/colorSilver" />
+                    android:textColor="@color/colorPrimary" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
@@ -131,7 +131,8 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/colorBlack">
 
                 <EditText
                     android:id="@+id/franchise_city"
@@ -141,8 +142,7 @@
                     android:backgroundTint="@color/colorBlack"
                     android:hint="City"
                     android:singleLine="true"
-                    android:textColor="@color/colorBlack"
-                    android:textColorHint="@color/colorSilver" />
+                    android:textColor="@color/colorPrimary" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
@@ -163,7 +163,6 @@
                     android:layout_height="wrap_content"
                     android:buttonTint="#1181de"
                     android:textSize="15dp" />
-
 
                 <TextView
                     android:id="@+id/terms_text"
@@ -189,10 +188,6 @@
                 android:text="Submit"
                 android:textColor="@color/colorWhite" />
 
-
         </LinearLayout>
-
-
     </LinearLayout>
-
 </LinearLayout>
