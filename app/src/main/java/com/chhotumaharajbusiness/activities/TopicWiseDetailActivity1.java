@@ -313,24 +313,30 @@ public class TopicWiseDetailActivity1 extends YouTubeBaseActivity implements Vie
                 break;
             case R.id.understand:
             case R.id.question_understand:
-                if (player != null && player.isPlaying()) {
-                    player.pause();
+                if (player != null) {
+                    if (player.isPlaying()) {
+                        player.pause();
+                    }
+                    seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
                 }
-                seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
                 updateUnderstood(String.valueOf(seconds));
                 break;
             case R.id.not_understood:
-                if (player != null && player.isPlaying()) {
-                    player.pause();
+                if (player != null) {
+                    if (player.isPlaying()) {
+                        player.pause();
+                    }
+                    seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
                 }
-                seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
                 updateNotUnderstood(String.valueOf(seconds));
                 break;
             case R.id.query:
-                if (player != null && player.isPlaying()) {
-                    player.pause();
+                if (player != null) {
+                    if (player.isPlaying()) {
+                        player.pause();
+                    }
+                    seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
                 }
-                seconds = TimeUnit.MILLISECONDS.toSeconds(player.getCurrentTimeMillis());
                 Intent intent = new Intent(TopicWiseDetailActivity1.this, QueryActivity.class);
                 intent.putExtra("video_id", videoId);
                 intent.putExtra("parentvideo_id", parentVideoId);
@@ -408,7 +414,7 @@ public class TopicWiseDetailActivity1 extends YouTubeBaseActivity implements Vie
                             videoLanguage[i] = object.getString("lang_name");
                         }
 
-                        topicVideo = video.getString("youtube_id");
+                        topicVideo = "6tZz6gr1h9E"; //video.getString("youtube_id");
                         videoId = video.getInt("id");
                         String video_lang = video.getString("language_name");
 

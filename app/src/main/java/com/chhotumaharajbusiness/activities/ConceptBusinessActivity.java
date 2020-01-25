@@ -48,8 +48,8 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
     private ProgressBar progressBar;
     private int position = 0;
     private MediaController mediaController;
-    Button interested,not_interested;
-    String language,name;
+    Button interested, not_interested;
+    String language, name;
     TextView user_name;
     ProgressDialog progressDialog;
     private static final int RECOVERY_REQUEST = 1;
@@ -72,17 +72,17 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
         tv.setTypeface(face);
         tv1.setTypeface(face);
 
-        videoView =  findViewById(R.id.videoView);
+        videoView = findViewById(R.id.videoView);
         progressBar = findViewById(R.id.progressBar);
         interested = findViewById(R.id.interested);
         not_interested = findViewById(R.id.not_interested);
         user_name = findViewById(R.id.user_login_name);
-     //   rotate  = findViewById(R.id.zoom);
+        //   rotate  = findViewById(R.id.zoom);
 
         interested.setOnClickListener(this);
         not_interested.setOnClickListener(this);
 
-     //   seconds = getIntent().getLongExtra("sec",0);
+        //   seconds = getIntent().getLongExtra("sec",0);
 
         /*if(seconds!=0){
             Long l= new Long(seconds);
@@ -101,14 +101,14 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
             }
         });*/
 
-        user_name.setText(SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this,"name"));
+        user_name.setText(SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this, "name"));
 
-        Log.d("State..",SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this,"state"));
-        Log.d("State..",SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this,"city"));
+        Log.d("State..", SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this, "state"));
+        Log.d("State..", SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this, "city"));
 
         progressDialog = new ProgressDialog(ConceptBusinessActivity.this);
 
-        if(SharedPrefrenceObj.getIntegerval(ConceptBusinessActivity.this,"step")==2){
+        if (SharedPrefrenceObj.getIntegerval(ConceptBusinessActivity.this, "step") == 2) {
             Intent intent = new Intent(ConceptBusinessActivity.this, PreAnalysisActivity.class);
             startActivity(intent);
             finish();
@@ -132,17 +132,17 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
 
 
         try {
-          //  videoView.setVideoPath("http://chhotumaharajb2b.com/public/video/chhotu-maharaj-project-video.mp4");
-
-//            String language = SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this,"language");
+            //  videoView.setVideoPath("http://chhotumaharajb2b.com/public/video/chhotu-maharaj-project-video.mp4");
 //
-//            if(language.equalsIgnoreCase("English")){
-//                videoView.setVideoPath("http://chhotumaharajb2b.com/public/video/English%20Version.mp4");
-//            }
-//            else {
-//                videoView.setVideoPath("http://chhotumaharajb2b.com/public/video/chhotu-maharaj-project-video.mp4");
-//            }
-//
+////            String language = SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this,"language");
+////
+////            if(language.equalsIgnoreCase("English")){
+////                videoView.setVideoPath("http://chhotumaharajb2b.com/public/video/English%20Version.mp4");
+////            }
+////            else {
+////                videoView.setVideoPath("http://chhotumaharajb2b.com/public/video/chhotu-maharaj-project-video.mp4");
+////            }
+////
 
             getVideoName();
 
@@ -209,19 +209,19 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(ConceptBusinessActivity.this,"Please give your view",Toast.LENGTH_LONG).show();
+        Toast.makeText(ConceptBusinessActivity.this, "Please give your view", Toast.LENGTH_LONG).show();
 //          String timeeeee = String.valueOf(player.getCurrentTimeMillis());
 //          Log.d("time........",timeeeee);
     }
 
- /*   @Override
-    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
-        if (!wasRestored) {
-            this.player = player;
-            player.cueVideo("fhWaJi1Hsfo"); // Plays https://www.youtube.com/watch?v=fhWaJi1Hsfo
-        }
-    }
-*/
+    /*   @Override
+       public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
+           if (!wasRestored) {
+               this.player = player;
+               player.cueVideo("fhWaJi1Hsfo"); // Plays https://www.youtube.com/watch?v=fhWaJi1Hsfo
+           }
+       }
+   */
   /*  @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult errorReason) {
         if (errorReason.isUserRecoverableError()) {
@@ -247,12 +247,11 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
 */
     @Override
     public void onClick(View view) {
-        if(view.getId()==R.id.interested){
+        if (view.getId() == R.id.interested) {
             long minutes = TimeUnit.MILLISECONDS.toMinutes(videoView.getCurrentPosition());
             long seconds = TimeUnit.MILLISECONDS.toSeconds(videoView.getCurrentPosition());
             updateVideo(String.valueOf(seconds));
-        }
-        else {
+        } else {
             long minutes = TimeUnit.MILLISECONDS.toMinutes(videoView.getCurrentPosition());
             long seconds = TimeUnit.MILLISECONDS.toSeconds(videoView.getCurrentPosition());
             updateVideo1(String.valueOf(seconds));
@@ -276,10 +275,10 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
                     progressDialog.dismiss();
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.optBoolean("success")) {
-                        JSONObject dataJsonObject   = jsonObject.getJSONObject("data");
-                        String video            = dataJsonObject.getString("video");
+                        JSONObject dataJsonObject = jsonObject.getJSONObject("data");
+                        String video = dataJsonObject.getString("video");
 
-                        videoView.setVideoPath(Constant.VIDEO_PATH+video.replace(" ","%20"));
+                        videoView.setVideoPath(Constant.VIDEO_PATH + video.replace(" ", "%20"));
                         videoView.requestFocus();
 
                     }
@@ -305,16 +304,16 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this,"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this, "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
 
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("userid", String.valueOf(SharedPrefrenceObj.getIntegerval(ConceptBusinessActivity.this,"id")));
+                params.put("userid", String.valueOf(SharedPrefrenceObj.getIntegerval(ConceptBusinessActivity.this, "id")));
                 System.out.println("Param value..........." + params);
                 return checkParams(params);
             }
@@ -354,8 +353,8 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.optBoolean("success")) {
 
-                        SharedPrefrenceObj.setIntegerval(ConceptBusinessActivity.this,"step",2);
-                        Intent intent = new Intent(ConceptBusinessActivity.this,PreAnalysisActivity.class);
+                        SharedPrefrenceObj.setIntegerval(ConceptBusinessActivity.this, "step", 2);
+                        Intent intent = new Intent(ConceptBusinessActivity.this, PreAnalysisActivity.class);
                         startActivity(intent);
                         finish();
                         progressDialog.dismiss();
@@ -384,18 +383,19 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this,"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this, "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_interested", "1");
                 params.put("watch_video", video_time);
-                params.put("id", String.valueOf(SharedPrefrenceObj.getIntegerval(ConceptBusinessActivity.this,"id")));
+                params.put("id", String.valueOf(SharedPrefrenceObj.getIntegerval(ConceptBusinessActivity.this, "id")));
                 System.out.println("Param value..........." + params);
                 return checkParams(params);
             }
@@ -413,7 +413,6 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
         };
         // Adding request to request queue
         MaintainRequestQueue.getInstance(this).addToRequestQueue(req, "tag");
-
 
 
     }
@@ -434,9 +433,9 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.optBoolean("success")) {
 
-                        SharedPrefrenceObj.setIntegerval(ConceptBusinessActivity.this,"step",1);
-                        Intent intent = new Intent(ConceptBusinessActivity.this,InterestedActivity.class);
-                        intent.putExtra("concept","not_interested");
+                        SharedPrefrenceObj.setIntegerval(ConceptBusinessActivity.this, "step", 1);
+                        Intent intent = new Intent(ConceptBusinessActivity.this, InterestedActivity.class);
+                        intent.putExtra("concept", "not_interested");
                         startActivity(intent);
                         finish();
                         progressDialog.dismiss();
@@ -465,18 +464,19 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this,"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(ConceptBusinessActivity.this, "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_interested", "0");
                 params.put("watch_video", video_time);
-                params.put("id", String.valueOf(SharedPrefrenceObj.getIntegerval(ConceptBusinessActivity.this,"id")));
+                params.put("id", String.valueOf(SharedPrefrenceObj.getIntegerval(ConceptBusinessActivity.this, "id")));
                 System.out.println("Param value..........." + params);
                 return checkParams(params);
             }
@@ -494,7 +494,6 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
         };
         // Adding request to request queue
         MaintainRequestQueue.getInstance(this).addToRequestQueue(req, "tag");
-
 
 
     }

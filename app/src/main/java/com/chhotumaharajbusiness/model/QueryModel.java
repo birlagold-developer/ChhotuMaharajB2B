@@ -11,7 +11,6 @@ public class QueryModel {
     List<SubQueryModel> subQueryModels;
 
 
-
     public int getId() {
         return id;
     }

@@ -43,7 +43,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.ClickListener{
+public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.ClickListener {
 
     public static View fragment;
 
@@ -58,17 +58,16 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
         fragment = inflater.inflate(R.layout.activity_topic_wise, container, false);
 
 
-        recyclerView   = fragment.findViewById(R.id.topic_wise_recylerview);
+        recyclerView = fragment.findViewById(R.id.topic_wise_recylerview);
         textView = fragment.findViewById(R.id.topic_wise_txt);
 
-         topic = getArguments().getString("topic");
-         progressDialog = new ProgressDialog(getActivity());
+        topic = getArguments().getString("topic");
+        progressDialog = new ProgressDialog(getActivity());
 
-        if (topic.equalsIgnoreCase("topic")){
+        if (topic.equalsIgnoreCase("topic")) {
             textView.setText("Topics");
             topicWiseList();
-        }
-        else {
+        } else {
             textView.setText("Questionnaire");
             questionWiseList();
         }
@@ -94,14 +93,14 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
                 try {
                     topicWiseModels = new ArrayList<>();
                     JSONArray jsonArray = new JSONArray(response);
-                    for (int i=0;i<jsonArray.length();i++){
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         int id = jsonObject.getInt("id");
                         String name = jsonObject.getString("name");
                         String video = jsonObject.getString("video");
                         String ppt = jsonObject.getString("ppt");
 
-                        topicWiseModels.add(new TopicWiseModel(i+1,id,name,ppt,video));
+                        topicWiseModels.add(new TopicWiseModel(i + 1, id, name, ppt, video));
 
                     }
                     topicWiseAdapter = new TopicWiseAdapter(getActivity(), topicWiseModels);
@@ -132,11 +131,12 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(getActivity(),"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(getActivity(), "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
@@ -196,14 +196,14 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
                 try {
                     topicWiseModels = new ArrayList<>();
                     JSONArray jsonArray = new JSONArray(response);
-                    for (int i=0;i<jsonArray.length();i++){
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         int id = jsonObject.getInt("id");
                         String name = jsonObject.getString("name");
                         String video = jsonObject.getString("video");
                         String ppt = jsonObject.getString("ppt");
 
-                        topicWiseModels.add(new TopicWiseModel(i+1,id,name,ppt,video));
+                        topicWiseModels.add(new TopicWiseModel(i + 1, id, name, ppt, video));
 
                     }
 
@@ -235,11 +235,12 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(getActivity(),"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(getActivity(), "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
@@ -267,12 +268,13 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MaintainRequestQueue.getInstance(getActivity()).addToRequestQueue(req, "tag");
     }
+
     @Override
     public void onItemClick(View v, int position, String flag) {
 
         TopicWiseModel topicWiseModel = topicWiseAdapter.getWordAtPosition(position);
 
-        if(flag.equalsIgnoreCase("1")) {
+        if (flag.equalsIgnoreCase("1")) {
 
 //            TopicWiseDetailActivity1 topicWiseFragment1 = new TopicWiseDetailActivity1();
 //            Bundle args1 = new Bundle();
@@ -288,11 +290,11 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
 //            transaction1.commit();
 
             Intent intent = new Intent(getActivity(), TopicWiseDetailActivity1.class);
-            intent.putExtra("topic_name",topicWiseModel.getName());
-            intent.putExtra("topic_video",topicWiseModel.getVideo().trim());
-            intent.putExtra("video_id",topicWiseModel.getId());
-            intent.putExtra("topic",topic);
-            intent.putExtra("pdf",topicWiseModel.getPpt());
+            intent.putExtra("topic_name", topicWiseModel.getName());
+            intent.putExtra("topic_video", topicWiseModel.getVideo().trim());
+            intent.putExtra("video_id", topicWiseModel.getId());
+            intent.putExtra("topic", topic);
+            intent.putExtra("pdf", topicWiseModel.getPpt());
 
             startActivity(intent);
 
@@ -305,7 +307,7 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
         }
     }
 
-    private void updatePDF(final int videoId,final String ppt) {
+    private void updatePDF(final int videoId, final String ppt) {
 
         String url = Constant.URL + "update_pdfvideo";
         url = url.replace(" ", "%20");
@@ -319,7 +321,7 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
                 Log.d("Response", response);
                 try {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(Constant.PPT_PATH+ppt.trim()));
+                    intent.setData(Uri.parse(Constant.PPT_PATH + ppt.trim()));
                     startActivity(intent);
                     progressDialog.dismiss();
                 } catch (Exception e) {
@@ -343,17 +345,18 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(getActivity(),"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(getActivity(), "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //video_id,user_id,sub_query,query_type
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_id", String.valueOf(videoId));
-                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(getActivity(),"id")));
+                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(getActivity(), "id")));
                 System.out.println("Param value..........." + params);
                 return checkParams(params);
             }

@@ -2,7 +2,6 @@ package com.chhotumaharajbusiness.activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Html;
@@ -21,9 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.chhotumaharajbusiness.R;
 import com.chhotumaharajbusiness.constant.SharedPrefrenceObj;
 import com.google.android.material.textfield.TextInputLayout;
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 public class PreAnalysisNewActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
@@ -158,11 +155,11 @@ public class PreAnalysisNewActivity extends AppCompatActivity implements View.On
 
         pre_analysis_submit.setOnClickListener(this);
 
-//        if (SharedPrefrenceObj.getIntegerval(PreAnalysisNewActivity.this, "step") == 3) {
-//            Intent intent = new Intent(PreAnalysisNewActivity.this, NavigationActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
+        if (SharedPrefrenceObj.getIntegerval(PreAnalysisNewActivity.this, "step") == 3) {
+            Intent intent = new Intent(PreAnalysisNewActivity.this, NavigationActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
     }
 

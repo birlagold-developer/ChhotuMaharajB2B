@@ -17,7 +17,7 @@ public class TopicWiseModel {
 
     private String video;
 
-    public TopicWiseModel(int number,int id, String name, String ppt, String video) {
+    public TopicWiseModel(int number, int id, String name, String ppt, String video) {
         this.number = number;
         this.id = id;
         this.name = name;

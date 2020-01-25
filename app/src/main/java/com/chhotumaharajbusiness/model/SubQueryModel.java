@@ -8,7 +8,6 @@ public class SubQueryModel {
     private boolean isSelected = false;
 
 
-
     public int getId() {
         return id;
     }

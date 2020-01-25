@@ -1,21 +1,23 @@
 package com.chhotumaharajbusiness.activities;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +36,6 @@ import com.chhotumaharajbusiness.constant.SharedPrefrenceObj;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,7 +46,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class FranchiseActiivity extends AppCompatActivity implements View.OnClickListener {
+public class FranchiseActiivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     EditText name, mobile, email, city;
     CheckBox check;
@@ -57,7 +58,7 @@ public class FranchiseActiivity extends AppCompatActivity implements View.OnClic
     ArrayList<String> stateArray;
     String languageVal, stateVal;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    SearchableSpinner language, state;
+    Spinner language, state;
     TextView terms_txt;
 
     @Override
@@ -82,6 +83,8 @@ public class FranchiseActiivity extends AppCompatActivity implements View.OnClic
         language = findViewById(R.id.franchise_language);
         terms_txt = findViewById(R.id.terms_text);
 
+        progressDialog = new ProgressDialog(FranchiseActiivity.this);
+
         terms_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,8 +105,6 @@ public class FranchiseActiivity extends AppCompatActivity implements View.OnClic
         });
 
         languageVal = "";
-        language.setTitle("");
-        state.setTitle("");
 
         stateArray = new ArrayList<>();
         languageArray = new ArrayList<>();
@@ -113,65 +114,46 @@ public class FranchiseActiivity extends AppCompatActivity implements View.OnClic
             Intent intent = new Intent(FranchiseActiivity.this, ConceptBusinessActivity1.class);
             startActivity(intent);
             finish();
+            return;
         } else if (SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this, "step") == 2) {
             Intent intent = new Intent(FranchiseActiivity.this, PreAnalysisActivity.class);
             startActivity(intent);
             finish();
+            return;
         } else if (SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this, "step") == 3) {
             Intent intent = new Intent(FranchiseActiivity.this, NavigationActivity.class);
             intent.putExtra("query_page", "0");
             startActivity(intent);
             finish();
+            return;
         } else if (SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this, "step") == 4) {
             Intent intent = new Intent(FranchiseActiivity.this, NavigationActivity.class);
             intent.putExtra("query_page", "0");
             startActivity(intent);
             finish();
+            return;
         } else if (SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this, "step") == 5) {
             Intent intent = new Intent(FranchiseActiivity.this, NavigationActivity.class);
             intent.putExtra("query_page", "0");
             startActivity(intent);
             finish();
+            return;
         }
-
 
         submit = findViewById(R.id.franchise_submit);
         submit.setOnClickListener(this);
-
-        progressDialog = new ProgressDialog(FranchiseActiivity.this);
 
         ArrayAdapter<String> lang = new ArrayAdapter<String>(FranchiseActiivity.this, R.layout.spinner_text_layout, languageArray);
         language.setAdapter(lang);
         lang.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         language.setAdapter(lang);
 
-        language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                languageVal = String.valueOf(adapterView.getSelectedItem());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
         getLanguagerequest();
 
         getState();
 
-        state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                stateVal = String.valueOf(adapterView.getSelectedItem());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        language.setOnItemSelectedListener(this);
+        state.setOnItemSelectedListener(this);
 
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, new OnSuccessListener<InstanceIdResult>() {
             @Override
@@ -225,6 +207,39 @@ public class FranchiseActiivity extends AppCompatActivity implements View.OnClic
 
                 break;
         }
+    }
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        TextView textView = (TextView) view;
+
+        if (textView != null) {
+            textView.setSingleLine(false);
+            textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3.0f, getResources().getDisplayMetrics()), 1.0f);
+
+            String firstValue = (String) adapterView.getItemAtPosition(0);
+            if (adapterView.getSelectedItemPosition() == 0) {
+                textView.setText(firstValue);
+            } else {
+                textView.setText(Html.fromHtml(firstValue + "<font color='#ED3237'><br/>" + adapterView.getSelectedItem().toString() + "</font>"));
+            }
+        }
+
+        switch (adapterView.getId()) {
+            case R.id.franchise_language:
+                languageVal = String.valueOf(adapterView.getSelectedItem());
+                break;
+            case R.id.franchise_state:
+                stateVal = String.valueOf(adapterView.getSelectedItem());
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 
     private void getLanguagerequest() {
@@ -395,7 +410,7 @@ public class FranchiseActiivity extends AppCompatActivity implements View.OnClic
 
     private void saveFCMToken(final String mobile, final String fcmToken) {
 
-        String url = Constant.URL + "update_fcmToken";
+        String url = Constant.URL + "fcm_token";
         url = url.replace(" ", "%20");
         url = url.replace("\n", "%0A");
         Log.e("User Name", "" + url);
@@ -442,7 +457,7 @@ public class FranchiseActiivity extends AppCompatActivity implements View.OnClic
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("mobile", mobile);
-                params.put("FCMToken", fcmToken);
+                params.put("token", fcmToken);
                 System.out.println("Param value..........." + params);
                 return checkParams(params);
             }

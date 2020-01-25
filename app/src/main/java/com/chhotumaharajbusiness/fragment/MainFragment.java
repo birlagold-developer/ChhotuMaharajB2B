@@ -19,8 +19,8 @@ import com.chhotumaharajbusiness.R;
 public class MainFragment extends Fragment implements View.OnClickListener {
 
     public static View fragment;
-    LinearLayout linearLayout,linearLayoutl;
-    Button view_more,topic_wise,question_wise,book_appointment;
+    LinearLayout linearLayout, linearLayoutl;
+    Button view_more, topic_wise, question_wise, book_appointment;
     ProgressDialog progressDialog;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
 
             case R.id.view_more:
                 linearLayout.setVisibility(View.GONE);
@@ -56,7 +56,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             case R.id.topic_wise:
                 TopicWiseFragment topicWiseFragment = new TopicWiseFragment();
                 Bundle args = new Bundle();
-                args.putString("topic","topic");
+                args.putString("topic", "topic");
                 topicWiseFragment.setArguments(args);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -68,7 +68,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             case R.id.question_wise:
                 TopicWiseFragment topicWiseFragment1 = new TopicWiseFragment();
                 Bundle args1 = new Bundle();
-                args1.putString("topic","question");
+                args1.putString("topic", "question");
                 topicWiseFragment1.setArguments(args1);
                 FragmentManager fragmentManager1 = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction1 = fragmentManager1.beginTransaction();
@@ -99,7 +99,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
-                         System.exit(0);
+                        System.exit(0);
                         //   Toast.makeText(getActivity(), "Your response is required", Toast.LENGTH_SHORT).show();
                         return true;
                     }

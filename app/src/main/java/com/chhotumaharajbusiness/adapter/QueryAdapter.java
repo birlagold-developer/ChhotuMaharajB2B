@@ -25,7 +25,7 @@ public class QueryAdapter extends RecyclerView.Adapter<QueryAdapter.MyViewHolder
 
         public MyViewHolder(View view) {
             super(view);
-           checkBox = view.findViewById(R.id.query_checkbox);
+            checkBox = view.findViewById(R.id.query_checkbox);
 
         }
     }

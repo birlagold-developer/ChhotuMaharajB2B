@@ -16,4 +16,7 @@
 
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
 
+    <string name="facebook_app_id">598076950737143</string>
+    <string name="fb_login_protocol_scheme">fb598076950737143</string>
+
 </resources>

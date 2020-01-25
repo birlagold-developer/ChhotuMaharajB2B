@@ -27,7 +27,6 @@ import android.widget.VideoView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -60,9 +59,9 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
     TextView topic_name, language;
     VideoView videoView;
     ProgressBar progressBar;
-    Button understand,query;
-    Button chat,call;
-    String topicName,prefered_language,topicVideo,ppt;
+    Button understand, query;
+    Button chat, call;
+    String topicName, prefered_language, topicVideo, ppt;
     private int position = 0;
     private MediaController mediaController;
     int videoId, parentVideoId;
@@ -70,8 +69,8 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
     ProgressDialog progressDialog;
     public static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
     String topic;
-    LinearLayout question_layout,topic_layout;
-    Button not_understood,question_understood;
+    LinearLayout question_layout, topic_layout;
+    Button not_understood, question_understood;
     Button viewpdf;
     ImageView zoom;
     long sec;
@@ -81,10 +80,10 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
 
         topic_name = fragment.findViewById(R.id.topic_detail_name);
         language = fragment.findViewById(R.id.language);
-        videoView  = fragment.findViewById(R.id.topic_videoView);
+        videoView = fragment.findViewById(R.id.topic_videoView);
         progressBar = fragment.findViewById(R.id.progressBar);
-        understand  = fragment.findViewById(R.id.understand);
-        query  = fragment.findViewById(R.id.query);
+        understand = fragment.findViewById(R.id.understand);
+        query = fragment.findViewById(R.id.query);
         chat = fragment.findViewById(R.id.chat_me);
         call = fragment.findViewById(R.id.call_me);
         question_layout = fragment.findViewById(R.id.question_layout);
@@ -92,7 +91,7 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
         question_understood = fragment.findViewById(R.id.question_understand);
         not_understood = fragment.findViewById(R.id.not_understood);
         viewpdf = fragment.findViewById(R.id.detail_pdf);
-     //   zoom   = fragment.findViewById(R.id.fragment_zoom);
+        //   zoom   = fragment.findViewById(R.id.fragment_zoom);
 
 
     /*    sec        = getArguments().getLong("sec");
@@ -102,17 +101,17 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             position =l.intValue();
         }*/
 
-        topicName           =  getArguments().getString("topic_name");
-        prefered_language   =  SharedPrefrenceObj.getSharedValue(getActivity(),"language");
-        topicVideo          =  getArguments().getString("topic_video").trim();
-        videoId             =  getArguments().getInt("video_id",0);
-        parentVideoId       =   videoId;
-        topic               =  getArguments().getString("topic");
-        ppt                 =  getArguments().getString("pdf");
+        topicName = getArguments().getString("topic_name");
+        prefered_language = SharedPrefrenceObj.getSharedValue(getActivity(), "language");
+        topicVideo = getArguments().getString("topic_video").trim();
+        videoId = getArguments().getInt("video_id", 0);
+        parentVideoId = videoId;
+        topic = getArguments().getString("topic");
+        ppt = getArguments().getString("pdf");
 
         progressDialog = new ProgressDialog(getActivity());
 
-        if(topic.equalsIgnoreCase("topic")){
+        if (topic.equalsIgnoreCase("topic")) {
             topic_layout.setVisibility(View.VISIBLE);
             question_layout.setVisibility(View.GONE);
 
@@ -204,12 +203,7 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
 */
 
         return fragment;
-     }
-
-    private boolean checkPermission(String permission) {
-        return ContextCompat.checkSelfPermission(getActivity(), permission) == PackageManager.PERMISSION_GRANTED;
     }
-
 
     @Override
     public void onResume() {
@@ -269,7 +263,7 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
 
                         videoView.stopPlayback();
                         progressBar.setVisibility(View.VISIBLE);
-                        if(topic.equalsIgnoreCase("topic")){
+                        if (topic.equalsIgnoreCase("topic")) {
                             getVideoForTopic(selected_language);
                         } else {
                             getVideoForQuestion(selected_language);
@@ -311,18 +305,18 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             videoView.pause();
             long seconds = TimeUnit.MILLISECONDS.toSeconds(videoView.getCurrentPosition());
             Intent intent = new Intent(getActivity(), QueryActivity.class);
-            intent.putExtra("video_id",videoId);
-            intent.putExtra("parentvideo_id",parentVideoId);
-            intent.putExtra("video_time",String.valueOf(seconds));
+            intent.putExtra("video_id", videoId);
+            intent.putExtra("parentvideo_id", parentVideoId);
+            intent.putExtra("video_time", String.valueOf(seconds));
             startActivity(intent);
         }
 
-        if(view.getId()==R.id.chat_me){
+        if (view.getId() == R.id.chat_me) {
             videoView.pause();
             updateChatMe();
         }
 
-        if(view.getId()==R.id.call_me){
+        if (view.getId() == R.id.call_me) {
             videoView.pause();
             updateCallMe();
 
@@ -351,17 +345,17 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
 
                         videoLanguage = new String[videoLanguageArray.length()];
 
-                        for (int i=0;i< videoLanguageArray.length();i++) {
+                        for (int i = 0; i < videoLanguageArray.length(); i++) {
                             JSONObject object = videoLanguageArray.getJSONObject(i);
                             videoLanguage[i] = object.getString("lang_name");
                         }
 
-                        topicVideo          =  video.getString("video").replace(" ","%20");
-                        videoId             =  video.getInt("id");
-                        String video_lang   =  video.getString("language_name");
+                        topicVideo = video.getString("video").replace(" ", "%20");
+                        videoId = video.getInt("id");
+                        String video_lang = video.getString("language_name");
 
                         language.setText(video_lang);
-                        videoView.setVideoPath(Constant.VIDEO_PATH+topicVideo);
+                        videoView.setVideoPath(Constant.VIDEO_PATH + topicVideo);
                         videoView.requestFocus();
 
                     }
@@ -387,9 +381,9 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(getActivity(),"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(getActivity(), "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
 
@@ -443,17 +437,17 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
 
                         videoLanguage = new String[videoLanguageArray.length()];
 
-                        for (int i=0;i< videoLanguageArray.length();i++) {
+                        for (int i = 0; i < videoLanguageArray.length(); i++) {
                             JSONObject object = videoLanguageArray.getJSONObject(i);
                             videoLanguage[i] = object.getString("lang_name");
                         }
 
-                        topicVideo          =  video.getString("video").replace(" ", "%20");
-                        videoId             =  video.getInt("id");
-                        String video_lang   =  video.getString("language_name");
+                        topicVideo = video.getString("video").replace(" ", "%20");
+                        videoId = video.getInt("id");
+                        String video_lang = video.getString("language_name");
 
                         language.setText(video_lang);
-                        videoView.setVideoPath(Constant.VIDEO_PATH+topicVideo);
+                        videoView.setVideoPath(Constant.VIDEO_PATH + topicVideo);
                         videoView.requestFocus();
 
                     }
@@ -479,9 +473,9 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(getActivity(),"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(getActivity(), "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
 
@@ -526,10 +520,10 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             public void onResponse(String response) {
                 Log.d("Response", response);
                 try {
-                    Toast.makeText(getActivity(),"Thank you for your response..",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Thank you for your response..", Toast.LENGTH_LONG).show();
                     TopicWiseFragment topicWiseFragment = new TopicWiseFragment();
                     Bundle args = new Bundle();
-                    args.putString("topic",topic);
+                    args.putString("topic", topic);
                     topicWiseFragment.setArguments(args);
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -557,17 +551,18 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(getActivity(),"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(getActivity(), "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //video_id,user_id,sub_query,query_type
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_id", String.valueOf(videoId));
-                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(getActivity(),"id")));
+                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(getActivity(), "id")));
                 params.put("sub_query", "");
                 params.put("watch_video", video_time);
                 params.put("query_type", "understood");
@@ -607,10 +602,10 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             public void onResponse(String response) {
                 Log.d("Response", response);
                 try {
-                    Toast.makeText(getActivity(),"Thank you for your response..",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Thank you for your response..", Toast.LENGTH_LONG).show();
                     TopicWiseFragment topicWiseFragment = new TopicWiseFragment();
                     Bundle args = new Bundle();
-                    args.putString("topic",topic);
+                    args.putString("topic", topic);
                     topicWiseFragment.setArguments(args);
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -638,17 +633,18 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(getActivity(),"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(getActivity(), "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //video_id,user_id,sub_query,query_type
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_id", String.valueOf(videoId));
-                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(getActivity(),"id")));
+                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(getActivity(), "id")));
                 params.put("sub_query", "");
                 params.put("watch_video", video_time);
                 params.put("query_type", "not_understood");
@@ -727,17 +723,18 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(getActivity(),"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(getActivity(), "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //video_id,user_id,sub_query,query_type
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_id", String.valueOf(videoId));
-                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(getActivity(),"id")));
+                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(getActivity(), "id")));
                 System.out.println("Param value..........." + params);
                 return checkParams(params);
             }
@@ -818,17 +815,18 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(getActivity(),"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(getActivity(), "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //video_id,user_id,sub_query,query_type
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_id", String.valueOf(videoId));
-                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(getActivity(),"id")));
+                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(getActivity(), "id")));
                 System.out.println("Param value..........." + params);
                 return checkParams(params);
             }
@@ -852,7 +850,7 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
         MaintainRequestQueue.getInstance(getActivity()).addToRequestQueue(req, "tag");
     }
 
-    private void updatePDF(final int videoId,final String ppt) {
+    private void updatePDF(final int videoId, final String ppt) {
 
         String url = Constant.URL + "update_pdfvideo";
         url = url.replace(" ", "%20");
@@ -866,7 +864,7 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
                 Log.d("Response", response);
                 try {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(Constant.PPT_PATH+ppt.trim()));
+                    intent.setData(Uri.parse(Constant.PPT_PATH + ppt.trim()));
                     startActivity(intent);
                     progressDialog.dismiss();
                 } catch (Exception e) {
@@ -890,17 +888,18 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(getActivity(),"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(getActivity(), "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //video_id,user_id,sub_query,query_type
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_id", String.valueOf(videoId));
-                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(getActivity(),"id")));
+                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(getActivity(), "id")));
                 System.out.println("Param value..........." + params);
                 return checkParams(params);
             }

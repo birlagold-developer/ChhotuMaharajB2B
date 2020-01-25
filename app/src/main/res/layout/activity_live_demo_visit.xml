@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
@@ -24,19 +22,19 @@
             android:textSize="25dp"
             android:textStyle="bold" />
 
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+        <Spinner
             android:id="@+id/live_demo_type"
+            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            android:layout_height="90dp"
+            android:layout_margin="4dp" />
 
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+        <Spinner
             android:id="@+id/live_demo_location"
+            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-
-            />
+            android:layout_height="90dp"
+            android:layout_margin="4dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -45,28 +43,25 @@
 
             <EditText
                 android:id="@+id/booking_date"
+                android:hint="Date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/transparent"
+                android:textColor="@color/colorPrimary"
                 android:clickable="true"
                 android:drawableRight="@drawable/ic_event_black_24dp"
-                android:drawablePadding="10dp"
                 android:editable="false"
-                android:focusable="false"
-                android:hint="Date"
-                android:paddingLeft="10dp"
-                android:singleLine="true"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
+                android:focusableInTouchMode="false"
+                android:paddingStart="10dp"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+        <Spinner
             android:id="@+id/live_demo_slot"
+            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            android:layout_height="90dp"
+            android:layout_margin="4dp" />
 
         <LinearLayout
             android:id="@+id/amount_layout"

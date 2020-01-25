@@ -47,7 +47,7 @@ public class QueryActivity extends AppCompatActivity implements View.OnClickList
     QueryAdapter queryAdapter;
     int videoId, parentvideo_id;
     String videoTime;
-    Button query_submit,query_cancel;
+    Button query_submit, query_cancel;
     LinearLayout query_btn_layout;
     TextView no_queries;
     String topic;
@@ -73,10 +73,10 @@ public class QueryActivity extends AppCompatActivity implements View.OnClickList
         query_cancel.setOnClickListener(this);
         query_submit.setOnClickListener(this);
 
-        Log.d("id.....", String.valueOf(SharedPrefrenceObj.getIntegerval(QueryActivity.this,"id")));
+        Log.d("id.....", String.valueOf(SharedPrefrenceObj.getIntegerval(QueryActivity.this, "id")));
         Log.d("id.....", String.valueOf(videoId));
-        videoId = getIntent().getIntExtra("video_id",0);
-        parentvideo_id = getIntent().getIntExtra("parentvideo_id",0);
+        videoId = getIntent().getIntExtra("video_id", 0);
+        parentvideo_id = getIntent().getIntExtra("parentvideo_id", 0);
         videoTime = getIntent().getStringExtra("video_time");
 
         queryList(parentvideo_id);
@@ -100,11 +100,10 @@ public class QueryActivity extends AppCompatActivity implements View.OnClickList
 
                     JSONObject jsonObject = new JSONObject(response);
                     JSONObject list = jsonObject.optJSONObject("list");
-                    if(list==null){
+                    if (list == null) {
                         no_queries.setVisibility(View.VISIBLE);
                         query_btn_layout.setVisibility(View.GONE);
-                    }
-                    else {
+                    } else {
 
                         int id = list.getInt("id");
                         String name = list.getString("name");
@@ -165,11 +164,12 @@ public class QueryActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(QueryActivity.this,"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(QueryActivity.this, "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
@@ -201,7 +201,7 @@ public class QueryActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
 
             case R.id.query_cancel:
                 finish();
@@ -213,16 +213,15 @@ public class QueryActivity extends AppCompatActivity implements View.OnClickList
 
                 for (SubQueryModel subQueryModel : queryModel.getSubQueryModels()) {
                     if (subQueryModel.isSelected()) {
-                        selectedSubQueryIDs +=  selectedSubQueryIDs == "" ? "" + subQueryModel.getId() : "," + subQueryModel.getId();
+                        selectedSubQueryIDs += selectedSubQueryIDs == "" ? "" + subQueryModel.getId() : "," + subQueryModel.getId();
                     }
                 }
 
-                if(!selectedSubQueryIDs.equals("")){
-                    updateQuery(videoId,selectedSubQueryIDs,videoTime);
-                    Log.d("queries...",selectedSubQueryIDs);
-                }
-                else {
-                    Toast.makeText(QueryActivity.this,"Select Query",Toast.LENGTH_SHORT).show();
+                if (!selectedSubQueryIDs.equals("")) {
+                    updateQuery(videoId, selectedSubQueryIDs, videoTime);
+                    Log.d("queries...", selectedSubQueryIDs);
+                } else {
+                    Toast.makeText(QueryActivity.this, "Select Query", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
@@ -250,10 +249,10 @@ public class QueryActivity extends AppCompatActivity implements View.OnClickList
                 try {
                     progressDialog.dismiss();
 
-                   Intent intent = new Intent(QueryActivity.this,NavigationActivity.class);
+                    Intent intent = new Intent(QueryActivity.this, NavigationActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                   intent.putExtra("query_page","1");
-                   startActivity(intent);
+                    intent.putExtra("query_page", "1");
+                    startActivity(intent);
                     finish();
 
                 } catch (Exception e) {
@@ -277,17 +276,18 @@ public class QueryActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(QueryActivity.this,"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(QueryActivity.this, "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //video_id,user_id,sub_query,query_type
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("video_id", String.valueOf(videoId));
-                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(QueryActivity.this,"id")));
+                params.put("user_id", String.valueOf(SharedPrefrenceObj.getIntegerval(QueryActivity.this, "id")));
                 params.put("sub_query", subquery);
                 params.put("watch_video", videoTime);
                 params.put("query_type", "Not Understood");

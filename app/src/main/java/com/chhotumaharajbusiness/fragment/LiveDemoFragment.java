@@ -5,7 +5,10 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +19,11 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -36,7 +41,6 @@ import com.chhotumaharajbusiness.constant.Constant;
 import com.chhotumaharajbusiness.constant.MaintainRequestQueue;
 import com.chhotumaharajbusiness.constant.SharedPrefrenceObj;
 import com.chhotumaharajbusiness.utility.AvenuesParams;
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONObject;
 
@@ -50,7 +54,7 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
 
     public static View fragment;
     //  Spinner
-    SearchableSpinner live_demo_type, demo_location, demo_slot;
+    Spinner live_demo_type, demo_location, demo_slot;
     EditText date;
     Button submit;
     ArrayList<String> demoTypeArray, locationArray, locationArray1, slotArray;
@@ -84,10 +88,6 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
         demo_location.setOnItemSelectedListener(this);
         demo_slot.setOnItemSelectedListener(this);
         submit.setOnClickListener(this);
-
-        live_demo_type.setTitle("");
-        demo_location.setTitle("");
-        demo_slot.setTitle("");
 
         demoTypeArray = new ArrayList<>();
         demoTypeArray.add("Select Live Demo Type");
@@ -192,7 +192,45 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        MainFragment mainFragment = new MainFragment();
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.add(R.id.frame_container, mainFragment);
+                        transaction.commit();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
+    @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        TextView textView = (TextView) view;
+
+        if (textView != null) {
+            textView.setSingleLine(false);
+            textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3.0f, getResources().getDisplayMetrics()), 1.0f);
+
+            String firstValue = (String) adapterView.getItemAtPosition(0);
+            if (adapterView.getSelectedItemPosition() == 0) {
+                textView.setText(firstValue);
+            } else {
+                textView.setText(Html.fromHtml(firstValue + "<font color='#ED3237'><br/>" + adapterView.getSelectedItem().toString() + "</font>"));
+            }
+        }
 
         switch (adapterView.getId()) {
 
@@ -322,7 +360,7 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
                         } else {
                             MainFragment mainFragment = new MainFragment();
                             Bundle args = new Bundle();
-                            args.putString("topic","topic");
+                            args.putString("topic", "topic");
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction transaction = fragmentManager.beginTransaction();
                             transaction.replace(R.id.frame_container, mainFragment);
@@ -403,4 +441,5 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MaintainRequestQueue.getInstance(getActivity()).addToRequestQueue(req, "tag");
     }
+
 }

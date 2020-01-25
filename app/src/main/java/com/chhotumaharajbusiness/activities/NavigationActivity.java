@@ -4,6 +4,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -17,29 +30,10 @@ import com.chhotumaharajbusiness.constant.SharedPrefrenceObj;
 import com.chhotumaharajbusiness.fragment.LiveDemoFragment;
 import com.chhotumaharajbusiness.fragment.MainFragment;
 import com.chhotumaharajbusiness.fragment.TopicWiseFragment;
-
-import android.util.Log;
-import android.view.View;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-
-import android.view.MenuItem;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
-
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -79,23 +73,21 @@ public class NavigationActivity extends AppCompatActivity
         TextView user_name = view.findViewById(R.id.user_name);
         TextView user_email = view.findViewById(R.id.user_email);
 
-        if(SharedPrefrenceObj.getSharedValue(NavigationActivity.this,"name")!=null){
-            user_name.setText(SharedPrefrenceObj.getSharedValue(NavigationActivity.this,"name"));
-        }
-        else {
+        if (SharedPrefrenceObj.getSharedValue(NavigationActivity.this, "name") != null) {
+            user_name.setText(SharedPrefrenceObj.getSharedValue(NavigationActivity.this, "name"));
+        } else {
             user_name.setText("");
         }
 
-        if(SharedPrefrenceObj.getSharedValue(NavigationActivity.this,"email")!=null){
-            user_email.setText(SharedPrefrenceObj.getSharedValue(NavigationActivity.this,"email"));
-        }
-        else {
+        if (SharedPrefrenceObj.getSharedValue(NavigationActivity.this, "email") != null) {
+            user_email.setText(SharedPrefrenceObj.getSharedValue(NavigationActivity.this, "email"));
+        } else {
             user_email.setText("");
         }
-        if(page.equalsIgnoreCase("1")) {
+        if (page.equalsIgnoreCase("1")) {
             TopicWiseFragment topicWiseFragment = new TopicWiseFragment();
             Bundle args = new Bundle();
-            args.putString("topic","topic");
+            args.putString("topic", "topic");
             topicWiseFragment.setArguments(args);
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -178,22 +170,19 @@ public class NavigationActivity extends AppCompatActivity
             transaction.addToBackStack(null);
             transaction.commit();
 
-        }
-        else if(id == R.id.nav_exist){
+        } else if (id == R.id.nav_exist) {
             System.exit(0);
             finish();
-        }
-        else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_logout) {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Log Out")
                     .setMessage("Are you sure you want to logout?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                    {
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            SharedPrefrenceObj.setIntegerval(NavigationActivity.this,"id",0);
-                            Intent intent = new Intent(NavigationActivity.this,LoginActivity.class);
+                            SharedPrefrenceObj.setIntegerval(NavigationActivity.this, "id", 0);
+                            Intent intent = new Intent(NavigationActivity.this, LoginActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
@@ -212,7 +201,7 @@ public class NavigationActivity extends AppCompatActivity
 
     private void saveFCMToken(final String mobile, final String fcmToken) {
 
-        String url = Constant.URL + "update_fcmToken";
+        String url = Constant.URL + "fcm_token";
         url = url.replace(" ", "%20");
         url = url.replace("\n", "%0A");
         Log.e("User Name", "" + url);
@@ -259,7 +248,7 @@ public class NavigationActivity extends AppCompatActivity
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("mobile", mobile);
-                params.put("FCMToken", fcmToken);
+                params.put("token", fcmToken);
                 System.out.println("Param value..........." + params);
                 return checkParams(params);
             }

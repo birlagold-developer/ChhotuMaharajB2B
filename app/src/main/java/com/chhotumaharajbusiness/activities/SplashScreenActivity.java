@@ -1,8 +1,6 @@
 package com.chhotumaharajbusiness.activities;
 
-import android.app.PendingIntent;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;

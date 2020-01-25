@@ -16,7 +16,6 @@ public class QueryFragment extends DialogFragment {
         fragment = inflater.inflate(R.layout.activity_query, container, false);
 
 
-
-         return fragment;
-     }
+        return fragment;
     }
+}

@@ -31,7 +31,7 @@ public class PaymentComplete extends AppCompatActivity {
         setContentView(R.layout.activity_payment_complete);
 
         checkView = findViewById(R.id.check);
-        crossView =  findViewById(R.id.cross);
+        crossView = findViewById(R.id.cross);
         bookingid = findViewById(R.id.booking_id);
         circle = findViewById(R.id.btn_capture_photo);
         paymentbtn = findViewById(R.id.payment_finish);
@@ -44,20 +44,19 @@ public class PaymentComplete extends AppCompatActivity {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.setStatusBarColor(ContextCompat.getColor(PaymentComplete.this, R.color.colorWhite));
 
-        int Id = getIntent().getIntExtra("ID",0);
+        int Id = getIntent().getIntExtra("ID", 0);
         String status = getIntent().getStringExtra("status");
 
-        if(status.equalsIgnoreCase("Success")){
-            bookingid.setText("Thank You for booking your Booking Id is "+Id);
+        if (status.equalsIgnoreCase("Success")) {
+            bookingid.setText("Thank You for booking your Booking Id is " + Id);
             Typeface face = Typeface.createFromAsset(getAssets(), "cooperblackstd.otf");
             bookingid.setTypeface(face);
             checkAnimation(view);
             circle.setImageResource(R.drawable.border_circle);
-        }
-        else {
+        } else {
             crossAnimation(view);
             circle.setImageResource(R.drawable.border_circle1);
-            bookingid.setText("Sorry booking is not completed due to "+status);
+            bookingid.setText("Sorry booking is not completed due to " + status);
             Typeface face = Typeface.createFromAsset(getAssets(), "cooperblackstd.otf");
             bookingid.setTypeface(face);
         }
@@ -67,13 +66,12 @@ public class PaymentComplete extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("query_page","0");
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("query_page", "0");
                 startActivity(intent);
                 finish();
             }
         });
-
 
 
     }

@@ -23,8 +23,8 @@ public class TopicWiseAdapter extends RecyclerView.Adapter<TopicWiseAdapter.MyVi
     public static TopicWiseAdapter.ClickListener clickListener;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView name,number;
-        public ImageView video,pdf;
+        public TextView name, number;
+        public ImageView video, pdf;
         public LinearLayout viewHolder;
 
         public MyViewHolder(View view) {
@@ -36,13 +36,16 @@ public class TopicWiseAdapter extends RecyclerView.Adapter<TopicWiseAdapter.MyVi
 
         }
     }
-    public TopicWiseAdapter(){
+
+    public TopicWiseAdapter() {
 
     }
+
     public TopicWiseAdapter(Context context, List<TopicWiseModel> topicWiseModels) {
         this.context = context;
         this.topicWiseModels = topicWiseModels;
     }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { // creates view holder and inflates
         View itemView = LayoutInflater.from(parent.getContext())
@@ -50,12 +53,13 @@ public class TopicWiseAdapter extends RecyclerView.Adapter<TopicWiseAdapter.MyVi
 
         return new MyViewHolder(itemView);
     }
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) { // binds/adds details to the views
         final TopicWiseModel item = topicWiseModels.get(position);
         holder.name.setText(item.getName());
 
-        holder.number.setText(item.getNumber()+"");
+        holder.number.setText(item.getNumber() + "");
 
         if (!item.getPpt().equalsIgnoreCase("null")) {
             holder.pdf.setImageResource(R.drawable.pdf);
@@ -66,7 +70,7 @@ public class TopicWiseAdapter extends RecyclerView.Adapter<TopicWiseAdapter.MyVi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickListener.onItemClick(view, position,"1");
+                clickListener.onItemClick(view, position, "1");
                 //birlagold.developer@gmail.com
                 //
                 //baw_x63E#HJv^r&S
@@ -76,15 +80,15 @@ public class TopicWiseAdapter extends RecyclerView.Adapter<TopicWiseAdapter.MyVi
         holder.video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickListener.onItemClick(view, position,"1");
+                clickListener.onItemClick(view, position, "1");
             }
         });
 
         holder.pdf.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clickListener.onItemClick(view, position, "2");
-                }
+            @Override
+            public void onClick(View view) {
+                clickListener.onItemClick(view, position, "2");
+            }
         });
 
     }
@@ -103,7 +107,7 @@ public class TopicWiseAdapter extends RecyclerView.Adapter<TopicWiseAdapter.MyVi
     }
 
     public interface ClickListener {
-        void onItemClick(View v, int position,String flag);
+        void onItemClick(View v, int position, String flag);
     }
 
 }

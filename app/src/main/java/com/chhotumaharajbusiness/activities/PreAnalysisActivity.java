@@ -4,29 +4,31 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chhotumaharajbusiness.R;
 import com.chhotumaharajbusiness.constant.SharedPrefrenceObj;
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.util.ArrayList;
 
 public class PreAnalysisActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    ArrayList<String> qualfArray,professionArray,landArray,typeArray,sizeArray;
+    ArrayList<String> qualfArray, professionArray, landArray, typeArray, sizeArray;
     Button pre_analysis_next;
-    EditText name,age,state,city;
-    String qualification,professionVal,landVal,landType,landSize;
-    SearchableSpinner pre_analysis_qlf,pre_analysis_profession,pre_analysis_land,pre_analysis_type,pre_analysis_size;
-    View view1,view2;
+    EditText name, age, state, city;
+    String qualification, professionVal, landVal, landType, landSize;
+    Spinner pre_analysis_qlf, pre_analysis_profession, pre_analysis_land, pre_analysis_type, pre_analysis_size;
+    View view1, view2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class PreAnalysisActivity extends AppCompatActivity implements View.OnCli
 
         getSupportActionBar().hide();
 
-        TextView tv =  findViewById(R.id.chottu_txt);
+        TextView tv = findViewById(R.id.chottu_txt);
         TextView tv1 = findViewById(R.id.maharaj_txt);
         Typeface face = Typeface.createFromAsset(getAssets(), "cooperblackstd.otf");
 
@@ -52,8 +54,6 @@ public class PreAnalysisActivity extends AppCompatActivity implements View.OnCli
         pre_analysis_type = findViewById(R.id.pre_analysis_landtype);
         pre_analysis_size = findViewById(R.id.pre_analysis_landsize);
         pre_analysis_next = findViewById(R.id.pre_analysis_next);
-        view1 = findViewById(R.id.view1);
-        view2 = findViewById(R.id.view2);
 
         pre_analysis_next.setOnClickListener(this);
 
@@ -61,43 +61,32 @@ public class PreAnalysisActivity extends AppCompatActivity implements View.OnCli
         state.setEnabled(false);
         city.setEnabled(false);
 
-        if(SharedPrefrenceObj.getIntegerval(PreAnalysisActivity.this,"step")==3){
+        if (SharedPrefrenceObj.getIntegerval(PreAnalysisActivity.this, "step") == 3) {
             Intent intent = new Intent(PreAnalysisActivity.this, NavigationActivity.class);
             startActivity(intent);
             finish();
         }
 
-        try{
-            if(SharedPrefrenceObj.getSharedValue(PreAnalysisActivity.this,"name")!=null){
-                name.setText(SharedPrefrenceObj.getSharedValue(PreAnalysisActivity.this,"name"));
-            }
-            else {
+        try {
+            if (SharedPrefrenceObj.getSharedValue(PreAnalysisActivity.this, "name") != null) {
+                name.setText(SharedPrefrenceObj.getSharedValue(PreAnalysisActivity.this, "name"));
+            } else {
                 name.setText("");
             }
-            if(SharedPrefrenceObj.getSharedValue(PreAnalysisActivity.this,"state")!=null){
-                state.setText(SharedPrefrenceObj.getSharedValue(PreAnalysisActivity.this,"state"));
-            }
-            else {
+            if (SharedPrefrenceObj.getSharedValue(PreAnalysisActivity.this, "state") != null) {
+                state.setText(SharedPrefrenceObj.getSharedValue(PreAnalysisActivity.this, "state"));
+            } else {
                 state.setText("");
             }
-            if(SharedPrefrenceObj.getSharedValue(PreAnalysisActivity.this,"city")!=null){
-                city.setText(SharedPrefrenceObj.getSharedValue(PreAnalysisActivity.this,"city"));
-            }
-            else {
+            if (SharedPrefrenceObj.getSharedValue(PreAnalysisActivity.this, "city") != null) {
+                city.setText(SharedPrefrenceObj.getSharedValue(PreAnalysisActivity.this, "city"));
+            } else {
                 city.setText("");
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
-
-        pre_analysis_qlf.setTitle("");
-        pre_analysis_profession.setTitle("");
-        pre_analysis_land.setTitle("");
-        pre_analysis_type.setTitle("");
-        pre_analysis_size.setTitle("");
-
-
 
         qualfArray = new ArrayList<>();
         qualfArray.add("Select Qualification");
@@ -129,8 +118,6 @@ public class PreAnalysisActivity extends AppCompatActivity implements View.OnCli
         sizeArray.add("3000 to 5000 Sq. Ft.");
         sizeArray.add("5000 to 10000 Sq. Ft.");
         sizeArray.add("Above 10000 Sq. Ft.");
-
-
 
 
         ArrayAdapter<String> categoryAdap = new ArrayAdapter<String>(PreAnalysisActivity.this, R.layout.spinner_text_layout, qualfArray);
@@ -165,7 +152,6 @@ public class PreAnalysisActivity extends AppCompatActivity implements View.OnCli
         pre_analysis_size.setOnItemSelectedListener(this);
 
 
-
     }
 
     @Override
@@ -176,88 +162,76 @@ public class PreAnalysisActivity extends AppCompatActivity implements View.OnCli
         String State = state.getText().toString();
         String City = city.getText().toString();
 
-        if(name.getText().toString().equalsIgnoreCase("")){
+        if (name.getText().toString().equalsIgnoreCase("")) {
             name.setError("Invalid name");
-          //  Toast.makeText(PreAnalysisActivity.this,"Invalid name",Toast.LENGTH_SHORT).show();
-        }
-        else if(age.getText().toString().equalsIgnoreCase("")){
+            //  Toast.makeText(PreAnalysisActivity.this,"Invalid name",Toast.LENGTH_SHORT).show();
+        } else if (age.getText().toString().equalsIgnoreCase("")) {
             age.setError("Invalid age");
-        }
-        else if(state.getText().toString().equalsIgnoreCase("")){
+        } else if (state.getText().toString().equalsIgnoreCase("")) {
             state.setError("Invalid state");
-           // Toast.makeText(PreAnalysisActivity.this,"Invalid state",Toast.LENGTH_SHORT).show();
-        }
-        else if(city.getText().toString().equalsIgnoreCase("")){
+            // Toast.makeText(PreAnalysisActivity.this,"Invalid state",Toast.LENGTH_SHORT).show();
+        } else if (city.getText().toString().equalsIgnoreCase("")) {
             city.setError("Invalid city");
-           // Toast.makeText(PreAnalysisActivity.this,"Invalid city",Toast.LENGTH_SHORT).show();
-        }
-
-        else if(pre_analysis_qlf.getSelectedItem().toString().equalsIgnoreCase("Select Qualification")){
-            TextView errorText = (TextView)pre_analysis_qlf.getSelectedView();
+            // Toast.makeText(PreAnalysisActivity.this,"Invalid city",Toast.LENGTH_SHORT).show();
+        } else if (pre_analysis_qlf.getSelectedItem().toString().equalsIgnoreCase("Select Qualification")) {
+            TextView errorText = (TextView) pre_analysis_qlf.getSelectedView();
             errorText.setError("");
             errorText.setTextColor(Color.RED);
             errorText.setText("Select Qualification");
-         //   Toast.makeText(PreAnalysisActivity.this,"Select Qualification",Toast.LENGTH_SHORT).show();
+            //   Toast.makeText(PreAnalysisActivity.this,"Select Qualification",Toast.LENGTH_SHORT).show();
 
-        }
-        else if(pre_analysis_profession.getSelectedItem().toString().equalsIgnoreCase("Select Profession")){
-            TextView errorText = (TextView)pre_analysis_profession.getSelectedView();
+        } else if (pre_analysis_profession.getSelectedItem().toString().equalsIgnoreCase("Select Profession")) {
+            TextView errorText = (TextView) pre_analysis_profession.getSelectedView();
             errorText.setError("");
             errorText.setTextColor(Color.RED);//just to highlight that this is an error
             errorText.setText("Select Profession");
-         //   Toast.makeText(PreAnalysisActivity.this,"Select Profession",Toast.LENGTH_SHORT).show();
+            //   Toast.makeText(PreAnalysisActivity.this,"Select Profession",Toast.LENGTH_SHORT).show();
 
-        }
-        else if(pre_analysis_land.getSelectedItem().toString().equalsIgnoreCase("Select Land")){
-            TextView errorText = (TextView)pre_analysis_land.getSelectedView();
+        } else if (pre_analysis_land.getSelectedItem().toString().equalsIgnoreCase("Select Land")) {
+            TextView errorText = (TextView) pre_analysis_land.getSelectedView();
             errorText.setError("");
             errorText.setTextColor(Color.RED);//just to highlight that this is an error
             errorText.setText("Select Land");
-         //   Toast.makeText(PreAnalysisActivity.this,"Select Land",Toast.LENGTH_SHORT).show();
+            //   Toast.makeText(PreAnalysisActivity.this,"Select Land",Toast.LENGTH_SHORT).show();
 
-        }
-        else if(pre_analysis_land.getSelectedItem().toString().equalsIgnoreCase("Owned")){
-            if(pre_analysis_type.getSelectedItem().toString().equalsIgnoreCase("Select Land Type")){
-                TextView errorText = (TextView)pre_analysis_type.getSelectedView();
+        } else if (pre_analysis_land.getSelectedItem().toString().equalsIgnoreCase("Owned")) {
+            if (pre_analysis_type.getSelectedItem().toString().equalsIgnoreCase("Select Land Type")) {
+                TextView errorText = (TextView) pre_analysis_type.getSelectedView();
                 errorText.setError("");
                 errorText.setTextColor(Color.RED);//just to highlight that this is an error
                 errorText.setText("Select Land Type");
                 // Toast.makeText(PreAnalysisActivity.this,"Select Land Type",Toast.LENGTH_SHORT).show();
 
-            }
-            else if(pre_analysis_size.getSelectedItem().toString().equalsIgnoreCase("Select Land Size")){
-                TextView errorText = (TextView)pre_analysis_size.getSelectedView();
+            } else if (pre_analysis_size.getSelectedItem().toString().equalsIgnoreCase("Select Land Size")) {
+                TextView errorText = (TextView) pre_analysis_size.getSelectedView();
                 errorText.setError("");
                 errorText.setTextColor(Color.RED);//just to highlight that this is an error
                 errorText.setText("Select Land Size");
                 //   Toast.makeText(PreAnalysisActivity.this,"Select Land Size",Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Intent intent = new Intent(PreAnalysisActivity.this,PreAnalysisActivity2.class);
-                intent.putExtra("name",Name);
+            } else {
+                Intent intent = new Intent(PreAnalysisActivity.this, PreAnalysisActivity2.class);
+                intent.putExtra("name", Name);
                 intent.putExtra("age", Age);
-                intent.putExtra("state",State);
-                intent.putExtra("city",City);
-                intent.putExtra("qualification",qualification);
-                intent.putExtra("profession",professionVal);
-                intent.putExtra("land",landVal);
-                intent.putExtra("land_type",landType);
-                intent.putExtra("land_size",landSize);
+                intent.putExtra("state", State);
+                intent.putExtra("city", City);
+                intent.putExtra("qualification", qualification);
+                intent.putExtra("profession", professionVal);
+                intent.putExtra("land", landVal);
+                intent.putExtra("land_type", landType);
+                intent.putExtra("land_size", landSize);
                 startActivity(intent);
             }
-        }
-
-        else {
-            Intent intent = new Intent(PreAnalysisActivity.this,PreAnalysisActivity2.class);
-            intent.putExtra("name",Name);
+        } else {
+            Intent intent = new Intent(PreAnalysisActivity.this, PreAnalysisActivity2.class);
+            intent.putExtra("name", Name);
             intent.putExtra("age", Age);
-            intent.putExtra("state",State);
-            intent.putExtra("city",City);
-            intent.putExtra("qualification",qualification);
-            intent.putExtra("profession",professionVal);
-            intent.putExtra("land",landVal);
-            intent.putExtra("land_type",landType);
-            intent.putExtra("land_size",landSize);
+            intent.putExtra("state", State);
+            intent.putExtra("city", City);
+            intent.putExtra("qualification", qualification);
+            intent.putExtra("profession", professionVal);
+            intent.putExtra("land", landVal);
+            intent.putExtra("land_type", landType);
+            intent.putExtra("land_size", landSize);
             startActivity(intent);
         }
 
@@ -266,7 +240,22 @@ public class PreAnalysisActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        switch (adapterView.getId()){
+
+        TextView textView = (TextView) view;
+
+        if (textView != null) {
+            textView.setSingleLine(false);
+            textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3.0f, getResources().getDisplayMetrics()), 1.0f);
+
+            String firstValue = (String) adapterView.getItemAtPosition(0);
+            if (adapterView.getSelectedItemPosition() == 0) {
+                textView.setText(firstValue);
+            } else {
+                textView.setText(Html.fromHtml(firstValue + "<font color='#ED3237'><br/>" + adapterView.getSelectedItem().toString() + "</font>"));
+            }
+        }
+
+        switch (adapterView.getId()) {
             case R.id.pre_analysis_qualification:
                 qualification = String.valueOf(adapterView.getSelectedItem());
                 break;
@@ -274,13 +263,12 @@ public class PreAnalysisActivity extends AppCompatActivity implements View.OnCli
                 professionVal = String.valueOf(adapterView.getSelectedItem());
                 break;
             case R.id.pre_analysis_land:
-                if(pre_analysis_land.getSelectedItem().toString().equalsIgnoreCase("Owned")){
+                if (pre_analysis_land.getSelectedItem().toString().equalsIgnoreCase("Owned")) {
                     pre_analysis_type.setVisibility(View.VISIBLE);
                     pre_analysis_size.setVisibility(View.VISIBLE);
                     view1.setVisibility(View.VISIBLE);
                     view2.setVisibility(View.VISIBLE);
-                }
-                else {
+                } else {
                     pre_analysis_type.setVisibility(View.GONE);
                     pre_analysis_size.setVisibility(View.GONE);
                     view1.setVisibility(View.GONE);
@@ -296,8 +284,8 @@ public class PreAnalysisActivity extends AppCompatActivity implements View.OnCli
 
                 landSize = String.valueOf(adapterView.getSelectedItem());
                 break;
-                default:
-                    break;
+            default:
+                break;
         }
     }
 

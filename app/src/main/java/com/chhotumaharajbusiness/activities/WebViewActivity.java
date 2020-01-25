@@ -97,12 +97,12 @@ public class WebViewActivity extends AppCompatActivity {
                 public void processHTML(String html) {
                     // process the html source code to get final status of transaction
                     String status = null;
-                    if(html.indexOf("Failure") != -1) {
+                    if (html.indexOf("Failure") != -1) {
                         status = "Transaction Declined!";
-                    }else if (html.indexOf("Success") != -1) {
+                    } else if (html.indexOf("Success") != -1) {
                         status = "Transaction Successful!";
 
-                    }else if (html.indexOf("Aborted") != -1) {
+                    } else if (html.indexOf("Aborted") != -1) {
                         status = "Transaction Cancelled!";
                     } else {
                         status = "Status Not Known!";
@@ -121,17 +121,19 @@ public class WebViewActivity extends AppCompatActivity {
                 public void onPageFinished(WebView view, String url) {
                     super.onPageFinished(webview, url);
                     LoadingDialog.cancelLoading();
-                    Log.d("URlll",url.toString());
-                    if (url.indexOf(Constant.URL+"payment_Response") != -1) {
+                    Log.d("URlll", url.toString());
+                    if (url.indexOf(Constant.URL + "payment_Response") != -1) {
 
                         //  webview.loadUrl("javascript:window.HTMLOUT.processHTML('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
                         getOrderid(mainIntent.getStringExtra(AvenuesParams.ORDER_ID));
                     }
                 }
+
                 @Override
                 public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                     Log.d("Errrorr.......", String.valueOf(errorCode));
                 }
+
                 @Override
                 public void onPageStarted(WebView view, String url, Bitmap favicon) {
                     super.onPageStarted(view, url, favicon);
@@ -140,17 +142,17 @@ public class WebViewActivity extends AppCompatActivity {
             });
             try {
                 String postData = AvenuesParams.ACCESS_CODE + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.ACCESS_CODE), "UTF-8") + "&" +
-                        AvenuesParams.MERCHANT_ID           + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.MERCHANT_ID), "UTF-8") + "&" +
-                        AvenuesParams.ORDER_ID              + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.ORDER_ID), "UTF-8") + "&" +
-                        AvenuesParams.REDIRECT_URL          + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.REDIRECT_URL), "UTF-8") + "&" +
-                        AvenuesParams.CANCEL_URL            + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.CANCEL_URL), "UTF-8") + "&" +
-                        AvenuesParams.ENC_VAL               + "=" + URLEncoder.encode(encVal, "UTF-8")+ "&" +
-                        AvenuesParams.AMOUNT                + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.AMOUNT), "UTF-8")  + "&" +
-                        AvenuesParams.BILLING_NAME          + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_NAME), "UTF-8") + "&" +
-                        AvenuesParams.BILLING_EMAIL         + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_EMAIL), "UTF-8") + "&" +
-                        AvenuesParams.BILLING_STATE         + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_STATE), "UTF-8") + "&" +
-                        AvenuesParams.BILLING_CITY         + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_CITY), "UTF-8") + "&" +
-                        AvenuesParams.BILLING_TEL           + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_TEL), "UTF-8");
+                        AvenuesParams.MERCHANT_ID + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.MERCHANT_ID), "UTF-8") + "&" +
+                        AvenuesParams.ORDER_ID + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.ORDER_ID), "UTF-8") + "&" +
+                        AvenuesParams.REDIRECT_URL + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.REDIRECT_URL), "UTF-8") + "&" +
+                        AvenuesParams.CANCEL_URL + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.CANCEL_URL), "UTF-8") + "&" +
+                        AvenuesParams.ENC_VAL + "=" + URLEncoder.encode(encVal, "UTF-8") + "&" +
+                        AvenuesParams.AMOUNT + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.AMOUNT), "UTF-8") + "&" +
+                        AvenuesParams.BILLING_NAME + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_NAME), "UTF-8") + "&" +
+                        AvenuesParams.BILLING_EMAIL + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_EMAIL), "UTF-8") + "&" +
+                        AvenuesParams.BILLING_STATE + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_STATE), "UTF-8") + "&" +
+                        AvenuesParams.BILLING_CITY + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_CITY), "UTF-8") + "&" +
+                        AvenuesParams.BILLING_TEL + "=" + URLEncoder.encode(mainIntent.getStringExtra(AvenuesParams.BILLING_TEL), "UTF-8");
 
                 webview.postUrl(Constant.TRANS_URL, postData.getBytes());
             } catch (UnsupportedEncodingException e) {
@@ -174,9 +176,7 @@ public class WebViewActivity extends AppCompatActivity {
                             } else {
                                 new RenderView().execute();   // Calling async task to get display content
                             }
-                        }
-                        else
-                        {
+                        } else {
                             show_alert("No response");
                         }
                     }
@@ -223,11 +223,11 @@ public class WebViewActivity extends AppCompatActivity {
 
     private void getOrderid(final String order_id) {
 
-        String url = Constant.URL+"payment-status?payment_id="+order_id;
+        String url = Constant.URL + "payment-status?payment_id=" + order_id;
 
         url = url.replace(" ", "%20");
         url = url.replace("\n", "%0A");
-        Log.e("User Name",""+url);
+        Log.e("User Name", "" + url);
 
         progressDialog.show();
         progressDialog.setMessage("Please wait...");
@@ -237,56 +237,51 @@ public class WebViewActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.d("Response", response);
                 try {
-                    JSONObject jsonObject= new JSONObject(response);
-                    if(jsonObject.optBoolean("success")) {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.optBoolean("success")) {
 
-                        JSONObject data =jsonObject.getJSONObject("data");
+                        JSONObject data = jsonObject.getJSONObject("data");
                         int id = data.getInt("id");
                         String status = data.getString("orderstatus");
-                        if(status.equalsIgnoreCase("Success")){
+                        if (status.equalsIgnoreCase("Success")) {
                             Intent intent = new Intent(getApplicationContext(), PaymentComplete.class);
                             intent.putExtra("ID", id);
-                            intent.putExtra("status",status);
+                            intent.putExtra("status", status);
                             startActivity(intent);
                             finish();
-                        }
-                        else if(status.equalsIgnoreCase("Aborted")){
+                        } else if (status.equalsIgnoreCase("Aborted")) {
                             Intent intent = new Intent(getApplicationContext(), PaymentComplete.class);
                             intent.putExtra("ID", id);
-                            intent.putExtra("status",status);
+                            intent.putExtra("status", status);
                             startActivity(intent);
                             finish();
-                        }
-                        else if(status.equalsIgnoreCase("Failure")){
+                        } else if (status.equalsIgnoreCase("Failure")) {
                             Intent intent = new Intent(getApplicationContext(), PaymentComplete.class);
                             intent.putExtra("ID", id);
-                            intent.putExtra("status",status);
+                            intent.putExtra("status", status);
                             startActivity(intent);
                             finish();
-                        }
-                        else if(status.equalsIgnoreCase("SeatUnavailable")){
+                        } else if (status.equalsIgnoreCase("SeatUnavailable")) {
                             Intent intent = new Intent(getApplicationContext(), PaymentComplete.class);
                             intent.putExtra("ID", id);
-                            intent.putExtra("status",status);
+                            intent.putExtra("status", status);
                             startActivity(intent);
                             finish();
-                        }
-                        else if(status.equalsIgnoreCase("Illegal")){
+                        } else if (status.equalsIgnoreCase("Illegal")) {
                             Intent intent = new Intent(getApplicationContext(), PaymentComplete.class);
                             intent.putExtra("ID", id);
-                            intent.putExtra("status",status);
+                            intent.putExtra("status", status);
                             startActivity(intent);
                             finish();
-                        }
-                        else if(status.equalsIgnoreCase("invalidrequest")){
+                        } else if (status.equalsIgnoreCase("invalidrequest")) {
                             Intent intent = new Intent(getApplicationContext(), PaymentComplete.class);
                             intent.putExtra("ID", id);
-                            intent.putExtra("status",status);
+                            intent.putExtra("status", status);
                             startActivity(intent);
                             finish();
                         }
                         progressDialog.dismiss();
-                    }else{
+                    } else {
                         progressDialog.dismiss();
                     }
                 } catch (JSONException e) {
@@ -312,8 +307,8 @@ public class WebViewActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 //  params.put("Content-Type","application/json");
-                params.put("Accept","application/json");
-                params.put("Authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(WebViewActivity.this,"auth_token"));
+                params.put("Accept", "application/json");
+                params.put("Authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(WebViewActivity.this, "auth_token"));
                 return params;
             }
 

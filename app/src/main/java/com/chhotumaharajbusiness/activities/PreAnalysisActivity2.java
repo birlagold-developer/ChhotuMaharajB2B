@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +26,6 @@ import com.chhotumaharajbusiness.R;
 import com.chhotumaharajbusiness.constant.Constant;
 import com.chhotumaharajbusiness.constant.MaintainRequestQueue;
 import com.chhotumaharajbusiness.constant.SharedPrefrenceObj;
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,12 +37,13 @@ import java.util.Map;
 
 public class PreAnalysisActivity2 extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
-    ArrayList<String> typeArray,budgetArray,makerArray,businessArray,businesstimeArray;
-    String name,age,state,city,qualification,profession,land,land_type,land_size;
-    String investmentType,Budget,decisionMaker,business,businessTime;
+    ArrayList<String> typeArray, budgetArray, makerArray, businessArray, businesstimeArray;
+    String name, age, state, city, qualification, profession, land, land_type, land_size;
+    String investmentType, Budget, decisionMaker, business, businessTime;
     Button submit;
-    SearchableSpinner pre_analysis_type,pre_analysis_budget,pre_analysis_maker,pre_analysis_business,pre_analysis_time;
+    Spinner pre_analysis_type, pre_analysis_budget, pre_analysis_maker, pre_analysis_business, pre_analysis_time;
     ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,35 +53,29 @@ public class PreAnalysisActivity2 extends AppCompatActivity implements AdapterVi
 
         getSupportActionBar().hide();
 
-        TextView tv =  findViewById(R.id.chottu_txt);
+        TextView tv = findViewById(R.id.chottu_txt);
         TextView tv1 = findViewById(R.id.maharaj_txt);
         Typeface face = Typeface.createFromAsset(getAssets(), "cooperblackstd.otf");
 
         tv.setTypeface(face);
         tv1.setTypeface(face);
 
-        name                    = getIntent().getStringExtra("name");
-        age                     = getIntent().getStringExtra("age");
-        state                   = getIntent().getStringExtra("state");
-        city                    = getIntent().getStringExtra("city");
-        qualification           = getIntent().getStringExtra("qualification");
-        profession              = getIntent().getStringExtra("profession");
-        land                    = getIntent().getStringExtra("land");
-        land_type               = getIntent().getStringExtra("land_type");
-        land_size               = getIntent().getStringExtra("land_size");
+        name = getIntent().getStringExtra("name");
+        age = getIntent().getStringExtra("age");
+        state = getIntent().getStringExtra("state");
+        city = getIntent().getStringExtra("city");
+        qualification = getIntent().getStringExtra("qualification");
+        profession = getIntent().getStringExtra("profession");
+        land = getIntent().getStringExtra("land");
+        land_type = getIntent().getStringExtra("land_type");
+        land_size = getIntent().getStringExtra("land_size");
 
-        pre_analysis_budget     = findViewById(R.id.pre_analysis_budget);
-        pre_analysis_maker      = findViewById(R.id.pre_analysis_maker);
-        pre_analysis_business   = findViewById(R.id.pre_analysis_business);
-        pre_analysis_type       = findViewById(R.id.pre_analysis_investtype);
-        pre_analysis_time       = findViewById(R.id.pre_analysis_business_time);
-        submit                  = findViewById(R.id.pre_analysis_submit);
-
-        pre_analysis_budget.setTitle("");
-        pre_analysis_maker.setTitle("");
-        pre_analysis_business.setTitle("");
-        pre_analysis_type.setTitle("");
-        pre_analysis_time.setTitle("");
+        pre_analysis_budget = findViewById(R.id.pre_analysis_budget);
+        pre_analysis_maker = findViewById(R.id.pre_analysis_maker);
+        pre_analysis_business = findViewById(R.id.pre_analysis_business);
+        pre_analysis_type = findViewById(R.id.pre_analysis_investtype);
+        pre_analysis_time = findViewById(R.id.pre_analysis_business_time);
+        submit = findViewById(R.id.pre_analysis_submit);
 
         typeArray = new ArrayList<>();
         typeArray.add("Select Investment Type");
@@ -150,7 +147,21 @@ public class PreAnalysisActivity2 extends AppCompatActivity implements AdapterVi
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-        switch (adapterView.getId()){
+        TextView textView = (TextView) view;
+
+        if (textView != null) {
+            textView.setSingleLine(false);
+            textView.setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3.0f, getResources().getDisplayMetrics()), 1.0f);
+
+            String firstValue = (String) adapterView.getItemAtPosition(0);
+            if (adapterView.getSelectedItemPosition() == 0) {
+                textView.setText(firstValue);
+            } else {
+                textView.setText(Html.fromHtml(firstValue + "<font color='#ED3237'><br/>" + adapterView.getSelectedItem().toString() + "</font>"));
+            }
+        }
+
+        switch (adapterView.getId()) {
             case R.id.pre_analysis_investtype:
                 investmentType = String.valueOf(adapterView.getSelectedItem());
                 break;
@@ -177,46 +188,41 @@ public class PreAnalysisActivity2 extends AppCompatActivity implements AdapterVi
     @Override
     public void onClick(View view) {
 
-        if(pre_analysis_type.getSelectedItem().toString().equalsIgnoreCase("Select Investment Type")){
-            TextView errorText = (TextView)pre_analysis_type.getSelectedView();
+        if (pre_analysis_type.getSelectedItem().toString().equalsIgnoreCase("Select Investment Type")) {
+            TextView errorText = (TextView) pre_analysis_type.getSelectedView();
             errorText.setError("");
             errorText.setTextColor(Color.RED);
             errorText.setText("Select Investment Type");
-          //  Toast.makeText(PreAnalysisActivity2.this,"Select Investment Type",Toast.LENGTH_SHORT).show();
+            //  Toast.makeText(PreAnalysisActivity2.this,"Select Investment Type",Toast.LENGTH_SHORT).show();
 
-        }
-        else if(pre_analysis_budget.getSelectedItem().toString().equalsIgnoreCase("Select Investment Budget")){
-            TextView errorText = (TextView)pre_analysis_budget.getSelectedView();
+        } else if (pre_analysis_budget.getSelectedItem().toString().equalsIgnoreCase("Select Investment Budget")) {
+            TextView errorText = (TextView) pre_analysis_budget.getSelectedView();
             errorText.setError("");
             errorText.setTextColor(Color.RED);
             errorText.setText("Select Investment Budget");
-      //      Toast.makeText(PreAnalysisActivity2.this,"Select Investment Budget",Toast.LENGTH_SHORT).show();
+            //      Toast.makeText(PreAnalysisActivity2.this,"Select Investment Budget",Toast.LENGTH_SHORT).show();
 
-        }
-        else if(pre_analysis_maker.getSelectedItem().toString().equalsIgnoreCase("Select Decision Maker")){
-            TextView errorText = (TextView)pre_analysis_maker.getSelectedView();
+        } else if (pre_analysis_maker.getSelectedItem().toString().equalsIgnoreCase("Select Decision Maker")) {
+            TextView errorText = (TextView) pre_analysis_maker.getSelectedView();
             errorText.setError("");
             errorText.setTextColor(Color.RED);
             errorText.setText("Select Decision Maker");
-         //   Toast.makeText(PreAnalysisActivity2.this,"Select Decision Maker",Toast.LENGTH_SHORT).show();
+            //   Toast.makeText(PreAnalysisActivity2.this,"Select Decision Maker",Toast.LENGTH_SHORT).show();
 
-        }
-        else if(pre_analysis_business.getSelectedItem().toString().equalsIgnoreCase("Who Will Look After Day-to-Day Operations Of This Business?")){
-            TextView errorText = (TextView)pre_analysis_business.getSelectedView();
+        } else if (pre_analysis_business.getSelectedItem().toString().equalsIgnoreCase("Who Will Look After Day-to-Day Operations Of This Business?")) {
+            TextView errorText = (TextView) pre_analysis_business.getSelectedView();
             errorText.setError("");
             errorText.setTextColor(Color.RED);
             errorText.setText("Who Will Look After Day-to-Day Operations Of This Business?");
-      //      Toast.makeText(PreAnalysisActivity2.this,"Who Will Look After Day-to-Day Operations Of This Business?",Toast.LENGTH_SHORT).show();
+            //      Toast.makeText(PreAnalysisActivity2.this,"Who Will Look After Day-to-Day Operations Of This Business?",Toast.LENGTH_SHORT).show();
 
-        }
-        else if(pre_analysis_time.getSelectedItem().toString().equalsIgnoreCase("When you are Planning to Start This Business?")){
-            TextView errorText = (TextView)pre_analysis_time.getSelectedView();
+        } else if (pre_analysis_time.getSelectedItem().toString().equalsIgnoreCase("When you are Planning to Start This Business?")) {
+            TextView errorText = (TextView) pre_analysis_time.getSelectedView();
             errorText.setError("");
             errorText.setTextColor(Color.RED);
             errorText.setText("When you are Planning to Start This Business?");
-          //  Toast.makeText(PreAnalysisActivity2.this,"When you are Planning to Start This Business?",Toast.LENGTH_SHORT).show();
-        }
-        else {
+            //  Toast.makeText(PreAnalysisActivity2.this,"When you are Planning to Start This Business?",Toast.LENGTH_SHORT).show();
+        } else {
             saveForm3();
         }
     }
@@ -236,10 +242,10 @@ public class PreAnalysisActivity2 extends AppCompatActivity implements AdapterVi
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.optBoolean("success")) {
-                        SharedPrefrenceObj.setIntegerval(PreAnalysisActivity2.this,"step",3);
+                        SharedPrefrenceObj.setIntegerval(PreAnalysisActivity2.this, "step", 3);
 
                         Intent intent = new Intent(PreAnalysisActivity2.this, InterestedActivity.class);
-                        intent.putExtra("concept","interested");
+                        intent.putExtra("concept", "interested");
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
 
@@ -249,7 +255,7 @@ public class PreAnalysisActivity2 extends AppCompatActivity implements AdapterVi
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                       progressDialog.dismiss();
+                    progressDialog.dismiss();
                 }
             }
         }, new Response.ErrorListener() {
@@ -268,16 +274,17 @@ public class PreAnalysisActivity2 extends AppCompatActivity implements AdapterVi
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("authorization","Bearer "+ SharedPrefrenceObj.getSharedValue(PreAnalysisActivity2.this,"auth_token"));
-                params.put("content-type","application/x-www-form-urlencoded");
-                Log.d("params..",params.toString());
+                params.put("authorization", "Bearer " + SharedPrefrenceObj.getSharedValue(PreAnalysisActivity2.this, "auth_token"));
+                params.put("content-type", "application/x-www-form-urlencoded");
+                Log.d("params..", params.toString());
                 return params;
             }
+
             //
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id", String.valueOf(SharedPrefrenceObj.getIntegerval(PreAnalysisActivity2.this,"id")));
+                params.put("id", String.valueOf(SharedPrefrenceObj.getIntegerval(PreAnalysisActivity2.this, "id")));
                 params.put("age", age);
                 params.put("qualification", qualification);
                 params.put("profession", profession);

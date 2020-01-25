@@ -39,12 +39,13 @@ public class MaintainRequestQueue {
         if (mRequestQueue == null) {
             Cache cache = new DiskBasedCache(mCtx.getCacheDir(), 10 * 1024 * 1024);
             Network network = new BasicNetwork(new HurlStack());
-            mRequestQueue = new RequestQueue(cache,network);
+            mRequestQueue = new RequestQueue(cache, network);
             // Don't forget to start the volley request queue
             mRequestQueue.start();
         }
         return mRequestQueue;
     }
+
     public <T> void addToRequestQueue(Request<T> req, String tag) {
         // set the default tag if tag is empty
         req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);

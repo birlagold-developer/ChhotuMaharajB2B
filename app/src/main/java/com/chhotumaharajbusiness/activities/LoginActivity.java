@@ -42,14 +42,16 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText mobile_number,otp_number;
-    Button send_otp,verify_otp;
-    LinearLayout mobile_layout,otp_layout;
-    TextView resend_otp;
-    ImageView back;
-    ProgressDialog progressDialog;
-    String mobileNumber;
+    private EditText mobile_number, otp_number;
+    private Button send_otp, verify_otp;
+    private LinearLayout mobile_layout, otp_layout;
+    private TextView resend_otp;
+    private ImageView back;
+    private ProgressDialog progressDialog;
+    private String mobileNumber;
 
+    private static final String NAME = "name";
+    private static final String EMAIL = "email";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         mobile_number = findViewById(R.id.mobile_number);
         otp_number = findViewById(R.id.otp_number);
-        resend_otp  = findViewById(R.id.resend_otp);
+        resend_otp = findViewById(R.id.resend_otp);
 
         send_otp = findViewById(R.id.send_otp);
         verify_otp = findViewById(R.id.verify_otp);
@@ -77,47 +79,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog = new ProgressDialog(LoginActivity.this);
 
 
-        if(SharedPrefrenceObj.getIntegerval(LoginActivity.this,"id")!=0){
-            Intent intent = new Intent(LoginActivity.this,FranchiseActiivity.class);
+        if (SharedPrefrenceObj.getIntegerval(LoginActivity.this, "id") != 0) {
+            Intent intent = new Intent(LoginActivity.this, FranchiseActiivity.class);
 //            Intent intent = new Intent(LoginActivity.this,PreAnalysisNewActivity.class);
             startActivity(intent);
             finish();
         }
 
-
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.send_otp:
-                 mobileNumber = mobile_number.getText().toString();
-                if(mobile_number.getText().toString().equalsIgnoreCase("")){
-                    Toast.makeText(LoginActivity.this,"Invalid number",Toast.LENGTH_SHORT).show();
-                }
-                else if(mobileNumber.length()<10){
-                    Toast.makeText(LoginActivity.this,"Invalid number",Toast.LENGTH_SHORT).show();
-                }
-                else {
+                mobileNumber = mobile_number.getText().toString();
+                if (mobile_number.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(LoginActivity.this, "Invalid number", Toast.LENGTH_SHORT).show();
+                } else if (mobileNumber.length() < 10) {
+                    Toast.makeText(LoginActivity.this, "Invalid number", Toast.LENGTH_SHORT).show();
+                } else {
                     loginOtp(mobileNumber);
                 }
                 break;
             case R.id.otp_back:
                 mobile_layout.setVisibility(View.VISIBLE);
                 otp_layout.setVisibility(View.GONE);
-                send_otp.setVisibility(View.VISIBLE);
-                verify_otp.setVisibility(View.GONE);
                 back.setVisibility(View.GONE);
                 break;
 
             case R.id.verify_otp:
                 String otpNumber = otp_number.getText().toString();
-                verifyOtp(mobileNumber,otpNumber);
-                /*Intent intent = new Intent(LoginActivity.this,FranchiseActiivity.class);
-                startActivity(intent);*/
-
+                verifyOtp(mobileNumber, otpNumber);
                 break;
-
             case R.id.resend_otp:
                 loginOtp(mobileNumber);
                 break;
@@ -127,7 +120,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-           }
+    }
+
 
     private void loginOtp(final String mobile_no) {
 
@@ -146,8 +140,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (jsonObject.optBoolean("success")) {
                         mobile_layout.setVisibility(View.GONE);
                         otp_layout.setVisibility(View.VISIBLE);
-                        send_otp.setVisibility(View.GONE);
-                        verify_otp.setVisibility(View.VISIBLE);
+                        otp_number.requestFocus();
                         back.setVisibility(View.VISIBLE);
                         if (progressDialog != null && progressDialog.isShowing()) {
                             progressDialog.dismiss();
@@ -171,7 +164,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                   Log.e("TAG", "Error: " + error.getMessage());
+                Log.e("TAG", "Error: " + error.getMessage());
                 if (progressDialog != null && progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
@@ -186,7 +179,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                  //params.put("","");
+                //params.put("","");
                 return params;
             }
 
@@ -213,7 +206,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         MaintainRequestQueue.getInstance(this).addToRequestQueue(req, "tag");
     }
 
-    private void verifyOtp(final String mobile_no,final String otp) {
+    private void verifyOtp(final String mobile_no, final String otp) {
 
         String url = Constant.URL + "franchiseLogin";
         url = url.replace(" ", "%20");
@@ -239,33 +232,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         String city = data.optString("city");
                         String preferedLanguage = data.optString("prefered_language");
 
-                        SharedPrefrenceObj.setSharedValue(LoginActivity.this,"mobile",mobile);
-                        SharedPrefrenceObj.setIntegerval(LoginActivity.this,"step",step);
-                        SharedPrefrenceObj.setSharedValue(LoginActivity.this,"auth_token",apiToken);
-                        SharedPrefrenceObj.setIntegerval(LoginActivity.this,"id",id);
-                        SharedPrefrenceObj.setSharedValue(LoginActivity.this,"language",preferedLanguage);
-                        SharedPrefrenceObj.setSharedValue(LoginActivity.this,"name",name);
-                        SharedPrefrenceObj.setSharedValue(LoginActivity.this,"email",email);
-                        SharedPrefrenceObj.setSharedValue(LoginActivity.this,"state",state);
-                        SharedPrefrenceObj.setSharedValue(LoginActivity.this,"city",city);
-                        Intent intent = new Intent(LoginActivity.this,FranchiseActiivity.class);
+                        SharedPrefrenceObj.setSharedValue(LoginActivity.this, "mobile", mobile);
+                        SharedPrefrenceObj.setIntegerval(LoginActivity.this, "step", step);
+                        SharedPrefrenceObj.setSharedValue(LoginActivity.this, "auth_token", apiToken);
+                        SharedPrefrenceObj.setIntegerval(LoginActivity.this, "id", id);
+                        SharedPrefrenceObj.setSharedValue(LoginActivity.this, "language", preferedLanguage);
+                        SharedPrefrenceObj.setSharedValue(LoginActivity.this, "name", name);
+                        SharedPrefrenceObj.setSharedValue(LoginActivity.this, "email", email);
+                        SharedPrefrenceObj.setSharedValue(LoginActivity.this, "state", state);
+                        SharedPrefrenceObj.setSharedValue(LoginActivity.this, "city", city);
+                        Intent intent = new Intent(LoginActivity.this, FranchiseActiivity.class);
                         startActivity(intent);
                         finish();
-                       progressDialog.dismiss();
+                        progressDialog.dismiss();
                     } else {
                         new AlertDialog.Builder(LoginActivity.this)
                                 .setIcon(android.R.drawable.ic_dialog_alert)
                                 .setTitle("Invalid OTP")
                                 .setMessage("Please enter valid otp")
-                                .setPositiveButton("Ok", new DialogInterface.OnClickListener()
-                                {
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.dismiss();
                                     }
 
                                 })
-                             //   .setNegativeButton("No", null)
+                                //   .setNegativeButton("No", null)
                                 .show();
 
                         progressDialog.dismiss();
