@@ -1,56 +1,0 @@
-
-rsquid:S00116'"TRename this field "land_type" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë©T8¤«˜ Ô-
-Dsquid:S1659'"'Declare "land_size" on a separate line.(Ë©T8¤«˜ Ô-
-Gsquid:S1659("$Declare "Budget" on a separate line.(ˆòÆóüÿÿÿÿ8—¬¦ Ô-
-@squid:S1659'"#Declare "state" on a separate line.(Ë©T8¤«˜ Ô-
-usquid:S1192S"WDefine a constant instead of duplicating this literal "Select Investment Type" 3 times.(°ôòµ8µÖì Ô-
-rsquid:S00116'"TRename this field "land_size" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë©T8¤«˜ Ô-
-ssquid:UselessImportCheck"CRemove this unused import 'com.chhotumaharajbusiness.MainActivity'.(­ƒ»ûÿÿÿÿÿ8‰®¿åÖ-
-zsquid:S00116*"\Rename this field "pre_analysis_time" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÀˆ8Ô¿ŠåÖ-
-csquid:UselessImportCheck"3Remove this unused import 'android.widget.Spinner'.(¸£ÃØüÿÿÿÿ8Ô¿ŠåÖ-
-Ÿsquid:S1192f"|Define a constant instead of duplicating this literal "Who Will Look After Day-to-Day Operations Of This Business?" 3 times.(ÄÆ“¶øÿÿÿÿ8µÖì Ô-
-Nsquid:S1659("+Declare "decisionMaker" on a separate line.(ˆòÆóüÿÿÿÿ8—¬¦ Ô-
-jsquid:CommentedOutCodeLineÊ"<This block of commented-out lines of code should be removed.(’ÿ»˜8ƒ–ÌÃÖ-
-Msquid:S1659*"0Declare "pre_analysis_maker" on a separate line.(ŠÀˆ8Ô¿ŠåÖ-
-Nsquid:S1659&"+Declare "businessArray" on a separate line.(ãÎÂùşÿÿÿÿ8ôøÓ-
-Nsquid:S1659*"1Declare "pre_analysis_budget" on a separate line.(ŠÀˆ8Ô¿ŠåÖ-
-|squid:S2293}"YReplace the type specification in this constructor call with the diamond operator ("<>").(²„ß’øÿÿÿÿ8Ì™éøÓ-
-|squid:S00116*"^Rename this field "pre_analysis_budget" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÀˆ8Ô¿ŠåÖ-
-\squid:S1854@">Remove this useless assignment to local variable "profession".(¿şÚÕ8’“ÎÅÔ-
-{squid:S00116*"]Rename this field "pre_analysis_maker" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÀˆ8Ô¿ŠåÖ-
-jsquid:MaximumInheritanceDepth$"<This class has 6 parents which is greater than 5 authorized.(÷™ıãûÿÿÿÿ
-Ksquid:S1659&"(Declare "makerArray" on a separate line.(ãÎÂùşÿÿÿÿ8ôøÓ-
-¥squid:S1186®"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñ¢®Êøÿÿÿÿ8ò¯Ú Ô-
-jsquid:CommentedOutCodeLineº"<This block of commented-out lines of code should be removed.(¸®÷é8‚ÅÖÃÖ-
-zsquid:S00116*"\Rename this field "pre_analysis_type" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÀˆ8Ô¿ŠåÖ-
-|squid:S2293x"YReplace the type specification in this constructor call with the diamond operator ("<>").(¬ÖÈıÿÿÿÿ8Ì™éøÓ-
-‹squid:S1192l"nDefine a constant instead of duplicating this literal "When you are Planning to Start This Business?" 3 times.(¨äİQ8µÖì Ô-
-Lsquid:S1659&")Declare "budgetArray" on a separate line.(ãÎÂùşÿÿÿÿ8ôøÓ-
-~squid:S00116*"`Rename this field "pre_analysis_business" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÀˆ8Ô¿ŠåÖ-
-isquid:CommentedOutCodeLineÚ"<This block of commented-out lines of code should be removed.(·¯£C8ò«ÏÃÖ-
-jsquid:CommentedOutCodeLineÒ"<This block of commented-out lines of code should be removed.(ßÕÅñ8‡ŸÎÃÖ-
-}squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8Áõ Ô-
-?squid:S1659'""Declare "city" on a separate line.(Ë©T8¤«˜ Ô-
-osquid:CommentedOutCodeLineÂ"<This block of commented-out lines of code should be removed.(ö´™ˆşÿÿÿÿ8Ö§ÉÃÖ-
-Dsquid:S1659'"'Declare "land_type" on a separate line.(Ë©T8¤«˜ Ô-
-Vsquid:S1854A"8Remove this useless assignment to local variable "land".(àüÙÉ8ï‘š Ô-
-wsquid:S2293s"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ãˆ¡Ü8Ì™éøÓ-
-}squid:S2293˜"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8Áõ Ô-
-lsquid:HiddenFieldCheckx">Rename "profession" which hides the field declared at line 42.(¬ÖÈıÿÿÿÿ8’“ÎÅÔ-
-?squid:S1659'""Declare "land" on a separate line.(Ë©T8¤«˜ Ô-
-wsquid:S1192Y"YDefine a constant instead of duplicating this literal "Select Investment Budget" 3 times.(ş¸ÿ¬8µÖì Ô-
-Msquid:S1659("*Declare "businessTime" on a separate line.(ˆòÆóüÿÿÿÿ8—¬¦ Ô-
-Esquid:S1659'"(Declare "profession" on a separate line.(Ë©T8¤«˜ Ô-
-Hsquid:S1659'"+Declare "qualification" on a separate line.(Ë©T8¤«˜ Ô-
-Lsquid:S1905®"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8Áõ Ô-
-ysquid:S1192`"VDefine a constant instead of duplicating this literal "Select Decision Maker" 3 times.(¼¦–Òÿÿÿÿÿ8µÖì Ô-
-}squid:S2293‚"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÑÏçÚûÿÿÿÿ8Ì™éøÓ-
-fsquid:HiddenFieldCheck}"8Rename "land" which hides the field declared at line 42.(²„ß’øÿÿÿÿ8¤«˜ Ô-
-}squid:S2293‡"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨ÍŒ©üÿÿÿÿ8Ì™éøÓ-
-Psquid:S1659*"3Declare "pre_analysis_business" on a separate line.(ŠÀˆ8Ô¿ŠåÖ-
-usquid:S00116("QRename this field "Budget" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆòÆóüÿÿÿÿ8—¬¦ Ô-
-Rsquid:S1659&"/Declare "businesstimeArray" on a separate line.(ãÎÂùşÿÿÿÿ8½ôøÓ-
-Lsquid:S1659*"/Declare "pre_analysis_time" on a separate line.(ŠÀˆ8Ô¿ŠåÖ-
-Isquid:S1659("&Declare "business" on a separate line.(ˆòÆóüÿÿÿÿ8—¬¦ Ô-
-W
-squid:S106§"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8Áõ Ô-

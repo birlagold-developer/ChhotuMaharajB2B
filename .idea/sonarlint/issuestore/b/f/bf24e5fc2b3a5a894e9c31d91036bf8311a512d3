@@ -1,25 +1,0 @@
-
-W
-squid:S106¡"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8Ô÷‹¹×-
-usquid:S001163"WRename this field "query_cancel" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş¼Î)8¹ÌñÔ-
-Lsquid:S1905½"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8ÀıàñÔ-
-X"squid:SwitchLastCaseIsDefaultCheckÏ""Add a default case to this switch.(ºÖ8ÎÂÑñÔ-
-Gsquid:S16593"*Declare "query_cancel" on a separate line.(Ş¼Î)8¹ÌñÔ-
-gsquid:HiddenFieldChecks">Rename "queryModel" which hides the field declared at line 46.(ªŸ8©‹ØìÔ-
-squid:S001164"[Rename this field "query_btn_layout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ôâ×Öÿÿÿÿÿ8µ¡±Š×-
-gsquid:S1192O"IDefine a constant instead of duplicating this literal "video_id" 3 times.(–È­¼8ÀıàñÔ-
-W
-squid:S106¶"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8ÕÆìÔ-
-Lsquid:S1905¨"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8Ô÷‹¹×-
-Gsquid:S1148ÿ"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ô÷‹¹×-
-}squid:S2293›"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8Ô÷‹¹×-
-esquid:MaximumInheritanceDepth*"<This class has 6 parents which is greater than 5 authorized.(§Ğ ç
-}squid:S2293ª"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ÀıàñÔ-
-jsquid:S1301Ï"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ8ÎÂÑñÔ-
-ysquid:S001165"URename this field "no_queries" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜†Â¶úÿÿÿÿ8Åÿ±Š×-
-}squid:S2293’"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8Ô÷‹¹×-
-isquid:HiddenFieldCheck~";Rename "videoId" which hides the field declared at line 49.(Õˆàáÿÿÿÿÿ8£²ıìÔ-
-¥squid:S1186ã"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(œƒƒ©ùÿÿÿÿ8î¬±³×-
-}squid:S2293³"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ÀıàñÔ-
-usquid:S001163"WRename this field "query_submit" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş¼Î)8¹ÌñÔ-
-\squid:S1155×">Use isEmpty() to check whether the collection is empty or not.(ù‡Ò'8¡ãøå-

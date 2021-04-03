@@ -1,34 +1,0 @@
-
-vsquid:S2293ù"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ
-esquid:S1871€"MThis branch's code block is the same as the block for the branch on line 122.(¨Õ·•
-hsquid:CommentedOutCodeLineú"<This block of commented-out lines of code should be removed.(ì¾ÎÜùÿÿÿÿ
-Bsquid:S16590"&Declare "emailVal" on a separate line.(ˆşÙóùÿÿÿÿ
-:squid:S16598"#Declare "state" on a separate line.(šÖúõ
-jsquid:S1871†"MThis branch's code block is the same as the block for the branch on line 122.(öÊÊ¡şÿÿÿÿ
-squid:S1186¬"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñ¢®Êøÿÿÿÿ
-Esquid:S1905‹"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ
-squid:S1186Ÿ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñ¢®Êøÿÿÿÿ
-vsquid:S2293š"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ
-hsquid:CommentedOutCodeLineÖ"<This block of commented-out lines of code should be removed.(ó™‡•ÿÿÿÿÿ
-Q"squid:SwitchLastCaseIsDefaultCheckµ""Add a default case to this switch.(ºÖ
-Esquid:S1905°"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ
-Csquid:S16590"'Declare "mobileVal" on a separate line.(ˆşÙóùÿÿÿÿ
-lsquid:S001169"TRename this field "terms_txt" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²®¡È
-vsquid:S2293Ú"YReplace the type specification in this constructor call with the diamond operator ("<>").(êà­İşÿÿÿÿ
-bsquid:S1192|"KDefine a constant instead of duplicating this literal "query_page" 3 times.(¢˜²
-P
-squid:S106©"9Replace this use of System.out or System.err by a logger.(Ü…„Ş
-Bsquid:S16596"&Declare "stateVal" on a separate line.(äÿÄ¦üÿÿÿÿ
-:squid:S1659."#Declare "email" on a separate line.(ğóå×
-;squid:S1659."$Declare "mobile" on a separate line.(ğóå×
-csquid:S1301µ"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ
-Asquid:S16590"%Declare "cityVal" on a separate line.(ˆşÙóùÿÿÿÿ
-9squid:S1659.""Declare "city" on a separate line.(ğóå×
-@squid:S1125Ù")Remove the literal "false" boolean value.(Î¡Â
-hsquid:CommentedOutCodeLineÏ"<This block of commented-out lines of code should be removed.(®‰ÏÙûÿÿÿÿ
-jsquid:S1192Æ"MDefine a constant instead of duplicating this literal "Select State" 3 times.(óõ‡¤ùÿÿÿÿ
-jsquid:MaximumInheritanceDepth,"<This class has 6 parents which is greater than 5 authorized.(‡ª«Ãşÿÿÿÿ
-vsquid:S2293“"YReplace the type specification in this constructor call with the diamond operator ("<>").(õÂ¹ÿûÿÿÿÿ
-vsquid:S2293£"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ
-bsquid:CommentedOutCodeLine3"<This block of commented-out lines of code should be removed.(éúÕ†
-vsquid:S2293‚"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ

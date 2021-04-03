@@ -1,48 +1,0 @@
-
-osquid:CommentedOutCodeLineİ"<This block of commented-out lines of code should be removed.(™Éû÷üÿÿÿÿ8ö‹İ¼×-
-Ssquid:S1659"5Declare "pre_analysis_profession" on a separate line.(£°ú8ğÉ¥äÖ-
-jsquid:CommentedOutCodeLine´"<This block of commented-out lines of code should be removed.(’ûÌ8•œñéÖ-
-Esquid:S1659""Declare "city" on a separate line.(ïš“ßÿÿÿÿÿ8”¸­ŸÔ-
-xsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(€òà¸8•œñéÖ-
-xsquid:S2293’"YReplace the type specification in this constructor call with the diamond operator ("<>").(úËû8•œñéÖ-
-isquid:S1192u"FDefine a constant instead of duplicating this literal "Owned" 3 times.(›¸Ç–şÿÿÿÿ8ÛÑÛ¼×-
-jsquid:S1192t"LDefine a constant instead of duplicating this literal "Select Land" 3 times.(í¥ûÛ8•œñéÖ-
-xsquid:S2293œ"YReplace the type specification in this constructor call with the diamond operator ("<>").(œ¨³’8•œñéÖ-
-Asquid:S1659"#Declare "view2" on a separate line.(·‡ü8ƒŞæ’×-
-Isquid:S1659"&Declare "landType" on a separate line.(Éâˆãÿÿÿÿÿ8ƒÚÇŸÔ-
-{squid:S00116"\Rename this field "pre_analysis_type" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£°ú8ğÉ¥äÖ-
-}squid:S2293—"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ø×À§ÿÿÿÿÿ8•œñéÖ-
-esquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(š÷÷Š
-dsquid:S1192M"FDefine a constant instead of duplicating this literal "state" 4 times.(ÇÓÇÔ8Ì¸çéÖ-
-{squid:S00116"\Rename this field "pre_analysis_land" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£°ú8ğÉ¥äÖ-
-osquid:CommentedOutCodeLineÄ"<This block of commented-out lines of code should be removed.(šŞ¯ùüÿÿÿÿ8•œñéÖ-
-Jsquid:S1659"'Declare "sizeArray" on a separate line.(¿…Ÿõúÿÿÿÿ8´¾øÓ-
-Msquid:S1659"/Declare "pre_analysis_size" on a separate line.(£°ú8ğÉ¥äÖ-
-osquid:S1192"QDefine a constant instead of duplicating this literal "Select Land Size" 3 times.(°ÿ±8•œñéÖ-
-jsquid:CommentedOutCodeLineÌ"<This block of commented-out lines of code should be removed.(¾«Ìã8•œñéÖ-
-{squid:S00116"\Rename this field "pre_analysis_next" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›¶ç½8Õ’“ùÓ-
-squid:S00116"bRename this field "pre_analysis_profession" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£°ú8ğÉ¥äÖ-
-jsquid:CommentedOutCodeLine¸"<This block of commented-out lines of code should be removed.(ºó£ü8•œñéÖ-
-qsquid:S00117¯"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›Ğ¶Å8½µ‚ Ô-
-¥squid:S1186«"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñ¢®Êøÿÿÿÿ8•œñéÖ-
-zsquid:S00116"[Rename this field "pre_analysis_qlf" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£°ú8³¾¼øÓ-
-vsquid:S00117®"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®ˆšÖşÿÿÿÿ8´ÈĞ’ß-
-{squid:S00116"\Rename this field "pre_analysis_size" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£°ú8ğÉ¥äÖ-
-osquid:CommentedOutCodeLineå"<This block of commented-out lines of code should be removed.(¬üÓ¬úÿÿÿÿ8ö‹İ¼×-
-Hsquid:S1659"%Declare "landVal" on a separate line.(Éâˆãÿÿÿÿÿ8ƒÚÇŸÔ-
-Nsquid:S1659"+Declare "professionVal" on a separate line.(Éâˆãÿÿÿÿÿ8İ‘ÔŸÔ-
-osquid:CommentedOutCodeLine¼"<This block of commented-out lines of code should be removed.(€¾ƒ“üÿÿÿÿ8•œñéÖ-
-qsquid:S00117°"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ìšâõ8ÖÌÌŸÔ-
-Msquid:S1659"/Declare "pre_analysis_type" on a separate line.(£°ú8ğÉ¥äÖ-
-usquid:S1192m"RDefine a constant instead of duplicating this literal "Select Profession" 3 times.(Äü—ıÿÿÿÿ8•œñéÖ-
-Hsquid:S00108Z")Either remove or fill this block of code.(”ı¾8•œñéÖ-
-osquid:CommentedOutCodeLineÔ"<This block of commented-out lines of code should be removed.(“ğŠ’üÿÿÿÿ8•œñéÖ-
-Isquid:S1659"&Declare "landSize" on a separate line.(Éâˆãÿÿÿÿÿ8öÀÑŸÔ-
-xsquid:S1192g"UDefine a constant instead of duplicating this literal "Select Qualification" 3 times.(ÿ¥·ñıÿÿÿÿ8•œñéÖ-
-Fsquid:S1659"#Declare "state" on a separate line.(ïš“ßÿÿÿÿÿ8”¸­ŸÔ-
-tsquid:S1192y"QDefine a constant instead of duplicating this literal "Select Land Type" 3 times.(®ºš¤şÿÿÿÿ8•œñéÖ-
-Jsquid:S1659"'Declare "landArray" on a separate line.(¿…Ÿõúÿÿÿÿ8‹ú§øÓ-
-Jsquid:S1659"'Declare "typeArray" on a separate line.(¿…Ÿõúÿÿÿÿ8´¾øÓ-
-Msquid:S1659"/Declare "pre_analysis_land" on a separate line.(£°ú8ğÉ¥äÖ-
-Psquid:S1659"-Declare "professionArray" on a separate line.(¿…Ÿõúÿÿÿÿ8´¾øÓ-
-}squid:S2293ˆ"YReplace the type specification in this constructor call with the diamond operator ("<>").(Î…Ùùÿÿÿÿ8•œñéÖ-

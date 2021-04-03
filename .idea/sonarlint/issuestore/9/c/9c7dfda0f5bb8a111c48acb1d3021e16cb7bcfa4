@@ -1,20 +1,0 @@
-
-Gsquid:S1148û"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¸ïî•×-
-W
-squid:S106œ"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8¸ïî•×-
-}squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8¸ïî•×-
-Esquid:S1659'""Declare "call" on a separate line.(ùÌ¿ıÿÿÿÿ8ÁÇÚñÕ-
-}squid:S2293—"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8¸ïî•×-
-Lsquid:S1905Ù"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8¸ïî•×-
-ysquid:S00116$"URename this field "topic_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…ìıÉøÿÿÿÿ8¢ï™ÁÔ-
-Fsquid:S1148k"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¸ïî•×-
-W
-squid:S106Ò"9Replace this use of System.out or System.err by a logger.(Ü…„Ş8¸ïî•×-
-lsquid:MaximumInheritanceDepth""<This class has 6 parents which is greater than 5 authorized.(ãè¡ú8ÁÇÚñÕ-
-gsquid:S1192@"IDefine a constant instead of duplicating this literal "video_id" 4 times.(–È­¼8ÅıÚòÔ-
-}squid:S2293Ã"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8¸ïî•×-
-Ksquid:S1659("(Declare "topicVideo" on a separate line.(ä¤Ûøÿÿÿÿ8äĞ›ÁÔ-
-}squid:S2293Ì"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8¸ïî•×-
-Gsquid:S1148°"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¸ïî•×-
-Lsquid:S1905£"(Remove this unnecessary cast to "Entry".(«™÷¹ùÿÿÿÿ8¸ïî•×-
-@squid:S1659&"#Declare "query" on a separate line.(š„šO8¢ï™ÁÔ-

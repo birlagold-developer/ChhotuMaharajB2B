@@ -1,8 +1,0 @@
-
-Œ"squid:ClassVariableVisibilityCheck
-"RMake editor a static final constant or non-public and provide accessors if needed.(íõ÷üşÿÿÿÿ8ºÕ ˜Ô-
-]squid:S1118":Add a private constructor to hide the implicit public one.(˜¬„òúÿÿÿÿ8ºÕ ˜Ô-
-Zsquid:S1444	"7Make this "public static sharedPreferences" field final(™¬îøÿÿÿÿ8ºÕ ˜Ô-
-—"squid:ClassVariableVisibilityCheck	"]Make sharedPreferences a static final constant or non-public and provide accessors if needed.(™¬îøÿÿÿÿ8ºÕ ˜Ô-
-Osquid:S1444
-",Make this "public static editor" field final(íõ÷üşÿÿÿÿ8ºÕ ˜Ô-
