@@ -155,7 +155,7 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
                 progressBar.setVisibility(View.GONE);
                 videoView.seekTo(position);
                 videoView.start();
-                Log.d("psition..............", String.valueOf(position));
+                Log.e("psition..............", String.valueOf(position));
                 if (position == 0) {
                     videoView.start();
                 }
@@ -169,6 +169,13 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
                         mediaController.setAnchorView(videoView);
                     }
                 });
+            }
+        });
+
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                Log.e("setOnCompletionListener","onCompletion");
             }
         });
 
@@ -355,7 +362,8 @@ public class TopicWiseDetailFragment extends Fragment implements View.OnClickLis
                         String video_lang = video.getString("language_name");
 
                         language.setText(video_lang);
-                        videoView.setVideoPath(Constant.VIDEO_PATH + topicVideo);
+                        //videoView.setVideoPath(Constant.VIDEO_PATH + topicVideo);
+                        videoView.setVideoURI(Uri.parse(Constant.VIDEO_PATH + topicVideo));
                         videoView.requestFocus();
 
                     }

@@ -48,18 +48,18 @@ import java.util.Map;
 
 public class FranchiseActiivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    EditText name, mobile, email, city;
-    CheckBox check;
-    String nameVal, mobileVal, emailVal, cityVal;
-    Button submit;
-    ProgressDialog progressDialog;
+    private EditText name, mobile, email, city;
+    private CheckBox check;
+    private String nameVal, mobileVal, emailVal, cityVal;
+    private Button submit;
+    private ProgressDialog progressDialog;
     //   Spinner language;
-    ArrayList<String> languageArray;
-    ArrayList<String> stateArray;
-    String languageVal, stateVal;
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    Spinner language, state;
-    TextView terms_txt;
+    private ArrayList<String> languageArray;
+    private ArrayList<String> stateArray;
+    private String languageVal, stateVal;
+    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private Spinner language, state;
+    private TextView terms_txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,33 +111,33 @@ public class FranchiseActiivity extends AppCompatActivity implements View.OnClic
         languageArray.add("Select Language");
 
         if (SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this, "step") == 1) {
-            Intent intent = new Intent(FranchiseActiivity.this, ConceptBusinessActivity1.class);
+            Intent intent = new Intent(FranchiseActiivity.this, ConceptBusinessActivity.class);
             startActivity(intent);
             finish();
-            return;
+//            return;
         } else if (SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this, "step") == 2) {
             Intent intent = new Intent(FranchiseActiivity.this, PreAnalysisActivity.class);
             startActivity(intent);
             finish();
-            return;
+//            return;
         } else if (SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this, "step") == 3) {
             Intent intent = new Intent(FranchiseActiivity.this, NavigationActivity.class);
             intent.putExtra("query_page", "0");
             startActivity(intent);
             finish();
-            return;
+//            return;
         } else if (SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this, "step") == 4) {
             Intent intent = new Intent(FranchiseActiivity.this, NavigationActivity.class);
             intent.putExtra("query_page", "0");
             startActivity(intent);
             finish();
-            return;
+//            return;
         } else if (SharedPrefrenceObj.getIntegerval(FranchiseActiivity.this, "step") == 5) {
             Intent intent = new Intent(FranchiseActiivity.this, NavigationActivity.class);
             intent.putExtra("query_page", "0");
             startActivity(intent);
             finish();
-            return;
+//            return;
         }
 
         submit = findViewById(R.id.franchise_submit);
@@ -343,7 +343,7 @@ public class FranchiseActiivity extends AppCompatActivity implements View.OnClic
                         SharedPrefrenceObj.setSharedValue(FranchiseActiivity.this, "state", state);
                         SharedPrefrenceObj.setSharedValue(FranchiseActiivity.this, "city", city);
 
-                        Intent intent = new Intent(FranchiseActiivity.this, ConceptBusinessActivity1.class);
+                        Intent intent = new Intent(FranchiseActiivity.this, ConceptBusinessActivity.class);
                         intent.putExtra("sec", 0);
                         startActivity(intent);
                         finish();

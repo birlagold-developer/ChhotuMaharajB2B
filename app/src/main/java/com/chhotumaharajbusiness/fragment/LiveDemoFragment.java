@@ -351,9 +351,9 @@ public class LiveDemoFragment extends Fragment implements AdapterView.OnItemSele
                                 intent.putExtra(AvenuesParams.BILLING_STATE, SharedPrefrenceObj.getSharedValue(getActivity(), "state"));
                                 intent.putExtra(AvenuesParams.BILLING_CITY, SharedPrefrenceObj.getSharedValue(getActivity(), "city"));
 
-                                intent.putExtra(AvenuesParams.REDIRECT_URL, "http://chhotumaharajb2b.com/api/payment_Response");
-                                intent.putExtra(AvenuesParams.CANCEL_URL, "http://chhotumaharajb2b.com/api/payment_Response");
-                                intent.putExtra(AvenuesParams.RSA_KEY_URL, "http://chhotumaharajb2b.com/mobile-payment/GetRSA.php");
+                                intent.putExtra(AvenuesParams.REDIRECT_URL, "https://chhotumaharajb2b.com/api/payment_Response");
+                                intent.putExtra(AvenuesParams.CANCEL_URL, "https://chhotumaharajb2b.com/api/payment_Response");
+                                intent.putExtra(AvenuesParams.RSA_KEY_URL, "https://chhotumaharajb2b.com/mobile-payment/GetRSA.php");
 
                                 startActivity(intent);
                             }

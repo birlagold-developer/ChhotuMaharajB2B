@@ -45,13 +45,13 @@ public class ConceptBusinessActivity1 extends YouTubeBaseActivity implements Vie
     private YouTubePlayer player;
 
     private int position = 0;
-    ImageView imageViewBackward, imageViewPlayPause, imageViewForward;
-    Button interested, not_interested;
-    ProgressBar videoProgressBar;
-    TextView user_name;
-    ProgressDialog progressDialog;
-    Handler progressBarHandler;
-    String fileName = "K48Z32iaKKI";
+    private ImageView imageViewBackward, imageViewPlayPause, imageViewForward;
+    private Button interested, not_interested;
+    private ProgressBar videoProgressBar;
+    private TextView user_name;
+    private ProgressDialog progressDialog;
+    private Handler progressBarHandler;
+    private String fileName = "K48Z32iaKKI";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -27,7 +27,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.chhotumaharajbusiness.R;
-import com.chhotumaharajbusiness.activities.TopicWiseDetailActivity1;
 import com.chhotumaharajbusiness.adapter.TopicWiseAdapter;
 import com.chhotumaharajbusiness.constant.Constant;
 import com.chhotumaharajbusiness.constant.MaintainRequestQueue;
@@ -276,27 +275,26 @@ public class TopicWiseFragment extends Fragment implements TopicWiseAdapter.Clic
 
         if (flag.equalsIgnoreCase("1")) {
 
-//            TopicWiseDetailActivity1 topicWiseFragment1 = new TopicWiseDetailActivity1();
-//            Bundle args1 = new Bundle();
-//            args1.putString("topic_name",topicWiseModel.getName());
-//            args1.putString("topic_video",topicWiseModel.getVideo().trim());
-//            args1.putInt("video_id",topicWiseModel.getId());
-//            args1.putString("topic",topic);
-//            args1.putString("pdf",topicWiseModel.getPpt());
-//            topicWiseFragment1.setArguments(args1);
-//            FragmentManager fragmentManager1 = getActivity().getSupportFragmentManager();
-//            FragmentTransaction transaction1 = fragmentManager1.beginTransaction();
-//            transaction1.add(R.id.frame_container, topicWiseFragment1);
-//            transaction1.commit();
+            TopicWiseDetailFragment topicWiseFragment1 = new TopicWiseDetailFragment();
+            Bundle args1 = new Bundle();
+            args1.putString("topic_name", topicWiseModel.getName());
+            args1.putString("topic_video", topicWiseModel.getVideo().trim());
+            args1.putInt("video_id", topicWiseModel.getId());
+            args1.putString("topic", topic);
+            args1.putString("pdf", topicWiseModel.getPpt());
+            topicWiseFragment1.setArguments(args1);
+            FragmentManager fragmentManager1 = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction1 = fragmentManager1.beginTransaction();
+            transaction1.add(R.id.frame_container, topicWiseFragment1);
+            transaction1.commit();
 
-            Intent intent = new Intent(getActivity(), TopicWiseDetailActivity1.class);
-            intent.putExtra("topic_name", topicWiseModel.getName());
-            intent.putExtra("topic_video", topicWiseModel.getVideo().trim());
-            intent.putExtra("video_id", topicWiseModel.getId());
-            intent.putExtra("topic", topic);
-            intent.putExtra("pdf", topicWiseModel.getPpt());
-
-            startActivity(intent);
+//            Intent intent = new Intent(getActivity(), TopicWiseDetailActivity1.class);
+//            intent.putExtra("topic_name", topicWiseModel.getName());
+//            intent.putExtra("topic_video", topicWiseModel.getVideo().trim());
+//            intent.putExtra("video_id", topicWiseModel.getId());
+//            intent.putExtra("topic", topic);
+//            intent.putExtra("pdf", topicWiseModel.getPpt());
+//            startActivity(intent);
 
         } else {
             if (!topicWiseModel.getPpt().equalsIgnoreCase("null")) {

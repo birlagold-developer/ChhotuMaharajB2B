@@ -23,12 +23,11 @@ import java.util.ArrayList;
 
 public class PreAnalysisActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    ArrayList<String> qualfArray, professionArray, landArray, typeArray, sizeArray;
-    Button pre_analysis_next;
-    EditText name, age, state, city;
-    String qualification, professionVal, landVal, landType, landSize;
-    Spinner pre_analysis_qlf, pre_analysis_profession, pre_analysis_land, pre_analysis_type, pre_analysis_size;
-    View view1, view2;
+    private ArrayList<String> qualfArray, professionArray, landArray, typeArray, sizeArray;
+    private Button pre_analysis_next;
+    private EditText name, age, state, city;
+    private String qualification, professionVal, landVal, landType, landSize;
+    private Spinner pre_analysis_qlf, pre_analysis_profession, pre_analysis_land, pre_analysis_type, pre_analysis_size;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -266,13 +265,9 @@ public class PreAnalysisActivity extends AppCompatActivity implements View.OnCli
                 if (pre_analysis_land.getSelectedItem().toString().equalsIgnoreCase("Owned")) {
                     pre_analysis_type.setVisibility(View.VISIBLE);
                     pre_analysis_size.setVisibility(View.VISIBLE);
-                    view1.setVisibility(View.VISIBLE);
-                    view2.setVisibility(View.VISIBLE);
                 } else {
                     pre_analysis_type.setVisibility(View.GONE);
                     pre_analysis_size.setVisibility(View.GONE);
-                    view1.setVisibility(View.GONE);
-                    view2.setVisibility(View.GONE);
                 }
                 landVal = String.valueOf(adapterView.getSelectedItem());
                 break;

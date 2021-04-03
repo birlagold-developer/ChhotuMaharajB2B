@@ -48,14 +48,14 @@ public class ConceptBusinessActivity extends AppCompatActivity implements View.O
     private ProgressBar progressBar;
     private int position = 0;
     private MediaController mediaController;
-    Button interested, not_interested;
-    String language, name;
-    TextView user_name;
-    ProgressDialog progressDialog;
+    private Button interested, not_interested;
+    private String language, name;
+    private TextView user_name;
+    private ProgressDialog progressDialog;
     private static final int RECOVERY_REQUEST = 1;
     private YouTubePlayer player;
-    ImageView rotate;
-    long seconds;
+    private ImageView rotate;
+    private long seconds;
 
 
     @Override
